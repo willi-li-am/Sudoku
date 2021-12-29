@@ -1,88 +1,69 @@
-.title{
+ul{
+    display: grid;
+    grid-template-columns: 112px 150px;
+    
+    background-color: rgb(51, 51, 51);
+    list-style-type: none;
+    grid-gap: 5px;
+    margin-top: 0px;
+    padding: 0px;
+    height: 40px;
+}
+
+
+li{
+    
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 150px;
     text-align: center;
-    margin: 2vw;
+    padding: 8px;
+    font-family: arial;
+    font-size: 20px;
+    display: inline-block;
+}
+
+li:hover{
+    cursor: pointer;
+    background-color: black;
+    transition: 0.5s;
+}
+
+a:visited{
+    text-decoration: none;
+    color: white;
+}
+a:link{
+    text-decoration: none;
+    color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.current{
+    background-color: rgb(81, 185, 250);
+    width: 100px;
+    margin: 0;
+    height: 24px;
+}
+
+a.home{
+    color: black;
+}
+
+.current:hover{
+    cursor: pointer;
+    background-color: rgb(70, 163, 221);
+    transition: 0.5s;
+}
+
+.title{
     font-size: 3vw;
     font-family: arial;
+    text-align: center;
+    margin-top: 2vw;
 }
 
-
-.grid-container{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 0px;
-    background-color: black;
-    padding: 5px;
-    width: 25.25vw;
-    height: 25.25vw;
-    border-radius: 5px;
-    justify-items: center;
-    align-items: center;
-    margin: auto;
-    margin-top: 7vw;
-}
-
-.grid-1{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
-}
-
-.grid-2{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
-}
-
-.grid-3{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
-}
-
-.grid-4{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
-}
-
-.grid-1 > div{
-    width: 6vw;
-    height: 6vw;
-    background-color: white;
-    
-}
-
-.grid-2 > div{
-    width: 6vw;
-    height: 6vw;
-    background-color: white;
-    
-}
-
-.grid-3 > div{
-    width: 6vw;
-    height: 6vw;
-    background-color: white;
-    
-}
-
-.grid-4 > div{
-    width: 6vw;
-    height: 6vw;
-    background-color: white;
-    
-}
-
-.cell:hover{
-    background-color: rgba(232,232,232);
-    cursor: pointer;
-}
-
-.cell-show:hover{
-    cursor: default;
-    user-select: none;
-}
