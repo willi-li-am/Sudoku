@@ -147,7 +147,7 @@ a.home{
 }
 
 .cell:hover{
-    background-color: rgb(216, 214, 214);
+    background-color: rgb(225, 243, 255);
     cursor: pointer;
     transition: .5s;
 }
