@@ -12,7 +12,7 @@ ul{
 
 
 li{
-    
+    transition: 0.5s;
     margin-top: 0;
     margin-bottom: 0;
     width: 150px;
@@ -146,13 +146,21 @@ a.home{
     
 }
 
+.cell{
+    transition: 0.3s;
+    text-align: center;
+    line-height: 6vw;
+    font-size: 50px
+}
+
 .cell:hover{
     background-color: rgb(225, 243, 255);
     cursor: pointer;
-    transition: .5s;
+    transition: .3s;
 }
 
-.cell-show:hover{
+.cell.show:hover{
     cursor: default;
     user-select: none;
+    background-color: white;
 }
