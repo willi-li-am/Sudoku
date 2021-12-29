@@ -1,0 +1,88 @@
+.title{
+    text-align: center;
+    margin: 2vw;
+    font-size: 3vw;
+    font-family: arial;
+}
+
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 0px;
+    background-color: black;
+    padding: 5px;
+    width: 25.25vw;
+    height: 25.25vw;
+    border-radius: 5px;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 7vw;
+}
+
+.grid-1{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px;
+    padding: 2px;
+}
+
+.grid-2{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px;
+    padding: 2px;
+}
+
+.grid-3{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px;
+    padding: 2px;
+}
+
+.grid-4{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px;
+    padding: 2px;
+}
+
+.grid-1 > div{
+    width: 6vw;
+    height: 6vw;
+    background-color: white;
+    
+}
+
+.grid-2 > div{
+    width: 6vw;
+    height: 6vw;
+    background-color: white;
+    
+}
+
+.grid-3 > div{
+    width: 6vw;
+    height: 6vw;
+    background-color: white;
+    
+}
+
+.grid-4 > div{
+    width: 6vw;
+    height: 6vw;
+    background-color: white;
+    
+}
+
+.cell:hover{
+    background-color: rgba(232,232,232);
+    cursor: pointer;
+}
+
+.cell-show:hover{
+    cursor: default;
+    user-select: none;
+}
