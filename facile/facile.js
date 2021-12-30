@@ -1,5 +1,6 @@
 const newGameBtn = document.getElementById('newGameBtn')
 const hintBtn = document.getElementById('hintBtn')
+const checkWinBtn = document.getElementById('checkWinBtn')
 const numpad1 = document.getElementById('number1')
 const numpad2 = document.getElementById('number2')
 const numpad3 = document.getElementById('number3')
@@ -62,6 +63,7 @@ const grid = [
 ]
 //Event Listeners
 newGameBtn.addEventListener('click', function () {startGame()})
+checkWinBtn.addEventListener('click', function(){checkWin()})
 
 numpad1.addEventListener('click', function () {addNumber(1)})
 numpad2.addEventListener('click', function () {addNumber(2)})
@@ -88,14 +90,17 @@ cell13.addEventListener('click', function() {selectGrid(3, 1)})
 cell14.addEventListener('click', function() {selectGrid(3, 2)})
 cell15.addEventListener('click', function() {selectGrid(3, 3)})
 
+var newGrid
 
 function startGame(){
     //choisie une grille aleatoirement
-    let newGrid = randomGrid(grid)
+    newGrid = randomGrid(grid)
     for(let i = 0; i < 4 ; i++){ //inscrit les numeros dans les cases
         for(let j = 0; j < 4; j++){
             cell[i][j].innerText = newGrid[i][j]
+            cell[i][j].classList.remove('incorrect')
             cell[i][j].classList.add('show')
+            
         }
     }randomRemoveGrids() //enleve le numero des cases aleatoirement
     selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
@@ -172,3 +177,30 @@ function addNumber(numpadNum){
     selected[0].innerHTML = numpadNum
 }
 
+function checkWin(){
+    var correctAnsw = 0
+    for(let i = 0; i < 4; i++){
+        for(let j = 0; j < 4; j++){
+            if(!cell[i][j].classList.contains('show')){
+                if(cell[i][j].innerText == newGrid[i][j]){
+                    cell[i][j].classList.remove('incorrect')
+                    cell[i][j].classList.add('correct')
+                    correctAnsw += 1
+                }else{
+                    cell[i][j].classList.add('incorrect')
+                    cell[i][j].classList.remove('correct')
+                }
+            }else{
+                correctAnsw += 1
+            }
+            
+        }
+    }
+    if(correctAnsw == 16){
+        console.log('Gagnant!')
+        correctAnsw = 0
+    }
+    selected[0].classList.remove('selected')
+    selected = []
+    
+}

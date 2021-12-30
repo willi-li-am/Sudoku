@@ -134,17 +134,36 @@ a:visited, a:link, a.home{
     color: white;
 }
 
+.cell.incorrect{
+    color: red;
+    background-color: rgb(255, 187, 187);
+}
+
+.cell.selected.incorrect{
+    color: white;
+    background-color: rgb(255, 107, 107);
+}
+
+.cell.correct{
+    color: rgb(0, 131, 22);
+}
+
+.cell.selected.correct{
+    color: rgb(0, 131, 22);
+    background-color: rgb(119, 255, 107);
+}
+
 .pad{
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto 90px;
-    margin-left: 2.25givw;
+    margin-left: 2.25vw;
 }
 
 .btn{
     display: grid;
-    grid-template-columns: auto auto auto;
-    width: 27vw;
+    grid-template-columns: 9vw 9vw;
+    width: 17vw;
     height: 3px;
     
 }
