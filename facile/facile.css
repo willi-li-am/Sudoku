@@ -1,7 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url();
+    background-size: 1920px 1200px;
+}
+
 ul{
     display: grid;
     grid-template-columns: 112px 150px;
-    
     background-color: rgb(51, 51, 51);
     list-style-type: none;
     grid-gap: 5px;
@@ -12,60 +21,45 @@ ul{
 
 
 li{
-    transition: 0.5s;
+    transition: 0.3s;
     margin-top: 0;
     margin-bottom: 0;
     width: 150px;
     text-align: center;
     padding: 8px;
-    font-family: arial;
-    font-size: 20px;
+    font: bold 20px Arial;
     display: inline-block;
 }
 
 li:hover{
     cursor: pointer;
     background-color: black;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
-a:visited{
+a:visited, a:link, a.home{
     text-decoration: none;
     color: white;
-}
-a:link{
-    text-decoration: none;
-    color: white;
-}
-
-* {
-    margin: 0;
-    padding: 0;
 }
 
 .current{
-    background-color: rgb(81, 185, 250);
+    background-color: rgb(128, 128, 128);
     width: 150px;
     margin: 0;
-    color: black;
+    color: white;
     height: 24px;
+    transition: 0.3s;
 }
 
-a.home{
-    color: white;
+.current:hover{
+    cursor: pointer;
+    background-color: rgb(51, 51, 51);
+    transition: 0.3s;
 }
 
 .accueil{
     width: 100px;
 }
-
-.current:hover{
-    cursor: pointer;
-    background-color: rgb(70, 163, 221);
-    transition: 0.5s;
-}
-
-
 
 .title{
     text-align: center;
@@ -74,72 +68,38 @@ a.home{
     font-family: arial;
 }
 
+.game{
+    display: grid;
+    grid-template-columns: 50vw auto;
+    grid-gap: 0px;
+}
 
 .grid-container{
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 0px;
     background-color: black;
-    padding: 5px;
+    padding: .25vw;
     width: 25.25vw;
     height: 25.25vw;
-    border-radius: 5px;
+    border-radius: .25vw;
     justify-items: center;
     align-items: center;
-    margin: auto;
-    margin-top: 7vw;
+    margin-left: 20vw;
+    margin-top: 3vw;
+    user-select: none;
+    margin-bottom: 0;
 }
 
-.grid-1{
+.grid-1, .grid-2, .grid-3, .grid-4{
     display: grid;
     grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
+    grid-gap: .25vw;
+    padding: .1vw;
+    transition: none;
 }
 
-.grid-2{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
-}
-
-.grid-3{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
-}
-
-.grid-4{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 5px;
-    padding: 2px;
-}
-
-.grid-1 > div{
-    width: 6vw;
-    height: 6vw;
-    background-color: white;
-    
-}
-
-.grid-2 > div{
-    width: 6vw;
-    height: 6vw;
-    background-color: white;
-    
-}
-
-.grid-3 > div{
-    width: 6vw;
-    height: 6vw;
-    background-color: white;
-    
-}
-
-.grid-4 > div{
+.grid-1 > div, .grid-2 > div, .grid-3 > div, .grid-4 > div{
     width: 6vw;
     height: 6vw;
     background-color: white;
@@ -147,16 +107,14 @@ a.home{
 }
 
 .cell{
-    transition: 0.3s;
-    text-align: center;
-    line-height: 6vw;
-    font-size: 50px
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: bold 3vw Arial;
 }
 
 .cell:hover{
-    background-color: rgb(225, 243, 255);
     cursor: pointer;
-    transition: .3s;
 }
 
 .cell.show:hover{
@@ -164,3 +122,55 @@ a.home{
     user-select: none;
     background-color: white;
 }
+
+.pad{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 75px auto;
+}
+
+.btn{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 27vw;
+    height: 3px;
+    margin-top: 6vw;
+}
+.numpad{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    justify-items: center;
+    margin-left: 0;
+    margin-top: 6vw;
+    grid-gap: 0px;
+    width: 17vw;
+    height: 17vw;
+    padding: 0;
+}
+
+button{
+    width: 5.25vw;
+    height: 5.25vw;
+    border-radius: 10px;
+    border: none;
+    background-color:rgb(179, 179, 179);
+}
+
+#newGameBtn, #hintBtn, #checkWinBtn{
+    width: 8.5vw;
+    height: 2.6vw;
+    background-color: rgb(51, 51, 51);
+    border-radius: .25vw;
+    font: bold .75vw Arial;
+    transition: 0.5s;
+    color: white;
+}
+
+#newGameBtn:hover, #hintBtn:hover, #checkWinBtn:hover{
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+

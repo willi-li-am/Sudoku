@@ -1,3 +1,7 @@
+body{
+    background-image: url();
+    background-size: 1920px 1200px;
+}
 ul{
     display: grid;
     grid-template-columns: 112px 150px;
@@ -12,21 +16,20 @@ ul{
 
 
 li{
-    transition: 0.5s;
+    transition: 0.3s;
     margin-top: 0;
     margin-bottom: 0;
     width: 150px;
     text-align: center;
     padding: 8px;
-    font-family: arial;
-    font-size: 20px;
+    font: bold 20px Arial;
     display: inline-block;
 }
 
 li:hover{
     cursor: pointer;
     background-color: black;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 a:visited{
@@ -44,10 +47,12 @@ a:link{
 }
 
 .current{
-    background-color: rgb(81, 185, 250);
+    background-color: rgb(128, 128, 128);
     width: 100px;
     margin: 0;
+    color: white;
     height: 24px;
+    transition: 0.3s;
 }
 
 a.home{
@@ -56,14 +61,18 @@ a.home{
 
 .current:hover{
     cursor: pointer;
-    background-color: rgb(70, 163, 221);
-    transition: 0.5s;
+    background-color: rgb(51, 51, 51);
+    transition: 0.3s;
 }
 
 .title{
-    font-size: 75px;
+    font-size: 60px;
     font-family: arial;
     text-align: center;
     margin-top: 50px;
+    background-color: white;
 }
 
+.img{
+    margin-top: 10vw;
+}

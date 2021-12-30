@@ -15,35 +15,76 @@
     </ul>
     <div class = 'title'>Sudoku Facile</div>
 </head>
-
 <body>
-    
-    <div class = 'grid-container' id = 'grid-container'>
-        <div class = 'grid-1' id = 'grid-1'>
-            <div class = 'cell' id = 'cell 0' data-cell></div>
-            <div class = 'cell' id = 'cell 1' data-cell></div>
-            <div class = 'cell' id = 'cell 2' data-cell></div>
-            <div class = 'cell' id = 'cell 3' data-cell></div>
-        </div>
-        <div class = 'grid-2' id = 'grid-2'>
-            <div class = 'cell' id = 'cell 4' data-cell></div>
-            <div class = 'cell' id = 'cell 5' data-cell></div>
-            <div class = 'cell' id = 'cell 6' data-cell></div>
-            <div class = 'cell' id = 'cell 7' data-cell></div>
-        </div>
-        <div class = 'grid-3' id = 'grid-3'>
-            <div class = 'cell' id = 'cell 8' data-cell></div>
-            <div class = 'cell' id = 'cell 9' data-cell></div>
-            <div class = 'cell' id = 'cell 10' data-cell></div>
-            <div class = 'cell' id = 'cell 11' data-cell></div>
-        </div>
-        <div class = 'grid-4' id = 'grid-4'>
-            <div class = 'cell' id = 'cell 12' data-cell></div>
-            <div class = 'cell' id = 'cell 13' data-cell></div>
-            <div class = 'cell' id = 'cell 14' data-cell></div>
-            <div class = 'cell' id = 'cell 15' data-cell></div>
-        </div>   
+    <div class = 'game'>
+        <span class = 'grid-container' id = 'grid-container'>
+            <div class = 'grid-1' id = 'grid-1'>
+                <div class = 'cell' id = 'cell 0' data-cell></div>
+                <div class = 'cell' id = 'cell 1' data-cell></div>
+                <div class = 'cell' id = 'cell 2' data-cell></div>
+                <div class = 'cell' id = 'cell 3' data-cell></div>
+            </div>
+            <div class = 'grid-2' id = 'grid-2'>
+                <div class = 'cell' id = 'cell 4' data-cell></div>
+                <div class = 'cell' id = 'cell 5' data-cell></div>
+                <div class = 'cell' id = 'cell 6' data-cell></div>
+                <div class = 'cell' id = 'cell 7' data-cell></div>
+            </div>
+            <div class = 'grid-3' id = 'grid-3'>
+                <div class = 'cell' id = 'cell 8' data-cell></div>
+                <div class = 'cell' id = 'cell 9' data-cell></div>
+                <div class = 'cell' id = 'cell 10' data-cell></div>
+                <div class = 'cell' id = 'cell 11' data-cell></div>
+            </div>
+            <div class = 'grid-4' id = 'grid-4'>
+                <div class = 'cell' id = 'cell 12' data-cell></div>
+                <div class = 'cell' id = 'cell 13' data-cell></div>
+                <div class = 'cell' id = 'cell 14' data-cell></div>
+                <div class = 'cell' id = 'cell 15' data-cell></div>
+            </div>   
+        </span>
+        <div class = 'pad'>
+            <div class = 'btn'>
+                <div class = 'newGame'>
+                    <button id = 'newGameBtn'>Nouvelle Partie</button>
+                </div>
+                <div class = 'checkWin'>
+                    <button id = 'checkWinBtn'>Vérifier les réponses</button>
+                </div>
+                <div class = 'hint'>
+                    <button id = 'hintBtn'>Indices</button>
+                </div>
+            </div>
+            <div class = 'numpad'>
+                <div class = 'number1'>
+                    <button id = 'number1'>1</button>
+                </div>
+                <div class = 'number2'>
+                    <button id = 'number1'>2</button>
+                </div>
+                <div class = 'number3'>
+                    <button id = 'number1'>3</button>
+                </div>
+                <div class = 'number4'>
+                    <button id = 'number1'>4</button>
+                </div>
+                <div class = 'number5'>
+                    <button id = 'number1'>5</button>
+                </div>
+                <div class = 'number6'>
+                    <button id = 'number1'>6</button>
+                </div>
+                <div class = 'number7'>
+                    <button id = 'number1'>7</button>
+                </div>
+                <div class = 'number8'>
+                    <button id = 'number1'>8</button>
+                </div>
+                <div class = 'number9'>
+                    <button id = 'number1'>9</button>
+                </div>
+            </div>
+        </div>  
     </div>
 </body>
-
 </html>

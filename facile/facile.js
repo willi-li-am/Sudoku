@@ -1,3 +1,6 @@
+const newGameBtn = document.getElementById('newGameBtn')
+const hintBtn = document.getElementById('hintBtn')
+
 var cell0 = document.getElementById('cell 0')
 var cell1 = document.getElementById('cell 1')
 var cell2 = document.getElementById('cell 2')
@@ -26,19 +29,65 @@ const cell = [
 ]
 
 const grid = [
-    [4, 1, 2, 3], 
-    [3, 2, 4, 1], 
-    [1, 4, 3, 2], 
-    [2, 3, 1, 4]
+    [
+        [3, 2, 4, 1],
+        [4, 1, 2, 3],
+        [2, 3, 1, 4],
+        [1, 4, 3, 2]       
+    ],
+    [
+        [2, 3, 1, 4],
+        [1, 4, 3, 2],
+        [3, 2, 4, 1],
+        [4, 1, 2, 3]       
+    ],
+    [
+        [1, 4, 3, 2], 
+        [2, 3, 1, 4],
+        [4, 1, 2, 3], 
+        [3, 2, 4, 1]
+    ],
+    [
+        [4, 1, 2, 3], 
+        [3, 2, 4, 1], 
+        [1, 4, 3, 2], 
+        [2, 3, 1, 4]
+    ]
+    
 ]
 
+newGameBtn.addEventListener('click', startGame)
 
-for(var i = 0; i < 4 ; i++){
-    for(var j = 0; j < 4; j++){
-        cell[i][j].innerText = grid[i][j]
-        cell[i][j].classList.add('show')
+
+function startGame(){
+    let newGrid = randomGrid(grid)
+    for(let i = 0; i < 4 ; i++){
+        for(let j = 0; j < 4; j++){
+            cell[i][j].innerText = newGrid[i][j]
+            cell[i][j].classList.add('show')
+        }
     }
 }
+
+function randomGrid(grid){
+    let newGrid = []
+    let number = Math.round(Math.random() * 10) + 1
+    if(number < 3){
+        newGrid = grid[0]
+    }else if(number < 5){
+        newGrid = grid[1]
+    }else if(number < 7){
+        newGrid = grid[2]
+    }else{
+        newGrid = grid[3]
+    }
+    return newGrid
+}
+
+function randomRemoveGrids(){
+    
+}
+
 
 
 
