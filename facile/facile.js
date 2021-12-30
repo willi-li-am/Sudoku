@@ -56,7 +56,26 @@ const grid = [
     
 ]
 
-newGameBtn.addEventListener('click', startGame)
+newGameBtn.addEventListener('click', function () {startGame()})
+cell0.addEventListener('click', function() {selectGrid(0, 0)})
+cell1.addEventListener('click', function() {selectGrid(0, 1)})
+cell2.addEventListener('click', function() {selectGrid(0, 2)})
+cell3.addEventListener('click', function() {selectGrid(0, 3)})
+
+cell4.addEventListener('click', function() {selectGrid(1, 0)})
+cell5.addEventListener('click', function() {selectGrid(1, 1)})
+cell6.addEventListener('click', function() {selectGrid(1, 2)})
+cell7.addEventListener('click', function() {selectGrid(1, 3)})
+
+cell8.addEventListener('click', function() {selectGrid(2, 0)})
+cell9.addEventListener('click', function() {selectGrid(2, 1)})
+cell10.addEventListener('click', function() {selectGrid(2, 2)})
+cell11.addEventListener('click', function() {selectGrid(2, 3)})
+
+cell12.addEventListener('click', function() {selectGrid(3, 0)})
+cell13.addEventListener('click', function() {selectGrid(3, 1)})
+cell14.addEventListener('click', function() {selectGrid(3, 2)})
+cell15.addEventListener('click', function() {selectGrid(3, 3)})
 
 
 function startGame(){
@@ -67,13 +86,13 @@ function startGame(){
             cell[i][j].classList.add('show')
         }
     }randomRemoveGrids()
+    selected[0].classList.remove('selected')
+    selected = []
 }
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
   }
-
-var number = 0
 
 function randomGrid(grid){
     let newGrid = []
@@ -87,7 +106,6 @@ function randomGrid(grid){
     }else{
         newGrid = grid[3]
     }
-    
     return newGrid
 }
 
@@ -109,16 +127,24 @@ function randomRemoveGrids(){
     }
 }
 
-function notSameNumber(newNum, oldNum){
-    if(newNum === oldNum){
-        return true
-    }else {
-        return false
+var selected = []
+
+function selectGrid(num1, num2){
+    if(!cell[num1][num2].classList.contains('show')){
+        if(selected.length === 0){
+            cell[num1][num2].classList.add('selected')
+            selected.push(cell[num1][num2])
+        }else if(selected[0] === cell[num1][num2]){
+            selected[0].classList.remove('selected')
+            selected.shift()
+            selected.shift()
+        }
+        else{
+            selected[0].classList.remove('selected')
+            selected.shift()
+            cell[num1][num2].classList.add('selected')
+            selected.push(cell[num1][num2])
+        }
     }
 }
-
-
-
-
-
 

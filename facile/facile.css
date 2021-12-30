@@ -115,12 +115,17 @@ a:visited, a:link, a.home{
 
 .cell:hover{
     cursor: pointer;
+    background-color:rgb(235, 235, 235);
 }
 
 .cell.show:hover{
     cursor: default;
     user-select: none;
     background-color: white;
+}
+
+.cell.selected{
+    background-color: rgb(182, 182, 182)
 }
 
 .pad{
