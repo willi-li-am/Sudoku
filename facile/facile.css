@@ -148,9 +148,8 @@ a:visited, a:link, a.home{
     color: rgb(0, 131, 22);
 }
 
-.cell.selected.correct{
-    color: rgb(0, 131, 22);
-    background-color: rgb(119, 255, 107);
+.cell.correct:hover{
+    cursor: default;
 }
 
 .pad{

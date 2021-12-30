@@ -99,8 +99,8 @@ function startGame(){
         for(let j = 0; j < 4; j++){
             cell[i][j].innerText = newGrid[i][j]
             cell[i][j].classList.remove('incorrect')
+            cell[i][j].classList.remove('correct')
             cell[i][j].classList.add('show')
-            
         }
     }randomRemoveGrids() //enleve le numero des cases aleatoirement
     selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
@@ -155,7 +155,8 @@ function randomRemoveGrids(){ //enleve des grilles aleatoirement
 var selected = []
 
 function selectGrid(gridNum, cellNum){
-    if(!cell[gridNum][cellNum].classList.contains('show')){ //Si il n'y a pas de nombre deja dedans la case, continue
+    if(!cell[gridNum][cellNum].classList.contains('show') && !cell[gridNum][cellNum].classList.contains('correct')){ //Si il n'y a pas de nombre deja dedans la case, continue
+        console.log('selected')
         if(selected.length === 0){ //Si l'array est vide ajoute "selected" au class et ajoute la case dans l'array
             cell[gridNum][cellNum].classList.add('selected')
             selected.push(cell[gridNum][cellNum])
