@@ -111,21 +111,27 @@ a:visited, a:link, a.home{
     justify-content: center;
     align-items: center;
     font: bold 3vw Arial;
+    color:rgb(110, 110, 110);
 }
 
 .cell:hover{
     cursor: pointer;
-    background-color:rgb(235, 235, 235);
+    background-color:rgb(241, 241, 241);
+}
+
+.cell.show{
+    color: black;
 }
 
 .cell.show:hover{
     cursor: default;
     user-select: none;
-    background-color: white;
+    background-color: rgb(223, 222, 222);
 }
 
 .cell.selected{
-    background-color: rgb(182, 182, 182)
+    background-color: rgb(110, 110, 110);
+    color: white;
 }
 
 .pad{

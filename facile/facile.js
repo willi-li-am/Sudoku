@@ -1,5 +1,10 @@
 const newGameBtn = document.getElementById('newGameBtn')
 const hintBtn = document.getElementById('hintBtn')
+const numpad1 = document.getElementById('number1')
+const numpad2 = document.getElementById('number2')
+const numpad3 = document.getElementById('number3')
+const numpad4 = document.getElementById('number4')
+
 
 let cell0 = document.getElementById('cell-0')
 let cell1 = document.getElementById('cell-1')
@@ -27,7 +32,7 @@ const cell = [
     [cell8, cell9, cell10, cell11],
     [cell12, cell13, cell14, cell15]
 ]
-
+//Grille deja faite
 const grid = [
     [
         [3, 2, 4, 1],
@@ -55,8 +60,14 @@ const grid = [
     ]
     
 ]
-
+//Event Listeners
 newGameBtn.addEventListener('click', function () {startGame()})
+
+numpad1.addEventListener('click', function () {addNumber(1)})
+numpad2.addEventListener('click', function () {addNumber(2)})
+numpad3.addEventListener('click', function () {addNumber(3)})
+numpad4.addEventListener('click', function () {addNumber(4)})
+
 cell0.addEventListener('click', function() {selectGrid(0, 0)})
 cell1.addEventListener('click', function() {selectGrid(0, 1)})
 cell2.addEventListener('click', function() {selectGrid(0, 2)})
@@ -79,48 +90,57 @@ cell15.addEventListener('click', function() {selectGrid(3, 3)})
 
 
 function startGame(){
+    //choisie une grille aleatoirement
     let newGrid = randomGrid(grid)
-    for(let i = 0; i < 4 ; i++){
+    for(let i = 0; i < 4 ; i++){ //inscrit les numeros dans les cases
         for(let j = 0; j < 4; j++){
             cell[i][j].innerText = newGrid[i][j]
             cell[i][j].classList.add('show')
         }
-    }randomRemoveGrids()
-    selected[0].classList.remove('selected')
+    }randomRemoveGrids() //enleve le numero des cases aleatoirement
+    selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
     selected = []
 }
 
-function getRndInteger(min, max) {
+function getRndInteger(min, max) { //fonction qui generent des numeros aleatoirement
     return Math.floor(Math.random() * (max - min + 1) ) + min;
   }
 
-function randomGrid(grid){
+var oldGrid 
+
+function randomGrid(grid){ //selectionne des grilles aleatoirement du constant "grid"
     let newGrid = []
     let number = getRndInteger(1, 4) 
+    while(oldGrid == number){ //fait que ca ne prend jamais la meme grille deux fois
+        number = getRndInteger(1, 4)
+    }
     if(number === 1){
         newGrid = grid[0]
+        oldGrid = number
     }else if(number === 2){
         newGrid = grid[1]
+        oldGrid = number
     }else if(number === 3){
         newGrid = grid[2]
+        oldGrid = number
     }else{
         newGrid = grid[3]
+        oldGrid = number
     }
     return newGrid
+    
 }
 
-function randomRemoveGrids(){
+function randomRemoveGrids(){ //enleve des grilles aleatoirement
     for(let i = 0; i < 4; i++){
         var oldNumbers = []
-        for(let j = 0; j < 2; j++){
+        for(let j = 0; j < 2; j++){ //dans chaque grille de 2x2, enleve deux cases
             let number = getRndInteger(0,3)
-            while(oldNumbers.includes(number)){
+            while(oldNumbers.includes(number)){ //enleve jamais les memes grilles deux fois
                 number = getRndInteger(0,3)
             }
             cell[i][number].innerHTML = '';
             cell[i][number].classList.remove('show')
-            hintBtn.innerHTML = i +' '+ number
-            console.log(i + ' ' + number)
             oldNumbers.push(number)
             
         }
@@ -129,22 +149,26 @@ function randomRemoveGrids(){
 
 var selected = []
 
-function selectGrid(num1, num2){
-    if(!cell[num1][num2].classList.contains('show')){
-        if(selected.length === 0){
-            cell[num1][num2].classList.add('selected')
-            selected.push(cell[num1][num2])
-        }else if(selected[0] === cell[num1][num2]){
+function selectGrid(gridNum, cellNum){
+    if(!cell[gridNum][cellNum].classList.contains('show')){ //Si il n'y a pas de nombre deja dedans la case, continue
+        if(selected.length === 0){ //Si l'array est vide ajoute "selected" au class et ajoute la case dans l'array
+            cell[gridNum][cellNum].classList.add('selected')
+            selected.push(cell[gridNum][cellNum])
+        }else if(selected[0] === cell[gridNum][cellNum]){ //Si la case que tu clique est la meme, enleve "selected" du class et vide l'array
             selected[0].classList.remove('selected')
             selected.shift()
             selected.shift()
         }
-        else{
+        else{ //enleve "selected" de la case precedente pour l'ajouter au case cliquer
             selected[0].classList.remove('selected')
             selected.shift()
-            cell[num1][num2].classList.add('selected')
-            selected.push(cell[num1][num2])
+            cell[gridNum][cellNum].classList.add('selected')
+            selected.push(cell[gridNum][cellNum])
         }
     }
+}
+
+function addNumber(numpadNum){
+    selected[0].innerHTML = numpadNum
 }
 
