@@ -5,6 +5,8 @@ const numpad1 = document.getElementById('number1')
 const numpad2 = document.getElementById('number2')
 const numpad3 = document.getElementById('number3')
 const numpad4 = document.getElementById('number4')
+const gridContainer = document.getElementById('grid-container')
+const startGameInstructions = document.getElementById('start-game')
 
 
 let cell0 = document.getElementById('cell-0')
@@ -92,6 +94,8 @@ cell15.addEventListener('click', function() {selectGrid(3, 3)})
 
 var newGrid
 
+
+
 function startGame(){
     //choisie une grille aleatoirement
     newGrid = randomGrid(grid)
@@ -103,6 +107,8 @@ function startGame(){
             cell[i][j].classList.add('show')
         }
     }randomRemoveGrids() //enleve le numero des cases aleatoirement
+    startGameInstructions.classList.add('hidden')
+    setTimeout(slowlyHide, 700)
     selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
     selected = []
 }
@@ -136,27 +142,43 @@ function randomGrid(grid){ //selectionne des grilles aleatoirement du constant "
     
 }
 
-function randomRemoveGrids(){ //enleve des grilles aleatoirement
+function randomRemoveGrids(){ 
+    var numberOfGridsRemoved = 0
     for(let i = 0; i < 4; i++){
         var oldNumbers = []
-        for(let j = 0; j < 2; j++){ //dans chaque grille de 2x2, enleve deux cases
-            let number = getRndInteger(0,3)
-            while(oldNumbers.includes(number)){ //enleve jamais les memes grilles deux fois
-                number = getRndInteger(0,3)
+        let randomNumber = getRndInteger(2,3)
+        if(randomNumber == 3 && numberOfGridsRemoved < 3){
+            for(let j = 0; j < 3; j++){ 
+                let number = getRndInteger(0,3)
+                while(oldNumbers.includes(number)){ 
+                    number = getRndInteger(0,3)
+                }
+                cell[i][number].innerHTML = '';
+                cell[i][number].classList.remove('show')
+                oldNumbers.push(number)
+                numberOfGridsRemoved += 1
             }
-            cell[i][number].innerHTML = '';
-            cell[i][number].classList.remove('show')
-            oldNumbers.push(number)
-            
+        }else{
+            for(let j = 0; j < 2; j++){ 
+                let number = getRndInteger(0,3)
+                while(oldNumbers.includes(number)){ 
+                    number = getRndInteger(0,3)
+                }
+                cell[i][number].innerHTML = '';
+                cell[i][number].classList.remove('show')
+                oldNumbers.push(number)
+                
+            }
         }
+        console.log(numberOfGridsRemoved)
     }
+    numberOfGridsRemoved = 0
 }
 
 var selected = []
 
 function selectGrid(gridNum, cellNum){
     if(!cell[gridNum][cellNum].classList.contains('show') && !cell[gridNum][cellNum].classList.contains('correct')){ //Si il n'y a pas de nombre deja dedans la case, continue
-        console.log('selected')
         if(selected.length === 0){ //Si l'array est vide ajoute "selected" au class et ajoute la case dans l'array
             cell[gridNum][cellNum].classList.add('selected')
             selected.push(cell[gridNum][cellNum])
@@ -197,11 +219,20 @@ function checkWin(){
             
         }
     }
+    
+    
     if(correctAnsw == 16){
-        console.log('Gagnant!')
         correctAnsw = 0
     }
     selected[0].classList.remove('selected')
     selected = []
+    
+}
+
+function slowlyHide(){
+    startGameInstructions.classList.add('none')
+}
+
+function timer(){
     
 }

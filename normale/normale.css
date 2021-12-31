@@ -22,6 +22,7 @@ li{
     padding: 8px;
     font: bold 20px Arial;
     display: inline-block;
+    color: white;
 }
 
 li:hover{
@@ -44,12 +45,13 @@ a:link{
     padding: 0;
 }
 
+.accueil{
+    width: 100px;
+}
+
 .current{
     background-color: rgb(77, 77, 77);
-    width: 100px;
-    margin: 0;
     color: white;
-    height: 24px;
     transition: 0.3s;
 }
 
@@ -57,23 +59,4 @@ a:link{
     cursor: pointer;
     background-color: rgb(51, 51, 51);
     transition: 0.3s;
-}
-
-.title{
-    font-size: 60px;
-    font-family: arial;
-    text-align: center;
-    margin-top: 50px;
-    background-color: white;
-}
-
-.img{
-    margin-top: 15vw;
-    transform: scale(3);
-}
-
-.instructions{
-    text-align: center;
-    font: bold 25px Arial;
-    margin-top: 200px;
 }

@@ -10,10 +10,10 @@ body{
 
 ul{
     display: grid;
-    grid-template-columns: 112px 150px;
+    grid-template-columns: 117px 152px 175px;
     background-color: rgb(51, 51, 51);
     list-style-type: none;
-    grid-gap: 5px;
+    grid-gap: 0px;
     margin-top: 0px;
     padding: 0px;
     height: 40px;
@@ -24,7 +24,6 @@ li{
     transition: 0.3s;
     margin-top: 0;
     margin-bottom: 0;
-    width: 150px;
     text-align: center;
     padding: 8px;
     font: bold 20px Arial;
@@ -44,7 +43,6 @@ a:visited, a:link, a.home{
 
 .current{
     background-color: rgb(77, 77, 77);
-    width: 150px;
     margin: 0;
     color: white;
     height: 24px;
@@ -64,14 +62,53 @@ a:visited, a:link, a.home{
 .title{
     text-align: center;
     margin: 2vw;
-    font-size: 3vw;
-    font-family: arial;
+    font: bold 3vw Arial;
 }
 
 .game{
     display: grid;
     grid-template-columns: 50vw auto;
     grid-gap: 0px;
+}
+
+.start-game{
+    display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.822);
+    padding: .25vw;
+    width: 25.25vw;
+    height: 25.25vw;
+    border-radius: .25vw;
+    justify-items: center;
+    align-items: center;
+    margin-left: 22vw;
+    margin-top: 3vw;
+    user-select: none;
+    margin-bottom: 0;
+}
+
+.start-instructions{
+    display: flex;
+    background-color: white;
+    font: bold 1.5vw Arial;
+    text-align: center;
+    width: 20vw;
+    height: 5vw;
+    border-radius: .25vw;
+    margin:10.5%;
+    margin-top: 40%;
+    justify-items: center;
+    align-items: center;
+    transition: 5s;
+}
+
+.start-game.hidden{
+    opacity: 0;
+    transition: 1s;
+}
+
+.start-game.hidden.none{
+    display:none;
 }
 
 .grid-container{
@@ -116,7 +153,7 @@ a:visited, a:link, a.home{
 
 .cell:hover{
     cursor: pointer;
-    background-color:rgb(241, 241, 241);
+    background-color:rgb(231, 231, 231);
 }
 
 .cell.show{
@@ -126,11 +163,11 @@ a:visited, a:link, a.home{
 .cell.show:hover{
     cursor: default;
     user-select: none;
-    background-color: rgb(223, 222, 222);
+    background-color: rgb(231, 231, 231);
 }
 
 .cell.selected{
-    background-color: rgb(110, 110, 110);
+    background-color: rgb(182, 182, 182);
     color: white;
 }
 
@@ -145,7 +182,7 @@ a:visited, a:link, a.home{
 }
 
 .cell.correct{
-    color: rgb(0, 131, 22);
+    color: rgb(0, 255, 42);
 }
 
 .cell.correct:hover{
