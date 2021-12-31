@@ -14,27 +14,53 @@ const numpad9 = document.getElementById('number9')
 const gridContainer = document.getElementById('grid-container')
 
 const grid = [
-    ['', 8, '', 6, 1, '', 4, '', ''],
-    ['', '', '', 2, 8, '', '', '', 9],
-    [3, 2, 1, '', 9, 5, 8, '', ''],
-    ['', '', 1, '', 9, '', 8, 7, ''],
-    ['', 4, '', '', '', '', '', 2, 5],
-    ['', 5, 7, 6, 8, '', '', 3, 4],
-    [9, '', '', '', 6, '', '', '', ''],
-    ['', '', '', '', 9, '', 4, 7, ''],
-    ['', 1, '', '', '', 8, 5, '', '']
+    [
+        ['', 8, '', 6, 1, '', 4, '', ''],
+        ['', '', '', 2, 8, '', '', '', 9],
+        [3, 2, 1, '', 9, 5, 8, '', ''],
+        ['', '', 1, '', 9, '', 8, 7, ''],
+        ['', 4, '', '', '', '', '', 2, 5],
+        ['', 5, 7, 6, 8, '', '', 3, 4],
+        [9, '', '', '', 6, '', '', '', ''],
+        ['', '', '', '', 9, '', 4, 7, ''],
+        ['', 1, '', '', '', 8, 5, '', '']
+    ],
+    [
+        [6, '', '', 2, '', 4, 1, '', 7],
+        [4, '', 7, 5, '', 1, 2, '', 3],
+        ['', 3, 2, 7, 6, 9, 5, 8, ''],
+        ['', 2, 5, 4, 7, '', 3, 6, 9],
+        ['', '', '', 9, '', '', 1, 7, 5],
+        ['', 1, '', 6, '', 3, 2, '', 8],
+        ['', '', 6, 5, '', 2, '', 4, 3],
+        [3, 5, 2, '', 4, 9, 7, '', ''],
+        [4, '', '', 3, '', 6, '', 2, 5]
+    ]
 ]
 
 const solution = [
-    [7, 8, 9, 6, 1, 3, 4, 5, 2],
-    [6, 5, 4, 2, 8, 7, 1, 3, 9],
-    [3, 2, 1, 4, 9, 5, 8, 7, 6],
-    [3, 2, 1, 5, 9, 4, 8, 7, 6],
-    [8, 4, 6, 7, 1, 3, 9, 2, 5],
-    [9, 5, 7, 6, 8, 2, 1, 3, 4],
-    [9, 4, 7, 1, 6, 5, 2, 3, 8],
-    [5, 6, 8, 3, 9, 2, 4, 7, 1],
-    [2, 1, 3, 7, 4, 8, 5, 6, 9]
+    [
+        [7, 8, 9, 6, 1, 3, 4, 5, 2],
+        [6, 5, 4, 2, 8, 7, 1, 3, 9],
+        [3, 2, 1, 4, 9, 5, 8, 7, 6],
+        [3, 2, 1, 5, 9, 4, 8, 7, 6],
+        [8, 4, 6, 7, 1, 3, 9, 2, 5],
+        [9, 5, 7, 6, 8, 2, 1, 3, 4],
+        [9, 4, 7, 1, 6, 5, 2, 3, 8],
+        [5, 6, 8, 3, 9, 2, 4, 7, 1],
+        [2, 1, 3, 7, 4, 8, 5, 6, 9]
+    ],
+    [
+        [6, 5, 8, 2, 3, 4, 1, 9, 7],
+        [4, 9, 7, 5, 8, 1, 2, 6, 3],
+        [1, 3, 2, 7, 6, 9, 5, 8, 4],
+        [8, 2, 5, 4, 7, 1, 3, 6, 9],
+        [6, 3, 4, 9, 2, 8, 1, 7, 5],
+        [9, 1, 7, 6, 5, 3, 2, 4, 8],
+        [7, 8, 6, 5, 1, 2, 9, 4, 3],
+        [3, 5, 2, 8, 4, 9, 7, 1, 6],
+        [4, 9, 1, 3, 7, 6, 8, 2, 5]
+    ]
 ]
 
 let cell0 = document.getElementById('cell-0')
@@ -140,6 +166,7 @@ const cell = [
 ]
 
 newGameBtn.addEventListener('click', function () {startGame()})
+checkWinBtn.addEventListener('click', function(){checkWin()})
 
 numpad1.addEventListener('click', function () {addNumber(1)})
 numpad2.addEventListener('click', function () {addNumber(2)})
@@ -151,6 +178,8 @@ numpad7.addEventListener('click', function () {addNumber(7)})
 numpad8.addEventListener('click', function () {addNumber(8)})
 numpad9.addEventListener('click', function () {addNumber(9)})
 
+document.addEventListener('keypress', addNumberKeypress)
+document.addEventListener('keypress', checkWinKeypress)
 
 cell0.addEventListener('click', function() {selectGrid(0, 0)})
 cell1.addEventListener('click', function() {selectGrid(0, 1)})
@@ -244,11 +273,12 @@ cell80.addEventListener('click', function() {selectGrid(8, 8)})
 
 function startGame(){
     //choisie une grille aleatoirement
-    
+    newGrid = randomGrid(grid)
     for(let i = 0; i < 9 ; i++){ //inscrit les numeros dans les cases
         for(let j = 0; j < 9; j++){
-            cell[i][j].innerHTML = grid[i][j]
-            if(grid[i][j] == ''){
+            cell[i][j].classList.add('show')
+            cell[i][j].innerHTML = newGrid[i][j]
+            if(newGrid[i][j] == ''){
                 cell[i][j].classList.remove('incorrect')
                 cell[i][j].classList.remove('correct')
                 cell[i][j].classList.remove('show')
@@ -260,6 +290,31 @@ function startGame(){
     } 
     selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
     selected = []
+}
+
+function getRndInteger(min, max) { //fonction qui generent des numeros aleatoirement
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+var oldGrid
+
+function randomGrid(grid){ //selectionne des grilles aleatoirement du constant "grid"
+    let newGrid = []
+    let number = getRndInteger(1, 2) 
+    while(oldGrid == number){ //fait que ca ne prend jamais la meme grille deux fois
+        number = getRndInteger(1, 2)
+    }
+    if(number === 1){
+        newGrid = grid[0]
+        gridSolution = solution [0]
+        oldGrid = number
+    }else if(number === 2){
+        newGrid = grid[1]
+        gridSolution = solution [1]
+        oldGrid = number
+    }    
+    return newGrid
+    
 }
 
 var selected = []
@@ -285,4 +340,63 @@ function selectGrid(gridNum, cellNum){
 
 function addNumber(numpadNum){
     selected[0].innerHTML = numpadNum
+}
+
+function addNumberKeypress(e){
+    if(e.key === '1'){
+        selected[0].innerHTML = 1
+    }else if(e.key === '2'){
+        selected[0].innerHTML = 2
+    }else if(e.key === '3'){
+        selected[0].innerHTML = 3
+    }else if(e.key === '4'){
+        selected[0].innerHTML = 4
+    }else if(e.key === '5'){
+        selected[0].innerHTML = 5
+    }else if(e.key === '6'){
+        selected[0].innerHTML = 6
+    }else if(e.key === '7'){
+        selected[0].innerHTML = 7
+    }else if(e.key === '8'){
+        selected[0].innerHTML = 8
+    }else if(e.key === '9'){
+        selected[0].innerHTML = 9
+    }
+}
+
+var gridSolution
+
+function checkWin(){
+    var correctAnsw = 0
+    for(let i = 0; i < 9; i++){
+        for(let j = 0; j < 9; j++){
+            if(!cell[i][j].classList.contains('show')){
+                if(cell[i][j].innerText == gridSolution[i][j]){
+                    cell[i][j].classList.remove('incorrect')
+                    cell[i][j].classList.add('correct')
+                    correctAnsw += 1
+                }else{
+                    cell[i][j].classList.add('incorrect')
+                    cell[i][j].classList.remove('correct')
+                }
+            }else{
+                correctAnsw += 1
+            }
+            
+        }
+    }
+    
+    
+    if(correctAnsw == 16){
+        correctAnsw = 0
+    }
+    selected[0].classList.remove('selected')
+    selected = []
+    
+}
+
+function checkWinKeypress(e){
+    if(e.key === "Enter"){
+        checkWin()
+    }
 }

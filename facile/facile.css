@@ -10,7 +10,7 @@ body{
 
 ul{
     display: grid;
-    grid-template-columns: 117px 152px 175px;
+    grid-template-columns: 117px 152px 164px;
     background-color: rgb(51, 51, 51);
     list-style-type: none;
     grid-gap: 0px;

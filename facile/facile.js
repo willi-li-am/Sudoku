@@ -71,6 +71,9 @@ numpad2.addEventListener('click', function () {addNumber(2)})
 numpad3.addEventListener('click', function () {addNumber(3)})
 numpad4.addEventListener('click', function () {addNumber(4)})
 
+document.addEventListener('keypress', addNumberKeypress)
+document.addEventListener('keypress', checkWinKeypress)
+
 cell0.addEventListener('click', function() {selectGrid(0, 0)})
 cell1.addEventListener('click', function() {selectGrid(0, 1)})
 cell2.addEventListener('click', function() {selectGrid(0, 2)})
@@ -234,4 +237,22 @@ function slowlyHide(){
 
 function timer(){
     
+}
+
+function addNumberKeypress(e){
+    if(e.key === '1'){
+        selected[0].innerHTML = 1
+    }else if(e.key === '2'){
+        selected[0].innerHTML = 2
+    }else if(e.key === '3'){
+        selected[0].innerHTML = 3
+    }else if(e.key === '4'){
+        selected[0].innerHTML = 4
+    }
+}
+
+function checkWinKeypress(e){
+    if(e.key === "Enter"){
+        checkWin()
+    }
 }
