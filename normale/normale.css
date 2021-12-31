@@ -67,6 +67,12 @@ a:link{
     font: bold 3vw Arial;
 }
 
+.game{
+    display: grid;
+    grid-template-columns: 50vw auto;
+    grid-gap: 0px;
+}
+
 .grid-container{
     display: grid;
     grid-template-columns: auto auto auto;
@@ -78,8 +84,8 @@ a:link{
     border-radius: .25vw;
     justify-items: center;
     align-items: center;
-    margin-left: 22vw;
-    margin-top: 3vw;
+    margin-left: 12.2vw;
+    margin-top: 1vw;
     user-select: none;
     margin-bottom: 0;
 }
@@ -148,7 +154,7 @@ a:link{
 .pad{
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto 90px;
+    grid-template-rows: 28vw 90px;
     margin-left: 2.25vw;
 }
 
@@ -161,14 +167,14 @@ a:link{
 }
 .numpad{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     align-items: center;
     justify-items: center;
-    margin-left: 0;
-    margin-top: 10.3vw;
+    margin-left: 0px;
+    margin-top: 9vw;
     grid-gap: 0px;
-    width: 11vw;
-    height: 11vw;
+    width: 16.5vw;
+    height: 16.5vw;
     padding: 0;
 }
 

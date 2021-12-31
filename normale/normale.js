@@ -4,7 +4,38 @@ const numpad1 = document.getElementById('number1')
 const numpad2 = document.getElementById('number2')
 const numpad3 = document.getElementById('number3')
 const numpad4 = document.getElementById('number4')
+const numpad5 = document.getElementById('number5')
+const numpad6 = document.getElementById('number6')
+const numpad7 = document.getElementById('number7')
+const numpad8 = document.getElementById('number8')
+const numpad9 = document.getElementById('number9')
+
+
 const gridContainer = document.getElementById('grid-container')
+
+const grid = [
+    ['', 8, '', 6, 1, '', 4, '', ''],
+    ['', '', '', 2, 8, '', '', '', 9],
+    [3, 2, 1, '', 9, 5, 8, '', ''],
+    ['', '', 1, '', 9, '', 8, 7, ''],
+    ['', 4, '', '', '', '', '', 2, 5],
+    ['', 5, 7, 6, 8, '', '', 3, 4],
+    [9, '', '', '', 6, '', '', '', ''],
+    ['', '', '', '', 9, '', 4, 7, ''],
+    ['', 1, '', '', '', 8, 5, '', '']
+]
+
+const solution = [
+    [7, 8, 9, 6, 1, 3, 4, 5, 2],
+    [6, 5, 4, 2, 8, 7, 1, 3, 9],
+    [3, 2, 1, 4, 9, 5, 8, 7, 6],
+    [3, 2, 1, 5, 9, 4, 8, 7, 6],
+    [8, 4, 6, 7, 1, 3, 9, 2, 5],
+    [9, 5, 7, 6, 8, 2, 1, 3, 4],
+    [9, 4, 7, 1, 6, 5, 2, 3, 8],
+    [5, 6, 8, 3, 9, 2, 4, 7, 1],
+    [2, 1, 3, 7, 4, 8, 5, 6, 9]
+]
 
 let cell0 = document.getElementById('cell-0')
 let cell1 = document.getElementById('cell-1')
@@ -110,6 +141,17 @@ const cell = [
 
 newGameBtn.addEventListener('click', function () {startGame()})
 
+numpad1.addEventListener('click', function () {addNumber(1)})
+numpad2.addEventListener('click', function () {addNumber(2)})
+numpad3.addEventListener('click', function () {addNumber(3)})
+numpad4.addEventListener('click', function () {addNumber(4)})
+numpad5.addEventListener('click', function () {addNumber(5)})
+numpad6.addEventListener('click', function () {addNumber(6)})
+numpad7.addEventListener('click', function () {addNumber(7)})
+numpad8.addEventListener('click', function () {addNumber(8)})
+numpad9.addEventListener('click', function () {addNumber(9)})
+
+
 cell0.addEventListener('click', function() {selectGrid(0, 0)})
 cell1.addEventListener('click', function() {selectGrid(0, 1)})
 cell2.addEventListener('click', function() {selectGrid(0, 2)})
@@ -205,13 +247,17 @@ function startGame(){
     
     for(let i = 0; i < 9 ; i++){ //inscrit les numeros dans les cases
         for(let j = 0; j < 9; j++){
-            cell[i][j].innerHTML = 1
-            cell[i][j].classList.remove('incorrect')
-            cell[i][j].classList.remove('correct')
-            cell[i][j].classList.remove('show')
-            console.log(cell[i][j])
+            cell[i][j].innerHTML = grid[i][j]
+            if(grid[i][j] == ''){
+                cell[i][j].classList.remove('incorrect')
+                cell[i][j].classList.remove('correct')
+                cell[i][j].classList.remove('show')
+            }else{
+                cell[i][j].classList.remove('incorrect')
+                cell[i][j].classList.remove('correct')
+            }
         }
-    } //enleve le numero des cases aleatoirement
+    } 
     selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
     selected = []
 }
@@ -235,4 +281,8 @@ function selectGrid(gridNum, cellNum){
             selected.push(cell[gridNum][cellNum])
         }
     }
+}
+
+function addNumber(numpadNum){
+    selected[0].innerHTML = numpadNum
 }
