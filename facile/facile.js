@@ -1,5 +1,4 @@
 const newGameBtn = document.getElementById('newGameBtn')
-const hintBtn = document.getElementById('hintBtn')
 const checkWinBtn = document.getElementById('checkWinBtn')
 const numpad1 = document.getElementById('number1')
 const numpad2 = document.getElementById('number2')

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="normale.css">
-    <script src="facile.js" defer></script>
+    <script src="normale.js" defer></script>
     <title>Sudoku William Li</title>
     <ul>
         <a class = 'home' href = '../'><li class = 'accueil'>Accueil</li></a>
@@ -14,8 +14,149 @@
         <a href = '../normale/' class = 'current'><li class = 'current'>Sudoku Normale</li></a>
 
     </ul>
+    <div class = 'title'>Sudoku Normale</div>
 </head>
 
 <body>
-    
+    <span class = 'grid-container' id = 'grid-container'>
+        <div class = 'grid-1' id = 'grid-1'>
+            <div class = 'cell show' id = 'cell-0' data-cell></div>
+            <div class = 'cell show' id = 'cell-1' data-cell></div>
+            <div class = 'cell show' id = 'cell-2' data-cell></div>
+            <div class = 'cell show' id = 'cell-3' data-cell></div>
+            <div class = 'cell show' id = 'cell-4' data-cell></div>
+            <div class = 'cell show' id = 'cell-5' data-cell></div>
+            <div class = 'cell show' id = 'cell-6' data-cell></div>
+            <div class = 'cell show' id = 'cell-7' data-cell></div>
+            <div class = 'cell show' id = 'cell-8' data-cell></div>
+        </div>
+        <div class = 'grid-2' id = 'grid-2'>
+            <div class = 'cell show' id = 'cell-9' data-cell></div>
+            <div class = 'cell show' id = 'cell-10' data-cell></div>
+            <div class = 'cell show' id = 'cell-11' data-cell></div>
+            <div class = 'cell show' id = 'cell-12' data-cell></div>
+            <div class = 'cell show' id = 'cell-13' data-cell></div>
+            <div class = 'cell show' id = 'cell-14' data-cell></div>
+            <div class = 'cell show' id = 'cell-15' data-cell></div>
+            <div class = 'cell show' id = 'cell-16' data-cell></div>
+            <div class = 'cell show' id = 'cell-17' data-cell></div>
+        </div>
+        <div class = 'grid-3' id = 'grid-3'>
+            <div class = 'cell show' id = 'cell-18' data-cell></div>
+            <div class = 'cell show' id = 'cell-19' data-cell></div>
+            <div class = 'cell show' id = 'cell-20' data-cell></div>
+            <div class = 'cell show' id = 'cell-21' data-cell></div>
+            <div class = 'cell show' id = 'cell-22' data-cell></div>
+            <div class = 'cell show' id = 'cell-23' data-cell></div>
+            <div class = 'cell show' id = 'cell-24' data-cell></div>
+            <div class = 'cell show' id = 'cell-25' data-cell></div>
+            <div class = 'cell show' id = 'cell-26' data-cell></div>
+        </div>
+        <div class = 'grid-4' id = 'grid-4'>
+            <div class = 'cell show' id = 'cell-27' data-cell></div>
+            <div class = 'cell show' id = 'cell-28' data-cell></div>
+            <div class = 'cell show' id = 'cell-29' data-cell></div>
+            <div class = 'cell show' id = 'cell-30' data-cell></div>
+            <div class = 'cell show' id = 'cell-31' data-cell></div>
+            <div class = 'cell show' id = 'cell-32' data-cell></div>
+            <div class = 'cell show' id = 'cell-33' data-cell></div>
+            <div class = 'cell show' id = 'cell-34' data-cell></div>
+            <div class = 'cell show' id = 'cell-35' data-cell></div>
+        </div>   
+        <div class = 'grid-4' id = 'grid-5'>
+            <div class = 'cell show' id = 'cell-36' data-cell></div>
+            <div class = 'cell show' id = 'cell-37' data-cell></div>
+            <div class = 'cell show' id = 'cell-38' data-cell></div>
+            <div class = 'cell show' id = 'cell-39' data-cell></div>
+            <div class = 'cell show' id = 'cell-40' data-cell></div>
+            <div class = 'cell show' id = 'cell-41' data-cell></div>
+            <div class = 'cell show' id = 'cell-42' data-cell></div>
+            <div class = 'cell show' id = 'cell-43' data-cell></div>
+            <div class = 'cell show' id = 'cell-44' data-cell></div>
+        </div>   
+        <div class = 'grid-4' id = 'grid-6'>
+            <div class = 'cell show' id = 'cell-45' data-cell></div>
+            <div class = 'cell show' id = 'cell-46' data-cell></div>
+            <div class = 'cell show' id = 'cell-47' data-cell></div>
+            <div class = 'cell show' id = 'cell-48' data-cell></div>
+            <div class = 'cell show' id = 'cell-49' data-cell></div>
+            <div class = 'cell show' id = 'cell-50' data-cell></div>
+            <div class = 'cell show' id = 'cell-51' data-cell></div>
+            <div class = 'cell show' id = 'cell-52' data-cell></div>
+            <div class = 'cell show' id = 'cell-53' data-cell></div>
+        </div>   
+        <div class = 'grid-4' id = 'grid-7'>
+            <div class = 'cell show' id = 'cell-54' data-cell></div>
+            <div class = 'cell show' id = 'cell-55' data-cell></div>
+            <div class = 'cell show' id = 'cell-56' data-cell></div>
+            <div class = 'cell show' id = 'cell-57' data-cell></div>
+            <div class = 'cell show' id = 'cell-58' data-cell></div>
+            <div class = 'cell show' id = 'cell-59' data-cell></div>
+            <div class = 'cell show' id = 'cell-60' data-cell></div>
+            <div class = 'cell show' id = 'cell-61' data-cell></div>
+            <div class = 'cell show' id = 'cell-62' data-cell></div>
+        </div>   
+        <div class = 'grid-4' id = 'grid-8'>
+            <div class = 'cell show' id = 'cell-63' data-cell></div>
+            <div class = 'cell show' id = 'cell-64' data-cell></div>
+            <div class = 'cell show' id = 'cell-65' data-cell></div>
+            <div class = 'cell show' id = 'cell-66' data-cell></div>
+            <div class = 'cell show' id = 'cell-67' data-cell></div>
+            <div class = 'cell show' id = 'cell-68' data-cell></div>
+            <div class = 'cell show' id = 'cell-69' data-cell></div>
+            <div class = 'cell show' id = 'cell-70' data-cell></div>
+            <div class = 'cell show' id = 'cell-71' data-cell></div>
+        </div>   
+        <div class = 'grid-4' id = 'grid-9'>
+            <div class = 'cell show' id = 'cell-72' data-cell></div>
+            <div class = 'cell show' id = 'cell-73' data-cell></div>
+            <div class = 'cell show' id = 'cell-74' data-cell></div>
+            <div class = 'cell show' id = 'cell-75' data-cell></div>
+            <div class = 'cell show' id = 'cell-76' data-cell></div>
+            <div class = 'cell show' id = 'cell-77' data-cell></div>
+            <div class = 'cell show' id = 'cell-78' data-cell></div>
+            <div class = 'cell show' id = 'cell-79' data-cell></div>
+            <div class = 'cell show' id = 'cell-80' data-cell></div>
+        </div>   
+    </span>
+    <div class = 'pad'>
+        <div class = 'numpad'>
+            <div class = 'number1'>
+                <button id = 'number1'>1</button>
+            </div>
+            <div class = 'number2'>
+                <button id = 'number2'>2</button>
+            </div>
+            <div class = 'number3'>
+                <button id = 'number3'>3</button>
+            </div>
+            <div class = 'number4'>
+                <button id = 'number4'>4</button>
+            </div>
+            <div class = 'number5'>
+                <button id = 'number5'>5</button>
+            </div>
+            <div class = 'number6'>
+                <button id = 'number6'>6</button>
+            </div>
+            <div class = 'number7'>
+                <button id = 'number7'>7</button>
+            </div>
+            <div class = 'number8'>
+                <button id = 'number8'>8</button>
+            </div>
+            <div class = 'number9'>
+                <button id = 'number9'>9</button>
+            </div>
+        </div>
+        <div class = 'btn'>
+            <div class = 'newGame'>
+                <button id = 'newGameBtn'>Nouvelle Partie</button>
+            </div>
+            <div class = 'checkWin'>
+                <button id = 'checkWinBtn'>Vérifier Les Réponses</button>
+            </div>
+        </div>
+        
+    </div>  
 </body>

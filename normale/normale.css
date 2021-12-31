@@ -60,3 +60,152 @@ a:link{
     background-color: rgb(51, 51, 51);
     transition: 0.3s;
 }
+
+.title{
+    text-align: center;
+    margin: 2vw;
+    font: bold 3vw Arial;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0px;
+    background-color: black;
+    padding: .25vw;
+    width: 35vw;
+    height: 35vw;
+    border-radius: .25vw;
+    justify-items: center;
+    align-items: center;
+    margin-left: 22vw;
+    margin-top: 3vw;
+    user-select: none;
+    margin-bottom: 0;
+}
+
+.grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: .25vw;
+    padding: .1vw;
+    transition: none;
+}
+
+.grid-1 > div, .grid-2 > div, .grid-3 > div, .grid-4 > div, .grid-5 > div, .grid-6 > div, .grid-7 > div, .grid-8 > div, .grid-9 > div{
+    width: 3.6vw;
+    height: 3.6vw;
+    background-color: white;
+    
+}
+
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: bold 1.5vw Arial;
+    color:rgb(110, 110, 110);
+}
+
+.cell:hover{
+    cursor: pointer;
+    background-color:rgb(231, 231, 231);
+}
+
+.cell.show{
+    color: black;
+}
+
+.cell.show:hover{
+    cursor: default;
+    user-select: none;
+    background-color: rgb(231, 231, 231);
+}
+
+.cell.selected{
+    background-color: rgb(182, 182, 182);
+    color: white;
+}
+
+.cell.incorrect{
+    color: red;
+    background-color: rgb(255, 187, 187);
+}
+
+.cell.selected.incorrect{
+    color: white;
+    background-color: rgb(255, 107, 107);
+}
+
+.cell.correct{
+    color: rgb(0, 255, 42);
+}
+
+.cell.correct:hover{
+    cursor: default;
+}
+
+.pad{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 90px;
+    margin-left: 2.25vw;
+}
+
+.btn{
+    display: grid;
+    grid-template-columns: 9vw 9vw;
+    width: 17vw;
+    height: 3px;
+    
+}
+.numpad{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-items: center;
+    margin-left: 0;
+    margin-top: 10.3vw;
+    grid-gap: 0px;
+    width: 11vw;
+    height: 11vw;
+    padding: 0;
+}
+
+
+
+.numpad > div > button{
+    font: Bold 2vw Arial;
+    transition: .3s
+}
+.numpad > div > button:hover{
+    cursor: pointer;
+    background-color: rgb(185, 185, 185);
+    transition: .3s;
+}
+
+button{
+    width: 5.25vw;
+    height: 5.25vw;
+    border-radius: 10px;
+    border: none;
+    background-color:rgb(223, 222, 222);
+}
+
+#newGameBtn, #hintBtn, #checkWinBtn{
+    width: 8.5vw;
+    height: 2.6vw;
+    background-color: rgb(51, 51, 51);
+    border-radius: .25vw;
+    font: bold .75vw Arial;
+    transition: 0.5s;
+    color: white;
+}
+
+#newGameBtn:hover, #hintBtn:hover, #checkWinBtn:hover{
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
