@@ -73,61 +73,25 @@ a:link{
     grid-gap: 0px;
 }
 
-.grid-container{
+#grid{
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 0px;
-    background-color: black;
-    padding: .25vw;
-    width: 35vw;
-    height: 35vw;
-    border-radius: .25vw;
-    justify-items: center;
-    align-items: center;
-    margin-left: 12.2vw;
-    margin-top: 1vw;
-    user-select: none;
-    margin-bottom: 0;
-}
-
-.grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: .25vw;
-    padding: .1vw;
-    transition: none;
-}
-
-.grid-1 > div, .grid-2 > div, .grid-3 > div, .grid-4 > div, .grid-5 > div, .grid-6 > div, .grid-7 > div, .grid-8 > div, .grid-9 > div{
-    width: 3.6vw;
-    height: 3.6vw;
-    background-color: white;
-    
-}
-
-.cell{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font: bold 1.5vw Arial;
-    color:black;
+    grid-template-columns: 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw;
+    margin-left: 10.4vw;
 }
 
 .cell:hover{
+    background-color: rgb(233, 245, 255);
     cursor: pointer;
-    background-color:rgb(233, 245, 255);
-    transition: .3s;
 }
 
-.cell.show{
+.cell{
+    width: 2.2vw;
+    height: 2.2vw;
+    background-color: white;
     color: black;
-    background-color: rgb(223, 223, 223);
-}
-
-.cell.show:hover{
-    cursor: default;
-    user-select: none;
-    background-color: rgb(231, 231, 231);
+    border: .15vw black solid;
+    border-Bottom: 0px;
+    font: bold 1vw Arial;
 }
 
 .cell.selected{
@@ -135,23 +99,10 @@ a:link{
     color: black;
 }
 
-.cell.incorrect{
-    color: rgb(126, 0, 0);
-    background-color: rgb(255, 187, 187);
-}
-
-.cell.selected.incorrect{
-    color: white;
-    background-color: rgb(255, 107, 107);
-}
-
-.cell.correct{
-    color: rgb(0, 134, 22);
-}
-
-.cell.correct:hover{
-    cursor: default;
-    background-color: rgb(227, 255, 227);
+.game{
+    display: grid;
+    grid-template-columns: 50vw auto;
+    grid-gap: 0px;
 }
 
 .pad{
@@ -159,6 +110,7 @@ a:link{
     grid-template-columns: auto;
     grid-template-rows: 28vw 90px;
     margin-left: 2.25vw;
+    margin-top: 3vw;
 }
 
 .btn{
@@ -166,22 +118,20 @@ a:link{
     grid-template-columns: 9vw 9vw;
     width: 17vw;
     height: 3px;
-    
+    margin-left: 2.7vw;
 }
 .numpad{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     align-items: center;
     justify-items: center;
     margin-left: 0px;
-    margin-top: 9vw;
+    margin-top: 3vw;
     grid-gap: 0px;
-    width: 16.5vw;
-    height: 16.5vw;
+    width: 23vw;
+    height: 23vw;
     padding: 0;
 }
-
-
 
 .numpad > div > button{
     font: Bold 2vw Arial;
@@ -216,5 +166,3 @@ button{
     cursor: pointer;
     transition: 0.5s;
 }
-
-
