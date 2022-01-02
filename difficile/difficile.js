@@ -1,3 +1,22 @@
+const newGameBtn = document.getElementById('newGameBtn')
+const checkWinBtn = document.getElementById('checkWinBtn')
+const numpad1 = document.getElementById('number1')
+const numpad2 = document.getElementById('number2')
+const numpad3 = document.getElementById('number3')
+const numpad4 = document.getElementById('number4')
+const numpad5 = document.getElementById('number5')
+const numpad6 = document.getElementById('number6')
+const numpad7 = document.getElementById('number7')
+const numpad8 = document.getElementById('number8')
+const numpad9 = document.getElementById('number9')
+const numpad10 = document.getElementById('number10')
+const numpad11 = document.getElementById('number11')
+const numpad12 = document.getElementById('number12')
+const numpad13 = document.getElementById('number13')
+const numpad14 = document.getElementById('number14')
+const numpad15 = document.getElementById('number15')
+const numpad16 = document.getElementById('number16')
+
 var cell = [];
 
 function createCells(numCells){
@@ -6,13 +25,8 @@ function createCells(numCells){
         for(let j = 0; j < Math.sqrt(numCells); j++){
             var div = document.createElement("div");
             div.innerHTML = ''
-            if(grid[0][idNumber] == ''){
-                div.className = 'cell'
-            }else{
-                div.className = 'cell show'
-            }
+            div.className = 'cell show'
             div.id = 'cell-' + idNumber
-            div.innerText = grid[0][idNumber]
             boldEverything(i, j, div)
             cell.push(div)
             idNumber++
@@ -61,8 +75,167 @@ const solution = [
 4, 11, 6, 13, 15, 7, 10, 14, 3, 5, 2, 9, 1, 16, 12, 8]
 ] 
 
-
 let gridContainer = createCells(256)
+
+function boldEverything(i, j, div){
+    if(i == 0 || i == 4 || i == 8 || i == 12){
+        div.style.borderTop = '.3vw black solid'
+    }if(j == 0 || j == 4 || j == 8 || j == 12){
+        div.style.borderLeft = '.3vw black solid'
+    }if(j == 15){
+        div.style.borderRight = '.3vw black solid'
+    }if(i == 15){
+        div.style.borderBottom = '.3vw black solid'
+    }
+    
+}
+
+function addCellstoPage(arr){
+    for(let i = 0; i < arr.length; i++){
+        document.getElementById('grid').appendChild(arr[i])
+    }
+    
+}
+
+function startGame(){
+    //choisie une grille aleatoirement
+    newGrid = grid
+    for(let i = 0; i < cell.length ; i++){ //inscrit les numeros dans les cases
+        cell[i].classList.add('show')
+        cell[i].innerText = newGrid[0][i]
+        if(newGrid[0][i] == ''){
+            cell[i].classList.remove('incorrect')
+            cell[i].classList.remove('correct')
+            cell[i].classList.remove('show')
+        }else{
+            cell[i].classList.remove('incorrect')
+            cell[i].classList.remove('correct')
+        }
+    } 
+    selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
+    selected = []
+}
+
+function checkWin(){
+    var correctAnsw = 0
+    for(let i = 0; i < cell.length; i++){  
+        if(!cell[i].classList.contains('show')){
+            if(cell[i].innerText == solution[0][i]){
+                cell[i].classList.remove('incorrect')
+                cell[i].classList.add('correct')
+                correctAnsw += 1
+            }else{
+                cell[i].classList.add('incorrect')
+                cell[i].classList.remove('correct')
+            }
+        }else{
+            correctAnsw += 1
+        }
+    }
+    if(correctAnsw == cell.length){
+        correctAnsw = 0
+    }
+    selected[0].classList.remove('selected')
+    selected = []
+    
+}
+
+var selected = []
+
+function selectGrid(cellNum){
+    if(!gridContainer[cellNum].classList.contains('show') && !gridContainer[cellNum].classList.contains('correct')){ 
+        if(selected.length === 0){
+            gridContainer[cellNum].classList.add('selected')
+            selected.push(gridContainer[cellNum])
+        }else if(selected[0] === gridContainer[cellNum]){ 
+            selected[0].classList.remove('selected')
+            selected.shift()
+            selected.shift()
+        }
+        else{ 
+            selected[0].classList.remove('selected')
+            selected.shift()
+            gridContainer[cellNum].classList.add('selected')
+            selected.push(gridContainer[cellNum])
+        }
+    }
+    console.log('clicked ' + cellNum)
+}
+
+addCellstoPage(gridContainer)
+
+function addNumber(numpadNum){
+    selected[0].innerHTML = numpadNum
+}
+
+function addNumberKeypress(e){
+    if(selected[0].innerHTML.length < 2 && parseInt(selected[0].innerHTML) < 2 || selected[0].innerHTML == ''){
+        if(selected[0].innerHTML == ''){
+            if(e.key === '1'){
+                selected[0].innerHTML += '1'
+            }else if(e.key === '2'){
+                selected[0].innerHTML += '2'
+            }else if(e.key === '3'){
+                selected[0].innerHTML += '3'
+            }else if(e.key === '4'){
+                selected[0].innerHTML += '4'
+            }else if(e.key === '5'){
+                selected[0].innerHTML += '5'
+            }else if(e.key === '6'){
+                selected[0].innerHTML += '6'
+            }else if(e.key === '7'){
+                selected[0].innerHTML += '8'
+            }else if(e.key === '8'){
+                selected[0].innerHTML += '8'
+            }else if(e.key === '9'){
+                selected[0].innerHTML += '9'
+            }else if(e.key === '0'){
+                selected[0].innerHTML += '0'
+            }
+        }else{
+            if(e.key === '1'){
+                selected[0].innerHTML += '1'
+            }else if(e.key === '2'){
+                selected[0].innerHTML += '2'
+            }else if(e.key === '3'){
+                selected[0].innerHTML += '3'
+            }else if(e.key === '4'){
+                selected[0].innerHTML += '4'
+            }else if(e.key === '5'){
+                selected[0].innerHTML += '5'
+            }else if(e.key === '6'){
+                selected[0].innerHTML += '6'
+            }
+        }
+        
+    }
+}
+
+function clearCase(e){
+    if(e.key == 'Backspace'){
+        selected[0].innerHTML = '';
+    }
+}
+
+newGameBtn.addEventListener('click', function () {startGame()})
+checkWinBtn.addEventListener('click', function(){checkWin()})
+
+numpad1.addEventListener('click', function () {addNumber(1)})
+numpad2.addEventListener('click', function () {addNumber(2)})
+numpad3.addEventListener('click', function () {addNumber(3)})
+numpad4.addEventListener('click', function () {addNumber(4)})
+numpad5.addEventListener('click', function () {addNumber(5)})
+numpad6.addEventListener('click', function () {addNumber(6)})
+numpad7.addEventListener('click', function () {addNumber(7)})
+numpad8.addEventListener('click', function () {addNumber(8)})
+numpad9.addEventListener('click', function () {addNumber(9)})
+numpad10.addEventListener('click', function () {addNumber(10)})
+numpad11.addEventListener('click', function () {addNumber(11)})
+numpad12.addEventListener('click', function () {addNumber(12)})
+numpad13.addEventListener('click', function () {addNumber(13)})
+numpad14.addEventListener('click', function () {addNumber(14)})
+numpad15.addEventListener('click', function () {addNumber(15)})
+numpad16.addEventListener('click', function () {addNumber(16)})
 
 document.addEventListener('keypress', addNumberKeypress)
 document.addEventListener('keydown', clearCase);
@@ -323,83 +496,3 @@ gridContainer[252].addEventListener('click', function(){selectGrid(252)})
 gridContainer[253].addEventListener('click', function(){selectGrid(253)})
 gridContainer[254].addEventListener('click', function(){selectGrid(254)})
 gridContainer[255].addEventListener('click', function(){selectGrid(255)})
-
-
-
-function boldEverything(i, j, div){
-    if(i == 0 || i == 4 || i == 8 || i == 12){
-        div.style.borderTop = '.3vw black solid'
-    }if(j == 0 || j == 4 || j == 8 || j == 12){
-        div.style.borderLeft = '.3vw black solid'
-    }if(j == 15){
-        div.style.borderRight = '.3vw black solid'
-    }if(i == 15){
-        div.style.borderBottom = '.3vw black solid'
-    }
-    
-}
-
-
-
-function addCellstoPage(arr){
-    for(let i = 0; i < arr.length; i++){
-        document.getElementById('grid').appendChild(arr[i])
-    }
-    
-}
-
-var selected = []
-
-function selectGrid(cellNum){
-    if(!gridContainer[cellNum].classList.contains('show') && !gridContainer[cellNum].classList.contains('correct')){ 
-        if(selected.length === 0){
-            gridContainer[cellNum].classList.add('selected')
-            selected.push(gridContainer[cellNum])
-        }else if(selected[0] === gridContainer[cellNum]){ 
-            selected[0].classList.remove('selected')
-            selected.shift()
-            selected.shift()
-        }
-        else{ 
-            selected[0].classList.remove('selected')
-            selected.shift()
-            gridContainer[cellNum].classList.add('selected')
-            selected.push(gridContainer[cellNum])
-        }
-    }
-    console.log('clicked ' + cellNum)
-}
-
-addCellstoPage(gridContainer)
-
-function addNumberKeypress(e){
-    if(selected[0].innerHTML.length < 2){
-        if(e.key === '1'){
-            selected[0].innerHTML += '1'
-        }else if(e.key === '2'){
-            selected[0].innerHTML += '2'
-        }else if(e.key === '3'){
-            selected[0].innerHTML += '3'
-        }else if(e.key === '4'){
-            selected[0].innerHTML += '4'
-        }else if(e.key === '5'){
-            selected[0].innerHTML += '5'
-        }else if(e.key === '6'){
-            selected[0].innerHTML += '6'
-        }else if(e.key === '7'){
-            selected[0].innerHTML += '8'
-        }else if(e.key === '8'){
-            selected[0].innerHTML += '8'
-        }else if(e.key === '9'){
-            selected[0].innerHTML += '9'
-        }else if(e.key === '0'){
-            selected[0].innerHTML += '0'
-        }
-    }
-}
-
-function clearCase(e){
-    if(e.key == 'Backspace'){
-        selected[0].innerHTML = '';
-    }
-}

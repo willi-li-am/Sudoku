@@ -115,6 +115,25 @@ a:link{
     color: black;
 }
 
+.cell.incorrect{
+    color: rgb(126, 0, 0);
+    background-color: rgb(255, 187, 187);
+}
+
+.cell.selected.incorrect{
+    color: white;
+    background-color: rgb(255, 107, 107);
+}
+
+.cell.correct{
+    color: rgb(0, 134, 22);
+}
+
+.cell.correct:hover{
+    cursor: default;
+    background-color: rgb(227, 255, 227);
+}
+
 .game{
     display: grid;
     grid-template-columns: 50vw auto;
