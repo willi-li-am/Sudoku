@@ -9,6 +9,7 @@ const numpad6 = document.getElementById('number6')
 const numpad7 = document.getElementById('number7')
 const numpad8 = document.getElementById('number8')
 const numpad9 = document.getElementById('number9')
+const startGameInstructions = document.getElementById('start-game');
 
 
 const gridContainer = document.getElementById('grid-container')
@@ -291,6 +292,8 @@ function startGame(){
             }
         }
     } 
+    startGameInstructions.classList.add('hidden');
+    setTimeout(slowlyHide, 200);
     selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
     selected = []
 }
@@ -408,4 +411,8 @@ function clearCase(e){
     if(e.key == 'Backspace'){
         selected[0].innerHTML = '';
     }
+}
+
+function slowlyHide(){
+    startGameInstructions.classList.add('none');
 }

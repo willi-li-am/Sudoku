@@ -236,6 +236,9 @@ function slowlyHide(){
     startGameInstructions.classList.add('none');
 }
 
+
+//https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak
+
 function timer(){
     
 }

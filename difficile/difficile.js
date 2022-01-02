@@ -16,6 +16,7 @@ const numpad13 = document.getElementById('number13')
 const numpad14 = document.getElementById('number14')
 const numpad15 = document.getElementById('number15')
 const numpad16 = document.getElementById('number16')
+const startGameInstructions = document.getElementById('start-game');
 
 var cell = [];
 
@@ -112,6 +113,8 @@ function startGame(){
             cell[i].classList.remove('correct')
         }
     } 
+    startGameInstructions.classList.add('hidden');
+    setTimeout(slowlyHide, 200);
     selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
     selected = []
 }
@@ -138,6 +141,12 @@ function checkWin(){
     selected[0].classList.remove('selected')
     selected = []
     
+}
+
+function checkWinKeypress(e){
+    if(e.key === "Enter"){
+        checkWin()
+    }
 }
 
 var selected = []
@@ -236,6 +245,10 @@ function clearCase(e){
     }
 }
 
+function slowlyHide(){
+    startGameInstructions.classList.add('none');
+}
+
 newGameBtn.addEventListener('click', function () {startGame()})
 checkWinBtn.addEventListener('click', function(){checkWin()})
 
@@ -256,8 +269,9 @@ numpad14.addEventListener('click', function () {addNumber(14)})
 numpad15.addEventListener('click', function () {addNumber(15)})
 numpad16.addEventListener('click', function () {addNumber(16)})
 
-document.addEventListener('keypress', addNumberKeypress)
+document.addEventListener('keypress', addNumberKeypress);
 document.addEventListener('keydown', clearCase);
+document.addEventListener('keypress', checkWinKeypress);
 
 gridContainer[0].addEventListener('click', function(){selectGrid(0)})
 gridContainer[1].addEventListener('click', function(){selectGrid(1)})

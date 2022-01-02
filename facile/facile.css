@@ -88,18 +88,18 @@ a:visited, a:link, a.home{
 }
 
 .start-instructions{
-    display: flex;
     background-color: white;
     font: bold 1.5vw Arial;
-    text-align: center;
-    width: 20vw;
-    height: 5vw;
+    width: 23vw;
+    height: 4vw;
     border-radius: .25vw;
     margin:10.5%;
-    margin-top: 40%;
-    justify-items: center;
-    align-items: center;
-    transition: 5s;
+    margin-top: 42%;
+    margin-left: 1.1vw;
+    line-height: 4vw;
+    text-align: center;
+    transition: 2s;
+    padding: 0px;
 }
 
 .start-game.hidden{
