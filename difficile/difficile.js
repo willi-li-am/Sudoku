@@ -18,6 +18,7 @@ const numpad15 = document.getElementById('number15')
 const numpad16 = document.getElementById('number16')
 const startGameInstructions = document.getElementById('start-game');
 
+//Dynamically creating and adding cells to the page
 var cell = [];
 
 function createCells(numCells){
@@ -34,6 +35,28 @@ function createCells(numCells){
         }
     }
     return cell;
+}
+
+let gridContainer = createCells(256)
+
+function boldEverything(i, j, div){
+    if(i == 0 || i == 4 || i == 8 || i == 12){
+        div.style.borderTop = '.3vw black solid'
+    }if(j == 0 || j == 4 || j == 8 || j == 12){
+        div.style.borderLeft = '.3vw black solid'
+    }if(j == 15){
+        div.style.borderRight = '.3vw black solid'
+    }if(i == 15){
+        div.style.borderBottom = '.3vw black solid'
+    }
+    
+}
+
+function addCellstoPage(arr){
+    for(let i = 0; i < arr.length; i++){
+        document.getElementById('grid').appendChild(arr[i])
+    }
+    
 }
 
 //http://w01.tp1.jp/~sr10026691/Ans1616PE.html (grille de 16x16 deja faite)
@@ -76,32 +99,10 @@ const solution = [
 4, 11, 6, 13, 15, 7, 10, 14, 3, 5, 2, 9, 1, 16, 12, 8]
 ] 
 
-let gridContainer = createCells(256)
-
-function boldEverything(i, j, div){
-    if(i == 0 || i == 4 || i == 8 || i == 12){
-        div.style.borderTop = '.3vw black solid'
-    }if(j == 0 || j == 4 || j == 8 || j == 12){
-        div.style.borderLeft = '.3vw black solid'
-    }if(j == 15){
-        div.style.borderRight = '.3vw black solid'
-    }if(i == 15){
-        div.style.borderBottom = '.3vw black solid'
-    }
-    
-}
-
-function addCellstoPage(arr){
-    for(let i = 0; i < arr.length; i++){
-        document.getElementById('grid').appendChild(arr[i])
-    }
-    
-}
-
+//Game functions
 function startGame(){
-    //choisie une grille aleatoirement
     newGrid = grid
-    for(let i = 0; i < cell.length ; i++){ //inscrit les numeros dans les cases
+    for(let i = 0; i < cell.length ; i++){ 
         cell[i].classList.add('show')
         cell[i].innerText = newGrid[0][i]
         if(newGrid[0][i] == ''){
@@ -113,9 +114,12 @@ function startGame(){
             cell[i].classList.remove('correct')
         }
     } 
+    resetTimer()
+    stopTimer()
+    setTimeout('startTimer()', 10)
     startGameInstructions.classList.add('hidden');
     setTimeout(slowlyHide, 200);
-    selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
+    selected[0].classList.remove('selected') 
     selected = []
 }
 
@@ -137,16 +141,11 @@ function checkWin(){
     }
     if(correctAnsw == cell.length){
         correctAnsw = 0
+        stopTimer()
     }
     selected[0].classList.remove('selected')
     selected = []
     
-}
-
-function checkWinKeypress(e){
-    if(e.key === "Enter"){
-        checkWin()
-    }
 }
 
 var selected = []
@@ -177,6 +176,11 @@ function addNumber(numpadNum){
     selected[0].innerHTML = numpadNum
 }
 
+function slowlyHide(){
+    startGameInstructions.classList.add('none');
+}
+
+//Keypress functions
 function addNumberKeypress(e){
     if(selected[0].innerHTML.length < 2 && parseInt(selected[0].innerHTML) < 2 || selected[0].innerHTML == ''){
         if(selected[0].innerHTML == ''){
@@ -245,10 +249,80 @@ function clearCase(e){
     }
 }
 
-function slowlyHide(){
-    startGameInstructions.classList.add('none');
+function checkWinKeypress(e){
+    if(e.key === "Enter"){
+        checkWin()
+    }
 }
 
+//timer function
+
+//function taken from: https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak
+
+var min = 0;
+var sec = 0;
+var ms = 0;
+var stoptime = true;
+
+function startTimer() {
+  if (stoptime == true) {
+        stoptime = false;
+        timerCycle();
+    }
+}
+function stopTimer() {
+  if (stoptime == false) {
+    stoptime = true;
+  }
+}
+
+function timerCycle() {
+    if (stoptime == false) {
+    ms = parseInt(ms);
+    sec = parseInt(sec);
+    min = parseInt(min);
+
+    ms += 1;
+
+    if (ms == 100) {
+      sec += 1;
+      ms = 0;
+    }
+    if (sec == 60) {
+      min += 1;
+      sec = 0;
+      ms = 0;
+    }if(min == 60){
+        stopTimer()
+    }
+
+    if (ms < 10 || ms == 0) {
+      ms = '0' + ms;
+    }
+    if (sec < 10 || sec == 0) {
+      sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+      min = '0' + min;
+    }
+
+    timer.innerHTML = min + ':' + sec + ':' + ms;
+
+    setTimeout('timerCycle()', 10);
+  }
+}
+
+function resetTimer() {
+    timer.innerHTML = "00:00:00";
+    stoptime = true;
+    ms = 0;
+    sec = 0;
+    min = 0;
+}
+
+//Event Listeners
+
+//Pad buttons
 newGameBtn.addEventListener('click', function () {startGame()})
 checkWinBtn.addEventListener('click', function(){checkWin()})
 
@@ -269,10 +343,12 @@ numpad14.addEventListener('click', function () {addNumber(14)})
 numpad15.addEventListener('click', function () {addNumber(15)})
 numpad16.addEventListener('click', function () {addNumber(16)})
 
+//Keypress
 document.addEventListener('keypress', addNumberKeypress);
 document.addEventListener('keydown', clearCase);
 document.addEventListener('keypress', checkWinKeypress);
 
+//Cell click
 gridContainer[0].addEventListener('click', function(){selectGrid(0)})
 gridContainer[1].addEventListener('click', function(){selectGrid(1)})
 gridContainer[2].addEventListener('click', function(){selectGrid(2)})

@@ -67,14 +67,23 @@ a:link{
     font: bold 3vw Arial;
 }
 
+#timer{
+    display: block;
+    position: absolute;
+    margin-left: 46vw;
+    font: bold 2vw Arial;
+    margin-top: 0vw;
+}
+
+
 .start-game{
     display: block;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.822);
-    width: 36.6vw;
-    height: 38vw;
+    width: 33.4vw;
+    height: 33.4vw;
     padding: 0.25vw;
-    margin-top: 0vw;
+    margin-top: 4vw;
     margin-left: 10.4vw;
     user-select: none;
 }
@@ -86,8 +95,8 @@ a:link{
     height: 4vw;
     border-radius: .25vw;
     margin:10.5%;
-    margin-top: 46.5%;
-    margin-left: 6.7vw;
+    margin-top: 43.7%;
+    margin-left: 5.15vw;
     line-height: 4vw;
     text-align: center;
     transition: 2s;
@@ -107,11 +116,13 @@ a:link{
     display: grid;
     grid-template-columns: 50vw auto;
     grid-gap: 0px;
+    margin-top: 6vw;
 }
 
 #grid{
     display: grid;
-    grid-template-columns: 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw 2.3vw;
+    grid-template-columns: 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw;
+    grid-template-rows: 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw;
     margin-left: 10.4vw;
 }
 
@@ -125,8 +136,8 @@ a:link{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.2vw;
-    height: 2.2vw;
+    width: 2vw;
+    height: 2vw;
     background-color: white;
     color: black;
     border: .15vw black solid;
@@ -181,7 +192,7 @@ a:link{
     grid-template-columns: auto;
     grid-template-rows: 28vw 90px;
     margin-left: 2.25vw;
-    margin-top: 3vw;
+    margin-top: 1vw;
 }
 
 .btn{

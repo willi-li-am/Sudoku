@@ -65,10 +65,19 @@ a:visited, a:link, a.home{
     font: bold 3vw Arial;
 }
 
+#timer{
+    display: block;
+    position: absolute;
+    margin-left: 46vw;
+    font: bold 2vw Arial;
+    margin-top: .75vw;
+}
+
 .game{
     display: grid;
     grid-template-columns: 50vw auto;
     grid-gap: 0px;
+    margin-top: 5vw;
 }
 
 .start-game{
@@ -82,7 +91,7 @@ a:visited, a:link, a.home{
     justify-items: center;
     align-items: center;
     margin-left: 22vw;
-    margin-top: 3vw;
+    margin-top: 6vw;
     user-select: none;
     margin-bottom: 0;
 }
@@ -218,8 +227,6 @@ a:visited, a:link, a.home{
     height: 11.5vw;
     padding: 0;
 }
-
-
 
 .numpad > div > button{
     font: Bold 2vw Arial;

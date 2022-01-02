@@ -67,6 +67,14 @@ a:link{
     font: bold 3vw Arial;
 }
 
+#timer{
+    display: block;
+    position: absolute;
+    margin-left: 46vw;
+    font: bold 2vw Arial;
+    margin-top: 0vw;
+}
+
 .start-game{
     display: block;
     position: absolute;
@@ -74,7 +82,7 @@ a:link{
     width: 35vw;
     height: 35vw;
     padding: 0.25vw;
-    margin-top: 1vw;
+    margin-top: 4vw;
     margin-left: 12.2vw;
     border-radius: .25vw;
     user-select: none;
@@ -108,6 +116,7 @@ a:link{
     display: grid;
     grid-template-columns: 50vw auto;
     grid-gap: 0px;
+    margin-top: 5vw;
 }
 
 .grid-container{
@@ -217,8 +226,6 @@ a:link{
     height: 17.25vw;
     padding: 0;
 }
-
-
 
 .numpad > div > button{
     font: Bold 2vw Arial;

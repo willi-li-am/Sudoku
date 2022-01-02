@@ -6,6 +6,7 @@ const numpad3 = document.getElementById('number3');
 const numpad4 = document.getElementById('number4');
 const gridContainer = document.getElementById('grid-container');
 const startGameInstructions = document.getElementById('start-game');
+const timer = document.getElementById('timer')
 
 
 let cell0 = document.getElementById('cell-0');
@@ -100,32 +101,36 @@ var newGrid;
 
 
 function startGame(){
-    //choisie une grille aleatoirement
     newGrid = randomGrid(grid);
-    for(let i = 0; i < 4 ; i++){ //inscrit les numeros dans les cases
+    for(let i = 0; i < 4 ; i++){ 
         for(let j = 0; j < 4; j++){
             cell[i][j].innerText = newGrid[i][j];
             cell[i][j].classList.remove('incorrect');
             cell[i][j].classList.remove('correct');
             cell[i][j].classList.add('show');
         }
-    }randomRemoveGrids() //enleve le numero des cases aleatoirement
+    }randomRemoveGrids() 
+    resetTimer()
+    stopTimer()
+    setTimeout('startTimer()', 10)
     startGameInstructions.classList.add('hidden');
     setTimeout(slowlyHide, 200);
-    selected[0].classList.remove('selected'); //deselectionne la grille qui a ete selectionner dans le dernier jeu
+    selected[0].classList.remove('selected'); 
     selected = [];
 }
 
-function getRndInteger(min, max) { //fonction qui generent des numeros aleatoirement
+//https://www.w3schools.com/js/js_random.asp
+
+function getRndInteger(min, max) { 
     return Math.floor(Math.random() * (max - min + 1) ) + min;
   }
 
 var oldGrid;
 
-function randomGrid(grid){ //selectionne des grilles aleatoirement du constant "grid"
+function randomGrid(grid){ 
     let newGrid = [];
     let number = getRndInteger(1, 4);
-    while(oldGrid == number){ //fait que ca ne prend jamais la meme grille deux fois
+    while(oldGrid == number){ 
         number = getRndInteger(1, 4);
     }
     if(number === 1){
@@ -181,16 +186,16 @@ function randomRemoveGrids(){
 var selected = []
 
 function selectGrid(gridNum, cellNum){
-    if(!cell[gridNum][cellNum].classList.contains('show') && !cell[gridNum][cellNum].classList.contains('correct')){ //Si il n'y a pas de nombre deja dedans la case, continue
-        if(selected.length === 0){ //Si l'array est vide ajoute "selected" au class et ajoute la case dans l'array
+    if(!cell[gridNum][cellNum].classList.contains('show') && !cell[gridNum][cellNum].classList.contains('correct')){ 
+        if(selected.length === 0){ 
             cell[gridNum][cellNum].classList.add('selected');
             selected.push(cell[gridNum][cellNum]);
-        }else if(selected[0] === cell[gridNum][cellNum]){ //Si la case que tu clique est la meme, enleve "selected" du class et vide l'array
+        }else if(selected[0] === cell[gridNum][cellNum]){ 
             selected[0].classList.remove('selected');
             selected.shift();
             selected.shift();
         }
-        else{ //enleve "selected" de la case precedente pour l'ajouter au case cliquer
+        else{ 
             selected[0].classList.remove('selected');
             selected.shift();
             cell[gridNum][cellNum].classList.add('selected');
@@ -226,6 +231,7 @@ function checkWin(){
     
     if(correctAnsw == 16){
         correctAnsw = 0;
+        stopTimer()
     }
     selected[0].classList.remove('selected')
     selected = [];
@@ -239,8 +245,65 @@ function slowlyHide(){
 
 //https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak
 
-function timer(){
-    
+var min = 0;
+var sec = 0;
+var ms = 0;
+var stoptime = true;
+
+function startTimer() {
+  if (stoptime == true) {
+        stoptime = false;
+        timerCycle();
+    }
+}
+function stopTimer() {
+  if (stoptime == false) {
+    stoptime = true;
+  }
+}
+
+function timerCycle() {
+    if (stoptime == false) {
+    ms = parseInt(ms);
+    sec = parseInt(sec);
+    min = parseInt(min);
+
+    ms += 1;
+
+    if (ms == 100) {
+      sec += 1;
+      ms = 0;
+    }
+    if (sec == 60) {
+      min += 1;
+      sec = 0;
+      ms = 0;
+    }if(min == 60){
+        stopTimer()
+    }
+
+    if (ms < 10 || ms == 0) {
+      ms = '0' + ms;
+    }
+    if (sec < 10 || sec == 0) {
+      sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+      min = '0' + min;
+    }
+
+    timer.innerHTML = min + ':' + sec + ':' + ms;
+
+    setTimeout('timerCycle()', 10);
+  }
+}
+
+function resetTimer() {
+    timer.innerHTML = "00:00:00";
+    stoptime = true;
+    ms = 0;
+    sec = 0;
+    min = 0;
 }
 
 function addNumberKeypress(e){

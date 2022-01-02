@@ -10,6 +10,7 @@ const numpad7 = document.getElementById('number7')
 const numpad8 = document.getElementById('number8')
 const numpad9 = document.getElementById('number9')
 const startGameInstructions = document.getElementById('start-game');
+const timer = document.getElementById('timer')
 
 
 const gridContainer = document.getElementById('grid-container')
@@ -276,9 +277,8 @@ cell79.addEventListener('click', function() {selectGrid(8, 7)})
 cell80.addEventListener('click', function() {selectGrid(8, 8)})
 
 function startGame(){
-    //choisie une grille aleatoirement
     newGrid = randomGrid(grid)
-    for(let i = 0; i < 9 ; i++){ //inscrit les numeros dans les cases
+    for(let i = 0; i < 9 ; i++){ 
         for(let j = 0; j < 9; j++){
             cell[i][j].classList.add('show')
             cell[i][j].innerHTML = newGrid[i][j]
@@ -292,22 +292,27 @@ function startGame(){
             }
         }
     } 
+    resetTimer()
+    stopTimer()
+    setTimeout('startTimer()', 10)
     startGameInstructions.classList.add('hidden');
     setTimeout(slowlyHide, 200);
-    selected[0].classList.remove('selected') //deselectionne la grille qui a ete selectionner dans le dernier jeu
+    selected[0].classList.remove('selected')
     selected = []
 }
 
-function getRndInteger(min, max) { //fonction qui generent des numeros aleatoirement
+//https://www.w3schools.com/js/js_random.asp
+
+function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 var oldGrid
 
-function randomGrid(grid){ //selectionne des grilles aleatoirement du constant "grid"
+function randomGrid(grid){
     let newGrid = []
     let number = getRndInteger(1, 2) 
-    while(oldGrid == number){ //fait que ca ne prend jamais la meme grille deux fois
+    while(oldGrid == number){
         number = getRndInteger(1, 2)
     }
     if(number === 1){
@@ -326,16 +331,16 @@ function randomGrid(grid){ //selectionne des grilles aleatoirement du constant "
 var selected = []
 
 function selectGrid(gridNum, cellNum){
-    if(!cell[gridNum][cellNum].classList.contains('show') && !cell[gridNum][cellNum].classList.contains('correct')){ //Si il n'y a pas de nombre deja dedans la case, continue
-        if(selected.length === 0){ //Si l'array est vide ajoute "selected" au class et ajoute la case dans l'array
+    if(!cell[gridNum][cellNum].classList.contains('show') && !cell[gridNum][cellNum].classList.contains('correct')){
+        if(selected.length === 0){ 
             cell[gridNum][cellNum].classList.add('selected')
             selected.push(cell[gridNum][cellNum])
-        }else if(selected[0] === cell[gridNum][cellNum]){ //Si la case que tu clique est la meme, enleve "selected" du class et vide l'array
+        }else if(selected[0] === cell[gridNum][cellNum]){
             selected[0].classList.remove('selected')
             selected.shift()
             selected.shift()
         }
-        else{ //enleve "selected" de la case precedente pour l'ajouter au case cliquer
+        else{ 
             selected[0].classList.remove('selected')
             selected.shift()
             cell[gridNum][cellNum].classList.add('selected')
@@ -393,8 +398,9 @@ function checkWin(){
     }
     
     
-    if(correctAnsw == 16){
+    if(correctAnsw == 81){
         correctAnsw = 0
+        stopTimer()
     }
     selected[0].classList.remove('selected')
     selected = []
@@ -415,4 +421,67 @@ function clearCase(e){
 
 function slowlyHide(){
     startGameInstructions.classList.add('none');
+}
+
+//https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak
+
+var min = 0;
+var sec = 0;
+var ms = 0;
+var stoptime = true;
+
+function startTimer() {
+  if (stoptime == true) {
+        stoptime = false;
+        timerCycle();
+    }
+}
+function stopTimer() {
+  if (stoptime == false) {
+    stoptime = true;
+  }
+}
+
+function timerCycle() {
+    if (stoptime == false) {
+    ms = parseInt(ms);
+    sec = parseInt(sec);
+    min = parseInt(min);
+
+    ms += 1;
+
+    if (ms == 100) {
+      sec += 1;
+      ms = 0;
+    }
+    if (sec == 60) {
+      min += 1;
+      sec = 0;
+      ms = 0;
+    }if(min == 60){
+        stopTimer()
+    }
+
+    if (ms < 10 || ms == 0) {
+      ms = '0' + ms;
+    }
+    if (sec < 10 || sec == 0) {
+      sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+      min = '0' + min;
+    }
+
+    timer.innerHTML = min + ':' + sec + ':' + ms;
+
+    setTimeout('timerCycle()', 10);
+  }
+}
+
+function resetTimer() {
+    timer.innerHTML = "00:00:00";
+    stoptime = true;
+    ms = 0;
+    sec = 0;
+    min = 0;
 }
