@@ -206,8 +206,29 @@ function addNumberKeypress(e){
             }else if(e.key === '6'){
                 selected[0].innerHTML += '6'
             }
+        }  
+    }else{
+        if(e.key === '1'){
+            selected[0].innerHTML = '1'
+        }else if(e.key === '2'){
+            selected[0].innerHTML = '2'
+        }else if(e.key === '3'){
+            selected[0].innerHTML = '3'
+        }else if(e.key === '4'){
+            selected[0].innerHTML = '4'
+        }else if(e.key === '5'){
+            selected[0].innerHTML = '5'
+        }else if(e.key === '6'){
+            selected[0].innerHTML = '6'
+        }else if(e.key === '7'){
+            selected[0].innerHTML = '8'
+        }else if(e.key === '8'){
+            selected[0].innerHTML = '8'
+        }else if(e.key === '9'){
+            selected[0].innerHTML = '9'
+        }else if(e.key === '0'){
+            selected[0].innerHTML = '0'
         }
-        
     }
 }
 
