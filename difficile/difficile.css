@@ -123,7 +123,7 @@ a:link{
     display: grid;
     grid-template-columns: 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw;
     grid-template-rows: 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw 2.1vw;
-    margin-left: 10.4vw;
+    margin-left: 13.6vw;
 }
 
 .cell:hover{

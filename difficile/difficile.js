@@ -197,7 +197,7 @@ function addNumberKeypress(e){
             }else if(e.key === '6'){
                 selected[0].innerHTML += '6'
             }else if(e.key === '7'){
-                selected[0].innerHTML += '8'
+                selected[0].innerHTML += '7'
             }else if(e.key === '8'){
                 selected[0].innerHTML += '8'
             }else if(e.key === '9'){
@@ -234,7 +234,7 @@ function addNumberKeypress(e){
         }else if(e.key === '6'){
             selected[0].innerHTML = '6'
         }else if(e.key === '7'){
-            selected[0].innerHTML = '8'
+            selected[0].innerHTML = '7'
         }else if(e.key === '8'){
             selected[0].innerHTML = '8'
         }else if(e.key === '9'){
