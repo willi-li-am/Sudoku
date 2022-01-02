@@ -80,11 +80,15 @@ a:link{
 }
 
 .cell:hover{
-    background-color: rgb(233, 245, 255);
     cursor: pointer;
+    background-color:rgb(233, 245, 255);
+    transition: .3s;
 }
 
 .cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 2.2vw;
     height: 2.2vw;
     background-color: white;
@@ -92,6 +96,18 @@ a:link{
     border: .15vw black solid;
     border-Bottom: 0px;
     font: bold 1vw Arial;
+    user-select: none;
+}
+
+.cell.show{
+    color: black;
+    background-color: rgb(223, 223, 223);
+}
+
+.cell.show:hover{
+    cursor: default;
+    user-select: none;
+    background-color: rgb(231, 231, 231);
 }
 
 .cell.selected{

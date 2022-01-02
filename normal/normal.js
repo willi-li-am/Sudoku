@@ -13,6 +13,8 @@ const numpad9 = document.getElementById('number9')
 
 const gridContainer = document.getElementById('grid-container')
 
+//https://www.sudokuweb.org/ (sudoku 9x9 deja faite)
+
 const grid = [
     [
         ['', 8, '', 6, 1, '', 4, '', ''],
@@ -180,6 +182,7 @@ numpad9.addEventListener('click', function () {addNumber(9)})
 
 document.addEventListener('keypress', addNumberKeypress)
 document.addEventListener('keypress', checkWinKeypress)
+document.addEventListener('keydown', clearCase);
 
 cell0.addEventListener('click', function() {selectGrid(0, 0)})
 cell1.addEventListener('click', function() {selectGrid(0, 1)})
@@ -398,5 +401,11 @@ function checkWin(){
 function checkWinKeypress(e){
     if(e.key === "Enter"){
         checkWin()
+    }
+}
+
+function clearCase(e){
+    if(e.key == 'Backspace'){
+        selected[0].innerHTML = '';
     }
 }

@@ -6,8 +6,13 @@ function createCells(numCells){
         for(let j = 0; j < Math.sqrt(numCells); j++){
             var div = document.createElement("div");
             div.innerHTML = ''
-            div.className = 'cell'
+            if(grid[0][idNumber] == ''){
+                div.className = 'cell'
+            }else{
+                div.className = 'cell show'
+            }
             div.id = 'cell-' + idNumber
+            div.innerText = grid[0][idNumber]
             boldEverything(i, j, div)
             cell.push(div)
             idNumber++
@@ -16,8 +21,51 @@ function createCells(numCells){
     return cell;
 }
 
+//http://w01.tp1.jp/~sr10026691/Ans1616PE.html (grille de 16x16 deja faite)
+
+const grid = [
+    ['', '', 4, '', '', 16, 7, '', '', '', 11, '', 8, '', 1, 3,
+    '', 9, '', 11, '', '', 13, '', '', '', '', '', 7, '', 10, '',
+    '', 15, '', 16, 1, 3, '', 12, '', '', '', '', '', 9, '', '',
+    8, '', '', '', '', '', '', 9, '', '', 16, 10, 13, 6, '', '',
+    '', 1, '', 9, '', 6, '', '', 10, '', 12, '', '', '', 13, '',
+    14, '', '', '', '', '', 16, '', '', 11, 6, 2, 3, 1, 8, '',
+    '', '', '', '', 13, '', '', 4, '', 3, 9, '', 16, '', '', 12,
+    '', '', '', '', 8, '', 3, '', 4, '', 15, '', 11, 5, 2, '',
+    9, '', '', 5, 11, '', '', 2, 7, '', 1, 16, '', '', 14, 10,
+    '', '', '', 4, 14, 10, '', '', 8, '', '', '', 12, '', 16, '',
+    12, '', 16, 1, '', 5, 9, '', '', 15, '', '', '', 2, '', 4,
+    '', '', 14, '', '', '', '', 7, 2, 6, '', '', '', 8, '', 5,
+    10, 14, '', '', 12, 8, '', '', '', '', '', '', 5, 3, '', 2,
+    '', '', 12, '', '', 2, '', '', 14, 10, '', '', '', '', 6, '',
+    '', '', '', '', '', '', 4, 11, '', '', '', '', 10, '', 15, '',
+    4, '', 6, 13, '', '', '', '', '', '', '', 9, '', 16, '', ''] 
+]
+
+const solution = [
+    [13, 6, 4, 14, 10, 16, 7, 15, 9, 2, 11, 5, 8, 12, 1, 3,
+2, 9, 5, 11, 4, 14, 13, 6, 12, 8, 3, 1, 7, 15, 10, 16,
+7, 15, 10, 16, 1, 3, 8, 12, 6, 13, 14, 4, 2, 9, 5, 11,
+8, 12, 1, 3, 5, 11, 2, 9, 15, 7, 16, 10, 13, 6, 4, 14,
+3, 1, 8, 9, 2, 6, 11, 5, 10, 16, 12, 7, 14, 4, 13, 15,
+14, 4, 13, 15, 7, 12, 16, 10, 5, 11, 6, 2, 3, 1, 8, 9,
+11, 5, 2, 6, 13, 15, 14, 4, 1, 3, 9, 8, 16, 10, 7, 12,
+16, 10, 7, 12, 8, 9, 3, 1, 4, 14, 15, 13, 11, 5, 2, 6,
+9, 8, 3, 5, 11, 4, 6, 2, 7, 12, 1, 16, 15, 13, 14, 10,
+6, 2, 11, 4, 14, 10, 15, 13, 8, 9, 5, 3, 12, 7, 16, 1,
+12, 7, 16, 1, 3, 5, 9, 8, 13, 15, 10, 14, 6, 2, 11, 4,
+15, 13, 14, 10, 16, 1, 12, 7, 2, 6, 4, 11, 9, 8, 3, 5,
+10, 14, 15, 7, 12, 8, 1, 16, 11, 4, 13, 6, 5, 3, 9, 2,
+1, 16, 12, 8, 9, 2, 5, 3, 14, 10, 7, 15, 4, 11, 6, 13,
+5, 3, 9, 2, 6, 13, 4, 11, 16, 1, 8, 12, 10, 14, 15, 7,
+4, 11, 6, 13, 15, 7, 10, 14, 3, 5, 2, 9, 1, 16, 12, 8]
+] 
+
 
 let gridContainer = createCells(256)
+
+document.addEventListener('keypress', addNumberKeypress)
+document.addEventListener('keydown', clearCase);
 
 gridContainer[0].addEventListener('click', function(){selectGrid(0)})
 gridContainer[1].addEventListener('click', function(){selectGrid(1)})
@@ -324,3 +372,34 @@ function selectGrid(cellNum){
 
 addCellstoPage(gridContainer)
 
+function addNumberKeypress(e){
+    if(selected[0].innerHTML.length < 2){
+        if(e.key === '1'){
+            selected[0].innerHTML += '1'
+        }else if(e.key === '2'){
+            selected[0].innerHTML += '2'
+        }else if(e.key === '3'){
+            selected[0].innerHTML += '3'
+        }else if(e.key === '4'){
+            selected[0].innerHTML += '4'
+        }else if(e.key === '5'){
+            selected[0].innerHTML += '5'
+        }else if(e.key === '6'){
+            selected[0].innerHTML += '6'
+        }else if(e.key === '7'){
+            selected[0].innerHTML += '8'
+        }else if(e.key === '8'){
+            selected[0].innerHTML += '8'
+        }else if(e.key === '9'){
+            selected[0].innerHTML += '9'
+        }else if(e.key === '0'){
+            selected[0].innerHTML += '0'
+        }
+    }
+}
+
+function clearCase(e){
+    if(e.key == 'Backspace'){
+        selected[0].innerHTML = '';
+    }
+}
