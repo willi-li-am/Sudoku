@@ -79,12 +79,11 @@ a:link{
     display: block;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.822);
-    width: 35vw;
-    height: 35vw;
+    width: 35.08vw;
+    height: 35.08vw;
     padding: 0.25vw;
     margin-top: 4vw;
     margin-left: 12.2vw;
-    border-radius: .25vw;
     user-select: none;
 }
 
@@ -93,7 +92,6 @@ a:link{
     font: bold 1.5vw Arial;
     width: 23vw;
     height: 4vw;
-    border-radius: .25vw;
     margin:10.5%;
     margin-top: 44.3%;
     margin-left: 6vw;
@@ -119,50 +117,32 @@ a:link{
     margin-top: 5vw;
 }
 
-.grid-container{
+#grid{
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 0px;
-    background-color: black;
-    padding: .25vw;
-    width: 35vw;
-    height: 35vw;
-    border-radius: .25vw;
-    justify-items: center;
-    align-items: center;
+    grid-template-columns: 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw;
+    grid-template-rows: 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw 3.91vw  ;
     margin-left: 12.2vw;
     margin-top: 1vw;
-    user-select: none;
-    margin-bottom: 0;
-}
-
-.grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: .25vw;
-    padding: .1vw;
-    transition: none;
-}
-
-.grid-1 > div, .grid-2 > div, .grid-3 > div, .grid-4 > div, .grid-5 > div, .grid-6 > div, .grid-7 > div, .grid-8 > div, .grid-9 > div{
-    width: 3.6vw;
-    height: 3.6vw;
-    background-color: white;
-    
-}
-
-.cell{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font: bold 1.5vw Arial;
-    color:black;
 }
 
 .cell:hover{
     cursor: pointer;
     background-color:rgb(233, 245, 255);
     transition: .3s;
+}
+
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.8vw;
+    height: 3.8vw;
+    background-color: white;
+    color: black;
+    border: .2vw black solid;
+    border-Bottom: 0px;
+    font: bold 1.5vw Arial;
+    user-select: none;
 }
 
 .cell.show{
@@ -174,30 +154,36 @@ a:link{
     cursor: default;
     user-select: none;
     background-color: rgb(231, 231, 231);
+    transition: .3s;
 }
 
 .cell.selected{
     background-color: rgb(195, 227, 255);
     color: black;
+    transition: .3s;
 }
 
 .cell.incorrect{
     color: rgb(126, 0, 0);
     background-color: rgb(255, 187, 187);
+    transition: .3s;
 }
 
 .cell.selected.incorrect{
     color: white;
     background-color: rgb(255, 107, 107);
+    transition: .3s;
 }
 
 .cell.correct{
     color: rgb(0, 134, 22);
+    transition: .3s;
 }
 
 .cell.correct:hover{
     cursor: default;
     background-color: rgb(227, 255, 227);
+    transition: .3s;
 }
 
 .pad{

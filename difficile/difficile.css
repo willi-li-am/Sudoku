@@ -75,7 +75,6 @@ a:link{
     margin-top: 0vw;
 }
 
-
 .start-game{
     display: block;
     position: absolute;
@@ -84,7 +83,7 @@ a:link{
     height: 33.4vw;
     padding: 0.25vw;
     margin-top: 4vw;
-    margin-left: 10.4vw;
+    margin-left: 13.5vw;
     user-select: none;
 }
 

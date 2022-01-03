@@ -76,25 +76,14 @@ document.addEventListener('keypress', addNumberKeypress);
 document.addEventListener('keypress', checkWinKeypress);
 document.addEventListener('keydown', clearCase);
 
-cell0.addEventListener('click', function() {selectGrid(0, 0)});
-cell1.addEventListener('click', function() {selectGrid(0, 1)});
-cell2.addEventListener('click', function() {selectGrid(0, 2)});
-cell3.addEventListener('click', function() {selectGrid(0, 3)});
+gridContainer.addEventListener('click', (event)=>{
+    if(event.target.parentNode.parentNode.id != 'grid-container') return;
+    let clickedCellNum = event.target.id.split('-').pop();
+    let gridNum = Math.trunc(clickedCellNum/gridContainer.childElementCount);
+    let cellNum = clickedCellNum - (gridNum*gridContainer.childElementCount)
+    selectGrid(gridNum, cellNum)
 
-cell4.addEventListener('click', function() {selectGrid(1, 0)});
-cell5.addEventListener('click', function() {selectGrid(1, 1)});
-cell6.addEventListener('click', function() {selectGrid(1, 2)});
-cell7.addEventListener('click', function() {selectGrid(1, 3)});
-
-cell8.addEventListener('click', function() {selectGrid(2, 0)});
-cell9.addEventListener('click', function() {selectGrid(2, 1)});
-cell10.addEventListener('click', function() {selectGrid(2, 2)});
-cell11.addEventListener('click', function() {selectGrid(2, 3)});
-
-cell12.addEventListener('click', function() {selectGrid(3, 0)});
-cell13.addEventListener('click', function() {selectGrid(3, 1)});
-cell14.addEventListener('click', function() {selectGrid(3, 2)});
-cell15.addEventListener('click', function() {selectGrid(3, 3)});
+})
 
 var newGrid;
 
@@ -115,7 +104,7 @@ function startGame(){
     setTimeout('startTimer()', 10)
     startGameInstructions.classList.add('hidden');
     setTimeout(slowlyHide, 200);
-    selected[0].classList.remove('selected'); 
+    if(selected.length != 0) selected[0].classList.remove('selected');
     selected = [];
 }
 
