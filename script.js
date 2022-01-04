@@ -26,6 +26,8 @@ function addElementsToPage(arr){
 
 addElementsToPage(arr)*/
 
+console.log('Sorry , developers tools are blocked here....');
+
 const facile = document.getElementById('facile-stats');
 const normal = document.getElementById('normal-stats');
 const difficile = document.getElementById('difficile-stats');

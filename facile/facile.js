@@ -1,3 +1,5 @@
+console.log('Sorry , developers tools are blocked here....');
+
 const newGameBtn = document.getElementById('newGameBtn');
 const checkWinBtn = document.getElementById('checkWinBtn');
 const numpad1 = document.getElementById('number1');
