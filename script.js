@@ -25,3 +25,22 @@ function addElementsToPage(arr){
 }
 
 addElementsToPage(arr)*/
+
+const facile = document.getElementById('facile-stats');
+const normal = document.getElementById('normal-stats');
+const difficile = document.getElementById('difficile-stats');
+
+if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
+    localStorage.setItem('PB difficile', 'N/D')
+    localStorage.setItem('difficile', '0')
+}if(!localStorage.getItem('PB normal') && !localStorage.getItem('normal')){
+    localStorage.setItem('PB normal', 'N/D')
+    localStorage.setItem('normal', '0')
+}if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
+    localStorage.setItem('PB facile', 'N/D')
+    localStorage.setItem('facile', '0')
+}
+
+facile.innerHTML = 'Meilleure Temps: ' + localStorage.getItem('PB facile') + '<br>Nombres de Sudoku Completés: ' + localStorage.getItem('facile')
+normal.innerHTML = 'Meilleure Temps: ' + localStorage.getItem('PB normal') + '<br>Nombres de Sudoku Completés: ' + localStorage.getItem('normal')
+difficile.innerHTML = 'Meilleure Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombres de Sudoku Completés: ' + localStorage.getItem('difficile')

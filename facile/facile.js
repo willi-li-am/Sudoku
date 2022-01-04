@@ -8,6 +8,10 @@ const gridContainer = document.getElementById('grid');
 const startGameInstructions = document.getElementById('start-game');
 const timer = document.getElementById('timer')
 
+if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
+    localStorage.setItem('PB facile', 'N/D')
+    localStorage.setItem('facile', '0')
+}
 
 //Creating the grid dynamically
 var cell = []
@@ -100,7 +104,7 @@ const solution = [
 const grid = [
     [1, '', 4, '', 
     '', 2, 1, '',
-    '', '', '', 1,
+    '', '', 3, 1,
     '', '', '', 4],
 
     [4, '', 3, '',
@@ -115,18 +119,18 @@ const grid = [
 
     [2, '', 3, 1,
     '', 3, 4, '',
-    '', '', '', '',
+    '', '', 1, '',
     4, '', '', 3],
 
     ['', 4, '', 1,
     '', '', 2, '',
-    '', 3, '', '',
+    1, 3, '', '',
     '', '', '', 3],
 
     ['', 2, 4, 1,
     4, 1, '', 2,
-    '', '', '', '',
-    '', '', '', ''],
+    '', '', 1, '',
+    '', 3, '', ''],
 
     ['', 3, '', 1,
     4, '', '', '',
@@ -260,6 +264,10 @@ function checkWin(){
     if(correctAnsw == cell.length){
         correctAnsw = 0
         stopTimer()
+        if(localStorage.getItem('PB facile') == '' || PersonalBest(timer.innerHTML, localStorage.getItem('PB facile'))){
+            localStorage.setItem('PB facile', timer.innerHTML)
+        }
+        localStorage.setItem('facile', numberOfWins(localStorage.getItem('facile')))
     }
     selected[0].classList.remove('selected')
     selected = []
@@ -357,3 +365,24 @@ function clearCase(e){
         selected[0].innerHTML = '';
     }
 }
+
+function PersonalBest(newTime, oldTime){
+    let newTimeArr = newTime.split(':')
+    let oldTimeArr = oldTime.split(':')
+    let minInSec1 = parseInt(newTimeArr[0]) * 60
+    let seconds1 = parseInt(newTimeArr[1])
+    let msInSec1 = parseInt(newTimeArr[2])/100
+    let minInSec2 = parseInt(oldTimeArr[0]) * 60
+    let seconds2 = parseInt(oldTimeArr[1])
+    let msInSec2 = parseInt(oldTimeArr[2])/100
+    let finishingTime1 = minInSec1 + seconds1 + msInSec1
+    let finishingTime2 = minInSec2 + seconds2 + msInSec2
+    if(finishingTime1 < finishingTime2) return true;
+}
+
+function numberOfWins(wins){
+    numberWins = parseInt(wins);
+    numberWins += 1;
+    return numberWins;
+}
+

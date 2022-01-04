@@ -76,3 +76,52 @@ a:link{
     font: bold 20px Arial;
     margin-top: 25px;
 }
+
+#statistiques{
+    margin-left: 5vw;
+    margin-top: 6vw;
+    border: 2px solid black;
+    width: 14vw;
+    height: auto;
+    font: bold 1.5vw Arial;
+    padding: 1vw;
+}
+
+#facile{
+    font: bold 1vw Arial;
+    margin-left: .5vw;
+    margin-top: 1vw;
+}
+
+#facile-stats{
+    margin-left: .5vw;
+    margin-top: .25vw;
+    font: .75vw Arial;
+    margin-bottom: .5vw;
+}
+
+#normal{
+    font: bold 1vw Arial;
+    margin-left: .5vw;
+    margin-top: 1vw;
+}
+
+#normal-stats{
+    margin-left: .5vw;
+    margin-top: .25vw;
+    font: .75vw Arial;
+    margin-bottom: .5vw;
+}
+
+#difficile{
+    font: bold 1vw Arial;
+    margin-left: .5vw;
+    margin-top: 1vw;
+}
+
+#difficile-stats{
+    margin-left: .5vw;
+    margin-top: .25vw;
+    font: .75vw Arial;
+    margin-bottom: .5vw;
+}

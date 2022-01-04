@@ -17,6 +17,10 @@ const startGameInstructions = document.getElementById('start-game');
 const timer = document.getElementById('timer');
 
 const gridContainer = document.getElementById('grid')
+if(!localStorage.getItem('PB normal') && !localStorage.getItem('normal')){
+    localStorage.setItem('PB normal', 'N/D')
+    localStorage.setItem('normal', '0')
+}
 
 
 //Creating the grid dynamically
@@ -244,6 +248,10 @@ function checkWin(){
     if(correctAnsw == cell.length){
         correctAnsw = 0
         stopTimer()
+        if(localStorage.getItem('PB normal') == 'N/D' || PersonalBest(timer.innerHTML, localStorage.getItem('PB normal'))){
+            localStorage.setItem('PB normal', timer.innerHTML)
+        }
+        localStorage.setItem('normal', numberOfWins(localStorage.getItem('normal')))
     }
     selected[0].classList.remove('selected')
     selected = []
@@ -320,6 +328,27 @@ function resetTimer() {
     sec = 0;
     min = 0;
 }
+
+function PersonalBest(newTime, oldTime){
+    let newTimeArr = newTime.split(':')
+    let oldTimeArr = oldTime.split(':')
+    let minInSec1 = parseInt(newTimeArr[0]) * 60
+    let seconds1 = parseInt(newTimeArr[1])
+    let msInSec1 = parseInt(newTimeArr[2])/100
+    let minInSec2 = parseInt(oldTimeArr[0]) * 60
+    let seconds2 = parseInt(oldTimeArr[1])
+    let msInSec2 = parseInt(oldTimeArr[2])/100
+    let finishingTime1 = minInSec1 + seconds1 + msInSec1
+    let finishingTime2 = minInSec2 + seconds2 + msInSec2
+    if(finishingTime1 < finishingTime2) return true;
+}
+
+function numberOfWins(wins){
+    numberWins = parseInt(wins);
+    numberWins += 1;
+    return numberWins;
+}
+
 
 //Event Listeners
 
