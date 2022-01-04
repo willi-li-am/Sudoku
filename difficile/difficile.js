@@ -18,6 +18,7 @@ const numpad15 = document.getElementById('number15')
 const numpad16 = document.getElementById('number16')
 const startGameInstructions = document.getElementById('start-game');
 const gridContainer = document.getElementById('grid');
+const body = document.getElementById('body')
 
 if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
     localStorage.setItem('PB difficile', 'N/D')
@@ -382,4 +383,13 @@ gridContainer.addEventListener('click', (event)=>{
     if(event.target.parentNode.id != 'grid') return;
     let clickedCellNum = event.target.id.split('-').pop();
     selectGrid(clickedCellNum)
+})
+
+body.addEventListener('click', (event) => {
+    if(!event.target.classList.contains('cell') && !event.target.classList.contains('number')){
+        if(selected.length == 1){
+            selected[0].classList.remove('selected');
+            selected.shift();
+        }
+    }
 })

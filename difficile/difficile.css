@@ -1,7 +1,10 @@
 body{
     background-image: url();
     background-size: 1920px 1200px;
+    width: 100vw;
+    height: 100vh;
 }
+
 ul{
     display: grid;
     grid-template-columns: 117px 152px 164px 168px;
@@ -90,6 +93,7 @@ a:link{
 .start-instructions{
     background-color: white;
     font: bold 1.5vw Arial;
+    color: black;
     width: 23vw;
     height: 4vw;
     border-radius: .25vw;

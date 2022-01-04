@@ -12,6 +12,8 @@ const numpad7 = document.getElementById('number7')
 const numpad8 = document.getElementById('number8')
 const numpad9 = document.getElementById('number9')
 
+const body = document.getElementById('body')
+
 const startGameInstructions = document.getElementById('start-game');
 
 const timer = document.getElementById('timer');
@@ -357,6 +359,15 @@ gridContainer.addEventListener('click', (event)=>{
     if(event.target.parentNode.id != 'grid') return;
     let clickedCellNum = event.target.id.split('-').pop();
     selectGrid(clickedCellNum)
+})
+
+body.addEventListener('click', (event) => {
+    if(!event.target.classList.contains('cell') && !event.target.classList.contains('number')){
+        if(selected.length == 1){
+            selected[0].classList.remove('selected');
+            selected.shift();
+        }
+    }
 })
 
 //Game buttons

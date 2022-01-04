@@ -41,6 +41,6 @@ if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
     localStorage.setItem('facile', '0')
 }
 
-facile.innerHTML = 'Meilleure Temps: ' + localStorage.getItem('PB facile') + '<br>Nombres de Sudoku Completés: ' + localStorage.getItem('facile')
-normal.innerHTML = 'Meilleure Temps: ' + localStorage.getItem('PB normal') + '<br>Nombres de Sudoku Completés: ' + localStorage.getItem('normal')
-difficile.innerHTML = 'Meilleure Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombres de Sudoku Completés: ' + localStorage.getItem('difficile')
+facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudoku Complétés: ' + localStorage.getItem('facile')
+normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudoku Complétés: ' + localStorage.getItem('normal')
+difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudoku Complétés: ' + localStorage.getItem('difficile')

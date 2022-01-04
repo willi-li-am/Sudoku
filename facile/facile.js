@@ -7,6 +7,7 @@ const numpad4 = document.getElementById('number4');
 const gridContainer = document.getElementById('grid');
 const startGameInstructions = document.getElementById('start-game');
 const timer = document.getElementById('timer')
+const body = document.getElementById('body')
 
 if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
     localStorage.setItem('PB facile', 'N/D')
@@ -98,7 +99,44 @@ const solution = [
     [2, 1, 3, 4,
     4, 3, 1, 2,
     3, 2, 4, 1,
-    1, 4, 2, 3]
+    1, 4, 2, 3],
+    
+    [1, 3, 2, 4,
+    2, 4, 1, 3,
+    3, 2, 4, 1,
+    4, 1, 3, 2],
+
+    [2, 4, 1, 3,
+    1, 3, 4, 2,
+    3, 1, 2, 4,
+    4, 2, 3, 1],
+
+    [1, 2, 3, 4,
+    3, 4, 1, 2,
+    2, 3, 4, 1,
+    4, 1, 2, 3],
+
+    [1, 4, 3, 2,
+    3, 2, 1, 4,
+    4, 1, 2, 3,
+    2, 3, 4, 1],
+
+    [2, 3, 1, 4,
+    1, 4, 2, 3,
+    3, 2, 4, 1,
+    4, 1, 3, 2],
+
+    [4, 1, 3, 2,
+    2, 3, 1, 4, 
+    3, 4, 2, 1,
+    1, 2, 4, 3],
+
+    [4, 3, 1, 2,
+    1, 2, 4, 3,
+    3, 4, 2, 1,
+    2, 1, 3, 4]
+
+
 ];
 
 const grid = [
@@ -135,27 +173,48 @@ const grid = [
     ['', 3, '', 1,
     4, '', '', '',
     '', 2, '', 4,
-    1, 4, 2, 3]
+    1, 4, 2, 3],
+
+    [1, '', 2, 4,
+    2, 4, 1, '',
+    '', '', '', 1,
+    4, '', '', ''],
+
+    ['', '', 1, 3,
+    '', '', 4, '',
+    3, 1, '', '',
+    4, '', 3, 1],
+
+    [1, '', 3, 4,
+    '', '', 1, '',
+    2, '', 4, 1,
+    '', '', 2, ''],
+
+    [1, '', '', 2,
+    '', '', '', '',
+    '', 3, 1, '',
+    '', '', '', ''],
+
+    [1, '', '', 2,
+    '', '', 1, 4,
+    '', 1, '', 3,
+    2, 3, '', ''],
+
+    [2, '', 1, '',
+    '', 4, 2, '',
+    3, '', '', 1,
+    4, 1, '', 2],
+
+    [4, '', 3, '',
+    '', '', '', '', 
+    3, '', 2, '',
+    '', 2, 4, 3],
+
+    [4, '', '', '',
+    1, '', '', 3,
+    '', '', 2, '',
+    '', '', '', 4]
 ]
-
-//Event Listeners
-newGameBtn.addEventListener('click', function () {startGame()});
-checkWinBtn.addEventListener('click', function(){checkWin()});
-
-numpad1.addEventListener('click', function () {addNumber(1)});
-numpad2.addEventListener('click', function () {addNumber(2)});
-numpad3.addEventListener('click', function () {addNumber(3)});
-numpad4.addEventListener('click', function () {addNumber(4)});
-
-document.addEventListener('keypress', addNumberKeypress);
-document.addEventListener('keypress', checkWinKeypress);
-document.addEventListener('keydown', clearCase);
-
-gridContainer.addEventListener('click', (event)=>{
-    if(event.target.parentNode.id != 'grid') return;
-    let clickedCellNum = event.target.id.split('-').pop();
-    selectGrid(clickedCellNum)
-})
 
 var newGrid;
 
@@ -264,7 +323,7 @@ function checkWin(){
     if(correctAnsw == cell.length){
         correctAnsw = 0
         stopTimer()
-        if(localStorage.getItem('PB facile') == '' || PersonalBest(timer.innerHTML, localStorage.getItem('PB facile'))){
+        if(localStorage.getItem('PB facile') == 'N/D' || PersonalBest(timer.innerHTML, localStorage.getItem('PB facile'))){
             localStorage.setItem('PB facile', timer.innerHTML)
         }
         localStorage.setItem('facile', numberOfWins(localStorage.getItem('facile')))
@@ -385,4 +444,32 @@ function numberOfWins(wins){
     numberWins += 1;
     return numberWins;
 }
+
+//Event Listeners
+newGameBtn.addEventListener('click', function () {startGame()});
+checkWinBtn.addEventListener('click', function(){checkWin()});
+
+numpad1.addEventListener('click', function () {addNumber(1)});
+numpad2.addEventListener('click', function () {addNumber(2)});
+numpad3.addEventListener('click', function () {addNumber(3)});
+numpad4.addEventListener('click', function () {addNumber(4)});
+
+document.addEventListener('keypress', addNumberKeypress);
+document.addEventListener('keypress', checkWinKeypress);
+document.addEventListener('keydown', clearCase);
+
+gridContainer.addEventListener('click', (event)=>{
+    if(event.target.parentNode.id != 'grid') return;
+    let clickedCellNum = event.target.id.split('-').pop();
+    selectGrid(clickedCellNum);
+})
+
+body.addEventListener('click', (event) => {
+    if(!event.target.classList.contains('cell') && !event.target.classList.contains('number')){
+        if(selected.length == 1){
+            selected[0].classList.remove('selected');
+            selected.shift();
+        }
+    }
+})
 

@@ -2,6 +2,7 @@ body{
     background-image: url();
     background-size: 1920px 1200px;
 }
+
 ul{
     display: grid;
     grid-template-columns: 117px 152px 164px 168px;;
@@ -63,7 +64,6 @@ a:link{
     font: bold 50px Arial;
     text-align: center;
     margin-top: 50px;
-    background-color: white;
 }
 
 .img{
@@ -75,6 +75,11 @@ a:link{
     text-align: center;
     font: bold 20px Arial;
     margin-top: 25px;
+}
+
+.darkmode #statistiques{
+    border-color: white;
+    background-color: #303030;
 }
 
 #statistiques{
