@@ -1,5 +1,7 @@
+//Naming all the HTML stuff
 const newGameBtn = document.getElementById('newGameBtn')
 const checkWinBtn = document.getElementById('checkWinBtn')
+
 const numpad1 = document.getElementById('number1')
 const numpad2 = document.getElementById('number2')
 const numpad3 = document.getElementById('number3')
@@ -9,12 +11,15 @@ const numpad6 = document.getElementById('number6')
 const numpad7 = document.getElementById('number7')
 const numpad8 = document.getElementById('number8')
 const numpad9 = document.getElementById('number9')
-const startGameInstructions = document.getElementById('start-game');
-const timer = document.getElementById('timer');
 
+const startGameInstructions = document.getElementById('start-game');
+
+const timer = document.getElementById('timer');
 
 const gridContainer = document.getElementById('grid')
 
+
+//Creating the grid dynamically
 var cell = []
 
 function createCells(numCells){
@@ -35,6 +40,7 @@ function createCells(numCells){
 
 let createdGrid = createCells(81)
 
+//Makes border of certain cells thicker
 function boldEverything(i, j, div){
     if(i == 0 || i == 3 || i == 6){
         div.style.borderTop = '.3vw black solid'
@@ -48,6 +54,7 @@ function boldEverything(i, j, div){
     
 }
 
+//Brings the grid to the page
 function addCellstoPage(arr){
     for(let i = 0; i < arr.length; i++){
         document.getElementById('grid').appendChild(arr[i])
@@ -57,6 +64,8 @@ function addCellstoPage(arr){
 
 addCellstoPage(createdGrid)
 
+
+//Sudoku Solutions and Numbers
 //https://www.sudokuweb.org/ (sudoku 9x9 deja faite)
 
 const solution = [
@@ -104,12 +113,9 @@ const grid = [
 ]
 
 
-gridContainer.addEventListener('click', (event)=>{
-    if(event.target.parentNode.id != 'grid') return;
-    let clickedCellNum = event.target.id.split('-').pop();
-    selectGrid(clickedCellNum)
-})
+//Game functions//
 
+//Starts the game
 function startGame(){
     newGrid = randomGrid(grid)
     for(let i = 0; i < cell.length ; i++){ 
@@ -133,7 +139,12 @@ function startGame(){
     selected = []
 }
 
+//Hides the instructions once game is started
+function slowlyHide(){
+    startGameInstructions.classList.add('none');
+}
 
+//Randomly chooses a grid preset
 //https://www.w3schools.com/js/js_random.asp
 
 function getRndInteger(min, max) {
@@ -154,6 +165,8 @@ function randomGrid(grid){
     oldGrid = number
     return newGrid
 }
+
+//Cell selection function
 
 var selected = []
 
@@ -176,10 +189,11 @@ function selectGrid(cellNum){
     }
 }
 
+//Adding numbers to selected cell with buttons
 function addNumber(numpadNum){
     selected[0].innerHTML = numpadNum
 }
-
+//Does the same thing but with keyboard
 function addNumberKeypress(e){
     if(e.key === '1'){
         selected[0].innerHTML = 1
@@ -201,14 +215,21 @@ function addNumberKeypress(e){
         selected[0].innerHTML = 9
     }
 }
+//Clears selected cell when pressing the "Backspace" key on keyboard
+function clearCase(e){
+    if(e.key == 'Backspace'){
+        selected[0].innerHTML = '';
+    }
+}
 
+//Checks if Sudoku is completed correctly
 var gridSolution
 
 function checkWin(){
     var correctAnsw = 0
     for(let i = 0; i < cell.length; i++){  
         if(!cell[i].classList.contains('show')){
-            if(cell[i].innerText == solution[0][i]){
+            if(cell[i].innerText == gridSolution[i]){
                 cell[i].classList.remove('incorrect')
                 cell[i].classList.add('correct')
                 correctAnsw += 1
@@ -228,24 +249,16 @@ function checkWin(){
     selected = []
     
 }
-
+//Checks win by pressing the "Enter" key on keyboard
 function checkWinKeypress(e){
     if(e.key === "Enter"){
         checkWin()
     }
 }
 
-function clearCase(e){
-    if(e.key == 'Backspace'){
-        selected[0].innerHTML = '';
-    }
-}
 
-function slowlyHide(){
-    startGameInstructions.classList.add('none');
-}
-
-//https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak
+//Timer Function
+//Taken from https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak
 
 var min = 0;
 var sec = 0;
@@ -308,9 +321,20 @@ function resetTimer() {
     min = 0;
 }
 
+//Event Listeners
+
+//Cell selection
+gridContainer.addEventListener('click', (event)=>{
+    if(event.target.parentNode.id != 'grid') return;
+    let clickedCellNum = event.target.id.split('-').pop();
+    selectGrid(clickedCellNum)
+})
+
+//Game buttons
 newGameBtn.addEventListener('click', function () {startGame()})
 checkWinBtn.addEventListener('click', function(){checkWin()})
 
+//Number pad buttons
 numpad1.addEventListener('click', function () {addNumber(1)})
 numpad2.addEventListener('click', function () {addNumber(2)})
 numpad3.addEventListener('click', function () {addNumber(3)})
@@ -321,6 +345,7 @@ numpad7.addEventListener('click', function () {addNumber(7)})
 numpad8.addEventListener('click', function () {addNumber(8)})
 numpad9.addEventListener('click', function () {addNumber(9)})
 
+//Keypress functions
 document.addEventListener('keypress', addNumberKeypress)
 document.addEventListener('keypress', checkWinKeypress)
 document.addEventListener('keydown', clearCase);
