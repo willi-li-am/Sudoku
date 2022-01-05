@@ -20,6 +20,8 @@ const startGameInstructions = document.getElementById('start-game');
 
 const timer = document.getElementById('timer');
 
+const navbar = document.getElementById('navbar');
+
 const gridContainer = document.getElementById('grid')
 if(!localStorage.getItem('PB normal') && !localStorage.getItem('normal')){
     localStorage.setItem('PB normal', 'N/D')
@@ -305,6 +307,8 @@ function startGame(){
     setTimeout(slowlyHide, 200);
     if(selected.length != 0) selected[0].classList.remove('selected');
     selected = []
+    sessionStorage.setItem('normal number', number)
+    sessionStorage.setItem('normal win', false)
 }
 
 //Hides the instructions once game is started
@@ -319,11 +323,15 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+var number = sessionStorage.getItem('normal number')
+
 var oldGrid = []
+
+oldGrid.push(sessionStorage.getItem('normal number'))
 
 function randomGrid(grid){
     let newGrid = []
-    let number = getRndInteger(0, (grid.length-1)) 
+    number = getRndInteger(0, (grid.length-1)) 
     if(oldGrid.length == grid.length){
         for(let i = 0; i < grid.length; i++) oldGrid.shift();
     }
@@ -393,7 +401,7 @@ function clearCase(e){
 }
 
 //Checks if Sudoku is completed correctly
-var gridSolution
+var gridSolution = solution[number]
 
 function checkWin(){
     var correctAnsw = 0
@@ -418,6 +426,7 @@ function checkWin(){
             localStorage.setItem('PB normal', timer.innerHTML)
         }
         localStorage.setItem('normal', numberOfWins(localStorage.getItem('normal')))
+        sessionStorage.setItem('normal win', true)
     }
     selected[0].classList.remove('selected')
     selected = []
@@ -438,6 +447,12 @@ var min = 0;
 var sec = 0;
 var ms = 0;
 var stoptime = true;
+
+if(sessionStorage.getItem('normal sec')){
+    ms = parseInt(sessionStorage.getItem('normal ms'));
+    sec = parseInt(sessionStorage.getItem('normal sec'));
+    min = parseInt(sessionStorage.getItem('normal min'));
+}
 
 function startTimer() {
   if (stoptime == true) {
@@ -515,9 +530,53 @@ function numberOfWins(wins){
     return numberWins;
 }
 
+function saveGrid(){
+    for(let i = 0; i < cell.length; i++){
+        sessionStorage.setItem('normal number', number)
+        sessionStorage.setItem('normal cell' + i, cell[i].innerText);
+        sessionStorage.setItem('normal timer', timer.innerHTML)
+        sessionStorage.setItem('normal ms', ms);
+        sessionStorage.setItem('normal sec', sec);
+        sessionStorage.setItem('normal min', min);
+        console.log('lol')
+    }
+}
+
+var savedNumber
+
+function printSavedGrid(){
+    startGameInstructions.classList.add('hidden', 'none')
+    savedNumber = parseInt(sessionStorage.getItem('normal number'))
+    for(let i = 0; i < cell.length; i++){
+        let cellHTML = sessionStorage.getItem('normal cell' + i);
+        if(grid[savedNumber][i] != cellHTML || grid[savedNumber][i] == ''){
+            cell[i].classList.remove('show');
+            if(sessionStorage.getItem('normal win') == 'true'){
+                stopTimer()
+                cell[i].classList.add('correct')
+            }
+        }
+        cell[i].innerHTML = cellHTML;
+    }
+    timer.innerHTML = sessionStorage.getItem('normal timer')
+    if(sessionStorage.getItem('normal win') == 'true'){
+        stopTimer()
+    }else {
+        startTimer()
+    }
+}
+
+if(sessionStorage.getItem('normal cell0') && sessionStorage.getItem('normal timer')){
+    printSavedGrid()
+}
 
 //Event Listeners
 
+navbar.addEventListener('click', (event) => {
+    if(event.target.id = 'nav'){
+        saveGrid()
+    }
+})
 //Cell selection
 gridContainer.addEventListener('click', (event)=>{
     if(event.target.parentNode.id != 'grid') return;
