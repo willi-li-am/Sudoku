@@ -73,6 +73,71 @@ const solution = [
     3, 1, 4, 2,
     1, 3, 2, 4,
     2, 4, 1, 3],
+
+    [1, 3, 2, 4,
+    2, 4, 1, 3,
+    4, 2, 3, 1,
+    3, 1, 4, 2],
+
+    [3, 2, 1, 4,
+    4, 1, 2, 3,
+    2, 4, 3, 1,
+    1, 3, 4, 2],
+
+    [2, 4, 1, 3,
+    3, 1, 4, 2,
+    1, 3, 2, 4,
+    4, 2, 3, 1],
+
+    [1, 2, 3, 4,
+    4, 3, 2, 1,
+    2, 4, 1, 3,
+    3, 1, 4, 2],
+
+    [4, 2, 1, 3,
+    3, 1, 2, 4,
+    1, 4, 3, 2,
+    2, 3, 4, 1],
+
+    [2, 4, 3, 1,
+    3, 1, 2, 4,
+    4, 2, 1, 3,
+    1, 3, 4, 2],
+
+    [2, 4, 3, 1,
+    3, 1, 4, 2,
+    4, 2, 1, 3,
+    1, 3, 2, 4],
+
+    [4, 2, 1 ,3,
+    3, 1, 4, 2,
+    2, 4, 3, 1,
+    1, 3, 2, 4],
+
+    [3, 2, 4, 1,
+    1, 4, 2, 3,
+    2, 3, 1, 4,
+    4, 1, 3, 2],
+
+    [4, 1, 2, 3,
+    3, 2, 1, 4,
+    2, 3, 4, 1,
+    1, 4, 3, 2],
+
+    [3, 1, 2, 4,
+    4, 2, 3, 1,
+    1, 3, 4, 2,
+    2, 4, 1, 3],
+
+    [4, 3, 1, 2,
+    1, 2, 4, 3,
+    2, 4, 3, 1,
+    3, 1, 2, 4],
+
+    [1, 4, 3, 2,
+    3, 2, 1, 4,
+    4, 3, 2, 1,
+    2, 1, 4, 3]
 ];
 
 const grid = [
@@ -85,6 +150,71 @@ const grid = [
     '', '', '', 2,
     1, 3, 2, 4,
     '', '', '', ''],
+
+    ['', '', '', '',
+    '', '', 1, '',
+    '', 2, 3, 1,
+    3, '', 4, 2],
+
+    [3, '', '', 4,
+    '', 1, '', '',
+    '', '', '', '',
+    1, '', 4, ''],
+
+    ['', 4, '', '',
+    3, '', 4, '',
+    '', 3, 2, '',
+    '', '', 3, 1],
+
+    ['', '', '', '',
+    '', '', 2, 1,
+    2, 4, 1, 3,
+    3, 1, '', ''],
+
+    ['', 2, 1, '',
+    3, 1, 2, '',
+    '', '', 3, '',
+    2, '', '', ''],
+
+    [2, '', 3, '',
+    '', '', 2, 4,
+    4, '', '', '',
+    1, 3, '', 2],
+
+    ['', 4, '', '',
+    '', 1, 4, 2,
+    '', '', '', 3,
+    '', 3, '', ''],
+
+    ['', '', 1 ,3,
+    3, '', 4, 2,
+    '', 4, '', '',
+    '', '', '', ''],
+
+    ['', 2, '', '',
+    1, '', '', 3,
+    2, 3, '', 4,
+    '', 1, 3, 2],
+
+    ['', '', '', 3,
+    3, 2, '', 4,
+    '', '', 4, '',
+    1, '', '', 2],
+
+    ['', '', '', 4,
+    4, 2, 3, '',
+    '', 3, '', 2,
+    '', '', '', ''],
+
+    ['', '', 1, '',
+    '', '', '', 3,
+    '', 4, 3, 1,
+    '', '', 2, 4],
+
+    [1, '', 3, 2,
+    '', '', 1, '',
+    4, '', '', 1,
+    '', '', '', '']
 ];
 
 var newGrid;
@@ -330,13 +460,15 @@ function numberOfWins(wins){
 }
 
 function saveGrid(){
-    for(let i = 0; i < cell.length; i++){
-        sessionStorage.setItem('facile number', number)
-        sessionStorage.setItem('facile cell' + i, cell[i].innerText);
-        sessionStorage.setItem('facile timer', timer.innerHTML)
-        sessionStorage.setItem('facile ms', ms);
-        sessionStorage.setItem('facile sec', sec);
-        sessionStorage.setItem('facile min', min);
+    if(startGameInstructions.classList.contains('hidden', 'none')){
+        for(let i = 0; i < cell.length; i++){
+            sessionStorage.setItem('facile number', number)
+            sessionStorage.setItem('facile cell' + i, cell[i].innerText);
+            sessionStorage.setItem('facile timer', timer.innerHTML)
+            sessionStorage.setItem('facile ms', ms);
+            sessionStorage.setItem('facile sec', sec);
+            sessionStorage.setItem('facile min', min);
+        }
     }
 }
 
@@ -364,7 +496,7 @@ function printSavedGrid(){
     }
 }
 
-if(sessionStorage.getItem('facile cell0') && sessionStorage.getItem('facile timer')){
+if(sessionStorage.getItem('facile timer')){
     printSavedGrid()
 }
 

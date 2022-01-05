@@ -531,14 +531,15 @@ function numberOfWins(wins){
 }
 
 function saveGrid(){
-    for(let i = 0; i < cell.length; i++){
-        sessionStorage.setItem('normal number', number)
-        sessionStorage.setItem('normal cell' + i, cell[i].innerText);
-        sessionStorage.setItem('normal timer', timer.innerHTML)
-        sessionStorage.setItem('normal ms', ms);
-        sessionStorage.setItem('normal sec', sec);
-        sessionStorage.setItem('normal min', min);
-        console.log('lol')
+    if(startGameInstructions.classList.contains('hidden', 'none')){
+        for(let i = 0; i < cell.length; i++){
+            sessionStorage.setItem('normal number', number)
+            sessionStorage.setItem('normal cell' + i, cell[i].innerText);
+            sessionStorage.setItem('normal timer', timer.innerHTML)
+            sessionStorage.setItem('normal ms', ms);
+            sessionStorage.setItem('normal sec', sec);
+            sessionStorage.setItem('normal min', min);
+        }
     }
 }
 
@@ -566,7 +567,7 @@ function printSavedGrid(){
     }
 }
 
-if(sessionStorage.getItem('normal cell0') && sessionStorage.getItem('normal timer')){
+if(sessionStorage.getItem('normal number') != null){
     printSavedGrid()
 }
 
