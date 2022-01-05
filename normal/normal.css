@@ -97,12 +97,13 @@ a:link{
     width: 23vw;
     height: 4vw;
     margin:10.5%;
-    margin-top: 44.3%;
+    margin-top: 44%;
     margin-left: 6vw;
     line-height: 4vw;
     text-align: center;
     transition: 2s;
     padding: 0px;
+    border-radius: .25vw;
 }
 
 .start-game.hidden{

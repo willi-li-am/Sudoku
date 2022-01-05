@@ -8,8 +8,9 @@ const numpad3 = document.getElementById('number3');
 const numpad4 = document.getElementById('number4');
 const gridContainer = document.getElementById('grid');
 const startGameInstructions = document.getElementById('start-game');
-const timer = document.getElementById('timer')
-const body = document.getElementById('body')
+const timer = document.getElementById('timer');
+const body = document.getElementById('body');
+const navbar = document.getElementById('navbar');
 
 if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
     localStorage.setItem('PB facile', 'N/D')
@@ -72,73 +73,6 @@ const solution = [
     3, 1, 4, 2,
     1, 3, 2, 4,
     2, 4, 1, 3],
-
-    [4, 3, 1, 2,
-    2, 1, 4, 3,
-    3, 4, 2, 1,
-    1, 2, 3, 4],
-
-    [2, 4, 3, 1,
-    1, 3, 4, 2,
-    3, 2, 1, 4,
-    4, 1, 2, 3],
-
-    [2, 4, 3, 1,
-    3, 1, 2, 4,
-    1, 3, 4, 2,
-    4, 2, 1, 3],
-
-    [3, 2, 4, 1,
-    4, 1, 3, 2,
-    2, 4, 1, 3,
-    1, 3, 2, 4],
-
-    [2, 3, 4, 1,
-    4, 1, 3, 2,
-    3, 2, 1, 4,
-    1, 4, 2, 3],
-
-    [2, 1, 3, 4,
-    4, 3, 1, 2,
-    3, 2, 4, 1,
-    1, 4, 2, 3],
-    
-    [1, 3, 2, 4,
-    2, 4, 1, 3,
-    3, 2, 4, 1,
-    4, 1, 3, 2],
-
-    [2, 4, 1, 3,
-    1, 3, 4, 2,
-    3, 1, 2, 4,
-    4, 2, 3, 1],
-
-    [1, 2, 3, 4,
-    3, 4, 1, 2,
-    2, 3, 4, 1,
-    4, 1, 2, 3],
-
-    [1, 4, 3, 2,
-    3, 2, 1, 4,
-    4, 1, 2, 3,
-    2, 3, 4, 1],
-
-    [2, 3, 1, 4,
-    1, 4, 2, 3,
-    3, 2, 4, 1,
-    4, 1, 3, 2],
-
-    [4, 1, 3, 2,
-    2, 3, 1, 4, 
-    3, 4, 2, 1,
-    1, 2, 4, 3],
-
-    [4, 3, 1, 2,
-    1, 2, 4, 3,
-    3, 4, 2, 1,
-    2, 1, 3, 4]
-
-
 ];
 
 const grid = [
@@ -151,72 +85,7 @@ const grid = [
     '', '', '', 2,
     1, 3, 2, 4,
     '', '', '', ''],
-
-    ['', 3, 1, '',
-    2, '', '', 3,
-    '', 4, '', 1,
-    1, '', 3, 4],
-
-    [2, '', 3, 1,
-    '', 3, 4, '',
-    '', '', 1, '',
-    4, '', '', 3],
-
-    ['', 4, '', 1,
-    '', '', 2, '',
-    1, 3, '', '',
-    '', '', '', 3],
-
-    ['', 2, 4, 1,
-    4, 1, '', 2,
-    '', '', 1, '',
-    '', 3, '', ''],
-
-    ['', 3, '', 1,
-    4, '', '', '',
-    '', 2, '', 4,
-    1, 4, 2, 3],
-
-    [1, '', 2, 4,
-    2, 4, 1, '',
-    '', '', '', 1,
-    4, '', '', ''],
-
-    ['', '', 1, 3,
-    '', '', 4, '',
-    3, 1, '', '',
-    4, '', 3, 1],
-
-    [1, '', 3, 4,
-    '', '', 1, '',
-    2, '', 4, 1,
-    '', '', 2, ''],
-
-    [1, '', '', 2,
-    '', '', '', '',
-    '', 3, 1, '',
-    '', '', '', ''],
-
-    [1, '', '', 2,
-    '', '', 1, 4,
-    '', 1, '', 3,
-    2, 3, '', ''],
-
-    [2, '', 1, '',
-    '', 4, 2, '',
-    3, '', '', 1,
-    4, 1, '', 2],
-
-    [4, '', 3, '',
-    '', '', '', '', 
-    3, '', 2, '',
-    '', 2, 4, 3],
-
-    [4, '', '', '',
-    1, '', '', 3,
-    '', '', 2, '',
-    '', '', '', 4]
-]
+];
 
 var newGrid;
 
@@ -244,6 +113,8 @@ function startGame(){
     setTimeout(slowlyHide, 200);
     if(selected.length != 0) selected[0].classList.remove('selected');
     selected = []
+    sessionStorage.setItem('facile number', number)
+    sessionStorage.setItem('facile win', false)
 }
 
 //Hides the instructions once game is started
@@ -260,19 +131,24 @@ function getRndInteger(min, max) {
 
 var oldGrid = []
 
+oldGrid.push(sessionStorage.getItem('facile number'))
+
+var number = sessionStorage.getItem('facile number')
+
 function randomGrid(grid){
-    let newGrid = []
-    let number = getRndInteger(0, (grid.length-1)) 
+    let newGrid = [];
+    number = getRndInteger(0, (grid.length-1));
     if(oldGrid.length == grid.length){
         for(let i = 0; i < grid.length; i++) oldGrid.shift();
     }
     while(oldGrid.includes(number)){
-        number = getRndInteger(0, (grid.length-1))
+        number = getRndInteger(0, (grid.length-1));
     }
-    newGrid = grid[number]
-    gridSolution = solution[number]
-    oldGrid.push(number)
-    return newGrid
+    newGrid = grid[number];
+    gridSolution = solution[number];
+
+    oldGrid.push(number);
+    return newGrid;
 }
 
 //Cell selection function
@@ -304,7 +180,7 @@ function addNumber(numpadNum){
 }
 
 //Checks if Sudoku is completed correctly
-var gridSolution
+var gridSolution = solution[number]
 
 function checkWin(){
     var correctAnsw = 0
@@ -329,6 +205,7 @@ function checkWin(){
             localStorage.setItem('PB facile', timer.innerHTML)
         }
         localStorage.setItem('facile', numberOfWins(localStorage.getItem('facile')))
+        sessionStorage.setItem('facile win', true)
     }
     selected[0].classList.remove('selected')
     selected = []
@@ -347,11 +224,16 @@ function slowlyHide(){
 
 
 //https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak
-
 var min = 0;
 var sec = 0;
 var ms = 0;
 var stoptime = true;
+
+if(sessionStorage.getItem('facile sec')){
+    ms = parseInt(sessionStorage.getItem('facile ms'));
+    sec = parseInt(sessionStorage.getItem('facile sec'));
+    min = parseInt(sessionStorage.getItem('facile min'));
+}
 
 function startTimer() {
   if (stoptime == true) {
@@ -447,6 +329,45 @@ function numberOfWins(wins){
     return numberWins;
 }
 
+function saveGrid(){
+    for(let i = 0; i < cell.length; i++){
+        sessionStorage.setItem('facile number', number)
+        sessionStorage.setItem('facile cell' + i, cell[i].innerText);
+        sessionStorage.setItem('facile timer', timer.innerHTML)
+        sessionStorage.setItem('facile ms', ms);
+        sessionStorage.setItem('facile sec', sec);
+        sessionStorage.setItem('facile min', min);
+    }
+}
+
+var savedNumber
+
+function printSavedGrid(){
+    startGameInstructions.classList.add('hidden', 'none')
+    savedNumber = parseInt(sessionStorage.getItem('facile number'))
+    for(let i = 0; i < cell.length; i++){
+        let cellHTML = sessionStorage.getItem('facile cell' + i);
+        if(grid[savedNumber][i] != cellHTML || grid[savedNumber][i] == ''){
+            cell[i].classList.remove('show');
+            if(sessionStorage.getItem('facile win') == 'true'){
+                stopTimer()
+                cell[i].classList.add('correct')
+            }
+        }
+        cell[i].innerHTML = cellHTML;
+    }
+    timer.innerHTML = sessionStorage.getItem('facile timer')
+    if(sessionStorage.getItem('facile win') == 'true'){
+        stopTimer()
+    }else {
+        startTimer()
+    }
+}
+
+if(sessionStorage.getItem('facile cell0') && sessionStorage.getItem('facile timer')){
+    printSavedGrid()
+}
+
 //Event Listeners
 newGameBtn.addEventListener('click', function () {startGame()});
 checkWinBtn.addEventListener('click', function(){checkWin()});
@@ -460,7 +381,13 @@ document.addEventListener('keypress', addNumberKeypress);
 document.addEventListener('keypress', checkWinKeypress);
 document.addEventListener('keydown', clearCase);
 
-gridContainer.addEventListener('click', (event)=>{
+navbar.addEventListener('click', (event) => {
+    if(event.target.id = 'nav'){
+        saveGrid()
+    }
+})
+
+gridContainer.addEventListener('click', (event) => {
     if(event.target.parentNode.id != 'grid') return;
     let clickedCellNum = event.target.id.split('-').pop();
     selectGrid(clickedCellNum);
