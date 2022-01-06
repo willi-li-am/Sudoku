@@ -373,24 +373,26 @@ function addNumber(numpadNum){
 }
 //Does the same thing but with keyboard
 function addNumberKeypress(e){
-    if(e.key === '1'){
-        selected[0].innerHTML = 1
-    }else if(e.key === '2'){
-        selected[0].innerHTML = 2
-    }else if(e.key === '3'){
-        selected[0].innerHTML = 3
-    }else if(e.key === '4'){
-        selected[0].innerHTML = 4
-    }else if(e.key === '5'){
-        selected[0].innerHTML = 5
-    }else if(e.key === '6'){
-        selected[0].innerHTML = 6
-    }else if(e.key === '7'){
-        selected[0].innerHTML = 7
-    }else if(e.key === '8'){
-        selected[0].innerHTML = 8
-    }else if(e.key === '9'){
-        selected[0].innerHTML = 9
+    if(selected.length > 0){
+        if(e.key === '1'){
+            selected[0].innerHTML = 1
+        }else if(e.key === '2'){
+            selected[0].innerHTML = 2
+        }else if(e.key === '3'){
+            selected[0].innerHTML = 3
+        }else if(e.key === '4'){
+            selected[0].innerHTML = 4
+        }else if(e.key === '5'){
+            selected[0].innerHTML = 5
+        }else if(e.key === '6'){
+            selected[0].innerHTML = 6
+        }else if(e.key === '7'){
+            selected[0].innerHTML = 7
+        }else if(e.key === '8'){
+            selected[0].innerHTML = 8
+        }else if(e.key === '9'){
+            selected[0].innerHTML = 9
+        }
     }
 }
 //Clears selected cell when pressing the "Backspace" key on keyboard
@@ -428,9 +430,10 @@ function checkWin(){
         localStorage.setItem('normal', numberOfWins(localStorage.getItem('normal')))
         sessionStorage.setItem('normal win', true)
     }
-    selected[0].classList.remove('selected')
-    selected = []
-    
+    if(selected.length > 0){
+        selected[0].classList.remove('selected')
+        selected = []
+    }
 }
 //Checks win by pressing the "Enter" key on keyboard
 function checkWinKeypress(e){

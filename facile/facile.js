@@ -336,10 +336,10 @@ function checkWin(){
         }
         localStorage.setItem('facile', numberOfWins(localStorage.getItem('facile')))
         sessionStorage.setItem('facile win', true)
+    }if(selected.length > 0){
+        selected[0].classList.remove('selected')
+        selected = []
     }
-    selected[0].classList.remove('selected')
-    selected = []
-    
 }
 //Checks win by pressing the "Enter" key on keyboard
 function checkWinKeypress(e){
@@ -422,14 +422,16 @@ function resetTimer() {
 }
 
 function addNumberKeypress(e){
-    if(e.key === '1'){
-        selected[0].innerHTML = 1;
-    }else if(e.key === '2'){
-        selected[0].innerHTML = 2;
-    }else if(e.key === '3'){
-        selected[0].innerHTML = 3;
-    }else if(e.key === '4'){
-        selected[0].innerHTML = 4;
+    if(selected.length > 0){
+        if(e.key === '1'){
+            selected[0].innerHTML = 1;
+        }else if(e.key === '2'){
+            selected[0].innerHTML = 2;
+        }else if(e.key === '3'){
+            selected[0].innerHTML = 3;
+        }else if(e.key === '4'){
+            selected[0].innerHTML = 4;
+        }
     }
 }
 
