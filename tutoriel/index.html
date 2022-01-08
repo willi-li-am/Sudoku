@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="tutoriel.js" defer></script>
+    <link href = 'tutoriel.css' rel = 'stylesheet' >
+    <title>Sudoku Tutoriel</title>
+    <ul id = 'navbar'>
+        <a class = 'home' href = '../'><li id = 'nav' class = 'accueil'>Accueil</li></a>
+        <a href = "../facile/"><li id = 'nav' >Sudoku Facile</li></a>
+        <a href = '../normal/'><li id = 'nav' >Sudoku Normal</li></a>
+        <a href = '../difficile/'><li id = 'nav'>Sudoku Difficile</li></a>
+        <a href = '../tutoriel/'><li id = 'nav' class = 'current'>Tutoriel</li></a>
+    </ul>
+</head>
+<body>
+    <div id = 'next'>
+        <div class = 'nextBtn' id = 'nextBtn'>Cliquer ici pour continuer</div>
+    </div>
+    <div class = 'tutorial'id = 'tutorial'>
+        <div class  = 'context' id = 'context'>
+            <div class = 'explanation' id = 'explanation'>Un Sudoku est un jeu en forme d'une grille, plusieurs variations de Sudoku existent, mais le plus connu est celui de 9x9.</div>
+            <div class = 'tutorialContext hidden' id = 'tutorialContext'>Dans ce tutoriel, nous allons utiliser une grille de 4x4.</div>
+            <div class = 'goal hidden' id = 'goal'>Le but du Sudoku est de remplir tous les cases en suivant deux règles.</div>
+        </div>
+        <div class = 'rules' id = 'rules'>
+            <div class = 'ruleTitle hidden' id = 'ruleTitle'>Ces règles sont: </div>
+            <div class = 'firstRule hidden' id = 'firstRule'>1. Chaque ligne et colonne ne peut pas avoir le même chiffre</div>
+            <div class = 'secondRule hidden' id = 'secondRule'>et <br>2. Chaque petite grille ne peut pas avoir le même chiffre</div>
+        </div>
+        <div class = 'instructions' id = 'instructions'>
+            <div class = 'grid4x4 hidden' id = 'grid4x4'>Dans une grille de 4x4,<br> vous pouvez seulement utiliser les chiffres 1 à 4.</div>
+            <div class = 'select hidden' id = 'select'>Pour remplir une case, vous devez premièrement selectionner une case en le cliquant dessus.</div>
+            <div class = 'insertNumber hidden' id = 'insertNumber'>Ensuite, avec votre clavier ou les boutons, vous pouvez insérer un chiffre dans la case selectionnée.</div>
+            <div class = 'mistake hidden' id = 'mistake'>Si vous avez faites une erreur, vous pouvez toujours vider une case selectionnée en appuyant sur la touche de retour arrière.</div>
+            <div class = 'verify hidden' id = 'verify'>Lorsque vous avez fini le Sudoku, vous pouvez appuyer<br> sur la touche Entrée ou cliquer le bouton Vérifier.</div>
+        </div>
+        <div class = 'ending' id = 'ending'>
+            <div class = 'moreExplanation hidden' id = 'moreExplanation'>Dans les Sudokus de 9x9 et de 16x16, c'est le même concept,<br> la seule nuance est qu'il y a plus de cases a remplir avec plus de chiffres.</div>
+            <div class = 'playNow hidden' id = 'playNow'>Pour commencer à jouer au Sudoku, choisi entre les difficultés: Facile (4x4), Normal (9x9) et Difficile (16x16) dans la barre de navigation et amusez-vous!</div>
+        </div>
+    </div>
+    <div class = 'game'>
+        <div id = 'grid'></div>
+        <div class = 'pad' id = 'pad'>
+            <div class = 'numpad'>
+                <div>
+                    <button class = 'number' id = 'number1'>1</button>
+                </div>
+                <div>
+                    <button class = 'number' id = 'number2'>2</button>
+                </div>
+                <div>
+                    <button class = 'number' id = 'number3'>3</button>
+                </div>
+                <div>
+                    <button class = 'number' id = 'number4'>4</button>
+                </div>
+            </div>
+            <div class = 'btn'>
+                <div class = 'newGame'>
+                    <button id = 'newGameBtn'>Nouvelle Partie</button>
+                </div>
+                <div class = 'checkWin'>
+                    <button id = 'checkWinBtn'>Vérifier</button>
+                </div>
+            </div>
+        </div>  
+    </div>
+</body>
+</html>

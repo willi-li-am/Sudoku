@@ -5,7 +5,7 @@ body{
 
 ul{
     display: grid;
-    grid-template-columns: 117px 152px 164px 168px;;
+    grid-template-columns: 116px 151.59px 164px 167.5px 88px;
     background-color: rgb(51, 51, 51);
     list-style-type: none;
     grid-gap: 0px;
