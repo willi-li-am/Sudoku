@@ -16,6 +16,11 @@
     </ul>
 </head>
 <body>
+    <div class = 'gameText' id = 'gameText'>
+        <div class = 'rows hidden' id = 'rows'>Ligne:</div>
+        <div class = 'column hidden' id = 'column'>Colonne:</div>
+        <div class = 'smallGrid hidden' id = 'smallGrid'>Grille:</div>
+    </div>
     <div id = 'next'>
         <div class = 'nextBtn' id = 'nextBtn'>Cliquer ici pour continuer</div>
     </div>
@@ -27,8 +32,8 @@
         </div>
         <div class = 'rules' id = 'rules'>
             <div class = 'ruleTitle hidden' id = 'ruleTitle'>Ces règles sont: </div>
-            <div class = 'firstRule hidden' id = 'firstRule'>1. Chaque ligne et colonne ne peut pas avoir le même chiffre</div>
-            <div class = 'secondRule hidden' id = 'secondRule'>et <br>2. Chaque petite grille ne peut pas avoir le même chiffre</div>
+            <div class = 'firstRule hidden' id = 'firstRule'>1. Chaque case d'une ligne et d'une colonne ne peut pas contenir le même chiffre</div>
+            <div class = 'secondRule hidden' id = 'secondRule'>et <br>2. Chaque case d'une grille ne peut pas contenir le même chiffre</div>
         </div>
         <div class = 'instructions' id = 'instructions'>
             <div class = 'grid4x4 hidden' id = 'grid4x4'>Dans une grille de 4x4,<br> vous pouvez seulement utiliser les chiffres 1 à 4.</div>
@@ -60,9 +65,6 @@
                 </div>
             </div>
             <div class = 'btn'>
-                <div class = 'newGame'>
-                    <button id = 'newGameBtn'>Nouvelle Partie</button>
-                </div>
                 <div class = 'checkWin'>
                     <button id = 'checkWinBtn'>Vérifier</button>
                 </div>
