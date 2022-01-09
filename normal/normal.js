@@ -369,7 +369,7 @@ function selectGrid(cellNum){
 
 //Adding numbers to selected cell with buttons
 function addNumber(numpadNum){
-    selected[0].innerHTML = numpadNum
+    if(selected.length > 0) selected[0].innerHTML = numpadNum
 }
 //Does the same thing but with keyboard
 function addNumberKeypress(e){
@@ -397,7 +397,7 @@ function addNumberKeypress(e){
 }
 //Clears selected cell when pressing the "Backspace" key on keyboard
 function clearCase(e){
-    if(e.key == 'Backspace'){
+    if(e.key == 'Backspace' && e.key == 'Delete'){
         selected[0].innerHTML = '';
     }
 }

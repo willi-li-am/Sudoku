@@ -306,7 +306,7 @@ function selectGrid(cellNum){
 
 //Adding numbers to selected cell with buttons
 function addNumber(numpadNum){
-    selected[0].innerHTML = numpadNum
+    if(selected.length > 0) selected[0].innerHTML = numpadNum
 }
 
 //Checks if Sudoku is completed correctly
@@ -436,7 +436,7 @@ function addNumberKeypress(e){
 }
 
 function clearCase(e){
-    if(e.key == 'Backspace'){
+    if(e.key == 'Backspace' && e.key == 'Delete'){
         selected[0].innerHTML = '';
     }
 }
