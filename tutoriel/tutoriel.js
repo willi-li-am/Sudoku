@@ -98,7 +98,7 @@ function selectGrid(cellNum){
 }
 
 function addNumber(numpadNum){
-    if(addingNumber == true){
+    if(addingNumber == true && selected.length > 0){
         selected[0].innerHTML = numpadNum;
         if(tutorialNumber == 12){
             tutorialNumber = 13;
@@ -184,9 +184,10 @@ function addNumberKeypress(e){
         }else if(e.key === '4'){
             selected[0].innerHTML = 4;
         }
-    }if(tutorialNumber == 12){
-        tutorialNumber = 13;
-        nextTutorial();
+        if(tutorialNumber == 12){
+            tutorialNumber = 13;
+            nextTutorial();
+        }
     }
 }
 
@@ -196,45 +197,45 @@ function nextTutorial(){
         case 0: 
             t1.classList.add('hidden');
             t2.classList.remove('hidden');
-            tutorialNumber++;
+            tutorialNumber = 1;
             break;
         case 1: 
             t2.classList.add('hidden');
             t3.classList.remove('hidden');
-            tutorialNumber++;
+            tutorialNumber = 2;
             break;
         case 2: 
             t3.classList.add('hidden');
             t4.classList.remove('hidden');
-            tutorialNumber++;
+            tutorialNumber = 3;
             break;
         case 3: 
             t5.classList.remove('hidden');
-            tutorialNumber++;
+            tutorialNumber = 4;
             break;
         case 4: 
             tutorial.classList.add('hidden');
             nextBtn.classList.add('black')
-            tutorialNumber++;
+            tutorialNumber = 5;
             row(true);
             break;
         case 5:
             row();
             column(true);    
-            tutorialNumber++;
+            tutorialNumber = 6;
             break;    
         case 6:
             column();
             tutorial.classList.remove('hidden');
             nextBtn.classList.remove('black');
             t6.classList.remove('hidden');
-            tutorialNumber++;
+            tutorialNumber = 7;
             break;
         case 7:
             tutorial.classList.add('hidden');
             nextBtn.classList.add('black');
             smallGrid(true);
-            tutorialNumber++;
+            tutorialNumber = 8;
             break;
         case 8:
             tutorial.classList.remove('hidden');
@@ -244,13 +245,12 @@ function nextTutorial(){
             t5.classList.add('hidden');
             t6.classList.add('hidden');
             t7.classList.remove('hidden');
-            tutorialNumber++;
+            tutorialNumber = 9;
             break;
         case 9:
             t7.classList.add('hidden');
             t8.classList.remove('hidden');
-            selection = true;
-            tutorialNumber++;
+            tutorialNumber = 10;
             break;
         case 10:
             printGrid();
@@ -258,46 +258,55 @@ function nextTutorial(){
             t9.classList.remove('hidden');
             tutorial.classList.add('hidden');
             nextBtn.classList.add('hidden');
+            document.getElementById('selectGrid').classList.remove('hidden');
+            selection = true;
             break;
         case 11:
             tutorial.classList.remove('hidden');
             nextBtn.classList.remove('hidden');
-            tutorialNumber++;
-            addingNumber = true;
+            document.getElementById('selectGrid').classList.add('hidden');
+            tutorialNumber = 12;
             break;
         case 12:
             t9.classList.add('hidden');
             t10.classList.remove('hidden');
             tutorial.classList.add('hidden');
             nextBtn.classList.add('hidden');
+            addingNumber = true;
+            document.getElementById('insertNumberHint').classList.remove('hidden');
             break;
         case 13:
             tutorial.classList.remove('hidden');
             nextBtn.classList.remove('hidden');
-            tutorialNumber++;
+            document.getElementById('insertNumberHint').classList.add('hidden');
+            tutorialNumber = 14;
             break;
         case 14:
             t10.classList.add('hidden');
             t11.classList.remove('hidden');
             tutorial.classList.add('hidden');
             nextBtn.classList.add('hidden');
+            document.getElementById('clearCaseHint').classList.remove('hidden');
             clearCaseEnabled = true;
             break;
         case 15:   
             tutorial.classList.remove('hidden');
             nextBtn.classList.remove('hidden');
-            tutorialNumber++
+            document.getElementById('clearCaseHint').classList.add('hidden');
+            tutorialNumber = 16;
             break;
         case 16:
             t11.classList.add('hidden');
             t12.classList.remove('hidden');
             tutorial.classList.add('hidden');
             nextBtn.classList.add('hidden');
+            document.getElementById('verifyHint').classList.remove('hidden');
             break;
         case 17: 
             tutorial.classList.remove('hidden');
             nextBtn.classList.remove('hidden');
-            tutorialNumber++;
+            document.getElementById('verifyHint').classList.add('hidden');
+            tutorialNumber = 18;
             break;
         case 18:
             t12.classList.add('hidden');
@@ -343,12 +352,11 @@ function checkWin(){
         if(correctAnsw == cell.length){
             tutorialNumber = 17;
             nextTutorial();
-            cell[15].classList.remove('glow');
         }if(selected.length > 0){
             selected[0].classList.remove('selected')
             selected = []
         }
-    }
+    }cell[15].classList.remove('glow');
 }
 
 function checkWinKeypress(e){
@@ -360,13 +368,14 @@ function checkWinKeypress(e){
 var clearCaseEnabled;
 
 function clearCase(e){
-    if(clearCaseEnabled == true){
-        if(e.key == 'Backspace'){
+    if(clearCaseEnabled == true && selected.length > 0){
+        if(e.key == 'Backspace' || e.key == 'Delete'){
             selected[0].innerHTML = '';
+            if(tutorialNumber == 14){
+                tutorialNumber = 15;
+                nextTutorial();
+            }
         }
-    }if(tutorialNumber == 14){
-        tutorialNumber = 15;
-        nextTutorial();
     }
 }
 

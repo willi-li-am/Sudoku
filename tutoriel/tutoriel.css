@@ -180,6 +180,66 @@ a:link{
     user-select: none;
 }
 
+.selectGrid{
+    position: absolute;
+    color: black;
+    margin-top: calc(100vh - 100px);
+    margin-left: 75.6vw;
+    font: bold 1vw Arial;
+    transition: .3s;
+    z-index: 2;
+    user-select: none;
+}
+
+.selectGrid.hidden{
+    display: none;
+}
+
+.insertNumberHint{
+    position: absolute;
+    color: black;
+    margin-top: calc(100vh - 100px);
+    margin-left: 65.5vw;
+    font: bold 1vw Arial;
+    transition: .3s;
+    z-index: 2;
+    user-select: none;
+}
+
+.insertNumberHint.hidden{
+    display: none;
+}
+
+.clearCaseHint{
+    position: absolute;
+    color: black;
+    margin-top: calc(100vh - 100px);
+    margin-left: 62vw;
+    font: bold 1vw Arial;
+    transition: .3s;
+    z-index: 2;
+    user-select: none;
+}
+
+.clearCaseHint.hidden{
+    display: none;
+}
+
+.verifyHint{
+    position: absolute;
+    color: black;
+    margin-top: calc(100vh - 100px);
+    margin-left: 71vw;
+    font: bold 1vw Arial;
+    transition: .3s;
+    z-index: 2;
+    user-select: none;
+}
+
+.verifyHint.hidden{
+    display: none;
+}
+
 .nextBtn.hidden{
     display: none;
 }
