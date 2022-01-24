@@ -1,3 +1,4 @@
+//Naming all HTML Elements
 const numpad1 = document.getElementById('number1');
 const numpad2 = document.getElementById('number2');
 const numpad3 = document.getElementById('number3');
@@ -5,6 +6,7 @@ const numpad4 = document.getElementById('number4');
 
 const checkWinBtn = document.getElementById('checkWinBtn');
 
+//tutorial instructions
 const gridContainer = document.getElementById('grid');
 const tutorial = document.getElementById('tutorial');
 const t1 = document.getElementById('explanation');
@@ -34,36 +36,35 @@ const solution = [1, 2, 3, 4,
                 2, 1, 4, 3]
 
 //Creating the grid dynamically
-var cell = []
+var cell = [];
 
 function createCells(numCells){
-    var idNumber = 0
+    var idNumber = 0;
     for(let i = 0; i < Math.sqrt(numCells); i++){
         for(let j = 0; j < Math.sqrt(numCells); j++){
             var div = document.createElement("div");
-            //div.innerHTML = grid[idNumber]
-            div.className = 'cell'
-            div.id = 'cell-' + idNumber
-            boldEverything(i, j, div)
-            cell.push(div)
-            idNumber++
+            div.className = 'cell';
+            div.id = 'cell-' + idNumber;
+            boldEverything(i, j, div);
+            cell.push(div);
+            idNumber++;
         }
     }
     return cell;
 }
 
-let createdGrid = createCells(16)
+let createdGrid = createCells(16);
 
 //Makes border of certain cells thicker
 function boldEverything(i, j, div){
     if(i == 0 || i == 2){
-        div.style.borderTop = '.3vw black solid'
+        div.style.borderTop = '.3vw black solid';
     }if(j == 0 || j == 2){
-        div.style.borderLeft = '.3vw black solid'
+        div.style.borderLeft = '.3vw black solid';
     }if(j == 3){
-        div.style.borderRight = '.3vw black solid'
+        div.style.borderRight = '.3vw black solid';
     }if(i == 3){
-        div.style.borderBottom = '.3vw black solid'
+        div.style.borderBottom = '.3vw black solid';
     }
     
 }
@@ -71,32 +72,34 @@ function boldEverything(i, j, div){
 //Brings the grid to the page
 function addCellstoPage(arr){
     for(let i = 0; i < arr.length; i++){
-        document.getElementById('grid').appendChild(arr[i])
+        document.getElementById('grid').appendChild(arr[i]);
     }
     
 }
 
-var selected = []
+//cell selection function
+var selected = [];
 
 function selectGrid(cellNum){
     if(!createdGrid[cellNum].classList.contains('show') && !createdGrid[cellNum].classList.contains('correct')){ 
         if(selected.length === 0){
-            createdGrid[cellNum].classList.add('selected')
-            selected.push(createdGrid[cellNum])
+            createdGrid[cellNum].classList.add('selected');
+            selected.push(createdGrid[cellNum]);
         }else if(selected[0] === createdGrid[cellNum]){ 
-            selected[0].classList.remove('selected')
-            selected.shift()
-            selected.shift()
+            selected[0].classList.remove('selected');
+            selected.shift();
+            selected.shift();
         }
         else{ 
-            selected[0].classList.remove('selected')
-            selected.shift()
-            createdGrid[cellNum].classList.add('selected')
-            selected.push(createdGrid[cellNum])
+            selected[0].classList.remove('selected');
+            selected.shift();
+            createdGrid[cellNum].classList.add('selected');
+            selected.push(createdGrid[cellNum]);
         }
     }
 }
 
+//adds number with buttons
 function addNumber(numpadNum){
     if(addingNumber == true && selected.length > 0){
         selected[0].innerHTML = numpadNum;
@@ -107,12 +110,12 @@ function addNumber(numpadNum){
     }
 }
 
-addCellstoPage(createdGrid)
+addCellstoPage(createdGrid);
 
-console.log(createdGrid)
-
+//tutorial steps
 var tutorialNumber = 0;
 
+//shows row to user
 function row(show = false){
     for(let i = 0; i < 4; i++){
         if(show == true){
@@ -127,6 +130,7 @@ function row(show = false){
     }
 }
 
+//shows column to user
 function column(show = false){
     for(let i = 0; i < 4; i++){
         if(show == true){
@@ -141,6 +145,7 @@ function column(show = false){
     }
 }
 
+//shows small grid to user
 function smallGrid(show = false){
     if(show == true){
         cell[0].innerHTML = grid[0];
@@ -165,6 +170,7 @@ function smallGrid(show = false){
     }  
 }
 
+//prints grid
 function printGrid(){
     for(let i = 0; i < cell.length; i++){
         cell[i].innerHTML = grid[i];
@@ -173,6 +179,7 @@ function printGrid(){
     }
 }
 
+//adds number with keyboard
 function addNumberKeypress(e){
     if(selected.length > 0 && addingNumber == true){
         if(e.key === '1'){
@@ -191,7 +198,7 @@ function addNumberKeypress(e){
     }
 }
 
-
+//Tutorial storyline?/steps?
 function nextTutorial(){
     switch (tutorialNumber){
         case 0: 
@@ -316,11 +323,12 @@ function nextTutorial(){
     }
 }
 
+//Game functions
 nextBtn.addEventListener('click', function(){nextTutorial()})
 
 var selection;
 
-
+//grid selection
 gridContainer.addEventListener('click', (event)=>{
     if(event.target.parentNode.id != 'grid') return;
     if(selection == true){
@@ -333,38 +341,41 @@ gridContainer.addEventListener('click', (event)=>{
     }
 })    
 
+//check win
 function checkWin(){
     if(tutorialNumber == 16){
-        var correctAnsw = 0
+        var correctAnsw = 0;
         for(let i = 0; i < cell.length; i++){  
             if(!cell[i].classList.contains('show')){
                 if(cell[i].innerText == solution[i]){
-                    cell[i].classList.remove('incorrect')
-                    cell[i].classList.add('correct')
-                    correctAnsw += 1
+                    cell[i].classList.remove('incorrect');
+                    cell[i].classList.add('correct');
+                    correctAnsw += 1;
                 }else{
-                    cell[i].classList.add('incorrect')
+                    cell[i].classList.add('incorrect');
                 }
             }else{
-                correctAnsw += 1
+                correctAnsw += 1;
             }
         }
         if(correctAnsw == cell.length){
             tutorialNumber = 17;
             nextTutorial();
         }if(selected.length > 0){
-            selected[0].classList.remove('selected')
-            selected = []
+            selected[0].classList.remove('selected');
+            selected = [];
         }
     }cell[15].classList.remove('glow');
 }
 
+//checks win with Enter
 function checkWinKeypress(e){
     if(e.key === "Enter"){
-        checkWin()
+        checkWin();
     }
 }
 
+//clears case with backspace or delete
 var clearCaseEnabled;
 
 function clearCase(e){
@@ -382,6 +393,7 @@ function clearCase(e){
 
 var addingNumber;
 
+//event listeners
 numpad1.addEventListener('click', function () {addNumber(1)});
 numpad2.addEventListener('click', function () {addNumber(2)});
 numpad3.addEventListener('click', function () {addNumber(3)});
@@ -393,6 +405,7 @@ document.addEventListener('keydown', clearCase);
 
 checkWinBtn.addEventListener('click', function(){checkWin()});
 
+//stats
 const facile = document.getElementById('facile-stats');
 const normal = document.getElementById('normal-stats');
 const difficile = document.getElementById('difficile-stats');
@@ -400,22 +413,32 @@ const statsBtn = document.getElementById('statsBtn');
 const stats = document.getElementById('statistiques');
 
 if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
-    localStorage.setItem('PB difficile', 'N/D')
-    localStorage.setItem('difficile', '0')
+    localStorage.setItem('PB difficile', 'N/D');
+    localStorage.setItem('difficile', '0');
 }if(!localStorage.getItem('PB normal') && !localStorage.getItem('normal')){
-    localStorage.setItem('PB normal', 'N/D')
-    localStorage.setItem('normal', '0')
+    localStorage.setItem('PB normal', 'N/D');
+    localStorage.setItem('normal', '0');
 }if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
-    localStorage.setItem('PB facile', 'N/D')
-    localStorage.setItem('facile', '0')
+    localStorage.setItem('PB facile', 'N/D');
+    localStorage.setItem('facile', '0');
 }
 
-facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile')
-normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal')
-difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile')
+facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile');
+normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal');
+difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile');
 
 statsBtn.addEventListener('click', function(){
     if(stats.classList.contains('none'))stats.classList.remove('none');
     if(stats.classList.contains('hidden'))stats.classList.remove('hidden');
     else if(!stats.classList.contains('hidden'))stats.classList.add('hidden');
 })
+
+//easterEgg
+if(localStorage.getItem('easterEgg') == 'true'){
+    document.body.style.backgroundImage = 'url("")';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.width = 'calc(100vw)';
+    document.body.style.heigth = '100vh';
+    document.body.style.objectFit = 'cover';
+}

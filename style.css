@@ -242,6 +242,12 @@ a:link{
     z-index: 2;
 }
 
+.footerStuff{
+    width: 116px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .aboutUs{
     background-color:rgb(51, 51, 51);
     width: 116px;
@@ -249,7 +255,8 @@ a:link{
     padding: 8px;
     font: 20px Arial;
     line-height: 34px;
-    margin-left: calc(50vw - 88px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .aboutUs:hover{
@@ -258,3 +265,12 @@ a:link{
     text-decoration: underline;
 
 }
+
+.year{
+    position: absolute;
+    right: 20px;
+    color: white;
+    margin-top: -32.5px;
+    font: bold 15px Arial;
+}
+

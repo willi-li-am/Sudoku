@@ -27,6 +27,10 @@ li{
     display: inline-block;
 }
 
+.home{
+    width: 100px;
+}
+
 li:hover{
     cursor: pointer;
     background-color: black;
@@ -115,7 +119,7 @@ a:link{
     width: 30px;
     height: 30px;
     top: 5px;
-    margin-left: calc(100vw - 50px);
+    margin-left: calc(100vw - 70px);
     transition: 0.3s;
     user-select: none;
     z-index: 2;
@@ -165,4 +169,70 @@ a:link{
 @keyframes slideup{
     0%{margin-top: 0px;}
     100% {margin-top: -345px;}
+}
+
+.title{
+    font: bold 5vw Arial;
+    text-align: center;
+    margin-top: 100px;
+}
+
+p{
+    font: bold 40px Arial;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.p{
+    color: rgb(8, 30, 78);
+}
+
+.p:hover{
+    text-decoration: underline;
+}
+
+.p:link{
+    color: rgb(8, 30, 78);
+}
+
+.p:visited{
+    color: rgb(8, 30, 78);
+}
+
+.iconLink{
+    color: black;
+    font: bold 15px Arial;
+    margin-top: 20px;
+}
+
+.iconLink:link{
+    color: black;
+}
+
+.iconLink:visited{
+    color: black;
+}
+
+.source{
+    margin-top: 100px;
+    position: relative;
+    width: 500px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icon{
+    width: 500px;
+    height: auto;
+}
+
+.bottom{
+    margin-top: 200px;
+}
+
+.titleBiblio{
+    font: bold 5vw Arial;
+    text-align: center;
+    margin-top: 200px;
 }

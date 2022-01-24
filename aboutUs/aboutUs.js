@@ -1,9 +1,12 @@
+//calling all HTML elements
 const facile = document.getElementById('facile-stats');
 const normal = document.getElementById('normal-stats');
 const difficile = document.getElementById('difficile-stats');
 const statsBtn = document.getElementById('statsBtn');
 const stats = document.getElementById('statistiques');
 
+
+//stats
 if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
     localStorage.setItem('PB difficile', 'N/D')
     localStorage.setItem('difficile', '0')
@@ -24,3 +27,13 @@ statsBtn.addEventListener('click', function(){
     if(stats.classList.contains('hidden'))stats.classList.remove('hidden');
     else if(!stats.classList.contains('hidden'))stats.classList.add('hidden');
 })
+
+//EasterEgg
+if(localStorage.getItem('easterEgg') == 'true'){
+    document.body.style.backgroundImage = 'url("")';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.width = 'calc(100vw - 17px)';
+    document.body.style.heigth = '100vh';
+    document.body.style.objectFit = 'cover';
+}

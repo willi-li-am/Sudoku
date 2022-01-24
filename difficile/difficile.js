@@ -1,76 +1,81 @@
 console.log('Sorry , developers tools are blocked here....');
 
-const newGameBtn = document.getElementById('newGameBtn')
-const checkWinBtn = document.getElementById('checkWinBtn')
-const numpad1 = document.getElementById('number1')
-const numpad2 = document.getElementById('number2')
-const numpad3 = document.getElementById('number3')
-const numpad4 = document.getElementById('number4')
-const numpad5 = document.getElementById('number5')
-const numpad6 = document.getElementById('number6')
-const numpad7 = document.getElementById('number7')
-const numpad8 = document.getElementById('number8')
-const numpad9 = document.getElementById('number9')
-const numpad10 = document.getElementById('number10')
-const numpad11 = document.getElementById('number11')
-const numpad12 = document.getElementById('number12')
-const numpad13 = document.getElementById('number13')
-const numpad14 = document.getElementById('number14')
-const numpad15 = document.getElementById('number15')
-const numpad16 = document.getElementById('number16')
+//Naming all the HTML elements
+const newGameBtn = document.getElementById('newGameBtn');
+const checkWinBtn = document.getElementById('checkWinBtn');
+const numpad1 = document.getElementById('number1');
+const numpad2 = document.getElementById('number2');
+const numpad3 = document.getElementById('number3');
+const numpad4 = document.getElementById('number4');
+const numpad5 = document.getElementById('number5');
+const numpad6 = document.getElementById('number6');
+const numpad7 = document.getElementById('number7');
+const numpad8 = document.getElementById('number8');
+const numpad9 = document.getElementById('number9');
+const numpad10 = document.getElementById('number10');
+const numpad11 = document.getElementById('number11');
+const numpad12 = document.getElementById('number12');
+const numpad13 = document.getElementById('number13');
+const numpad14 = document.getElementById('number14');
+const numpad15 = document.getElementById('number15');
+const numpad16 = document.getElementById('number16');
 const startGameInstructions = document.getElementById('start-game');
 const gridContainer = document.getElementById('grid');
-const body = document.getElementById('body')
-const navbar = document.getElementById('navbar')
+const body = document.getElementById('body');
+const navbar = document.getElementById('navbar');
 
+//sets stats to nothing for new users
 if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
-    localStorage.setItem('PB difficile', 'N/D')
-    localStorage.setItem('difficile', '0')
+    localStorage.setItem('PB difficile', 'N/D');
+    localStorage.setItem('difficile', '0');
 }
 
 //Dynamically creating and adding cells to the page
 var cell = [];
 
 function createCells(numCells){
-    var idNumber = 0
+    var idNumber = 0;
     for(let i = 0; i < Math.sqrt(numCells); i++){
         for(let j = 0; j < Math.sqrt(numCells); j++){
             var div = document.createElement("div");
-            div.innerHTML = ''
-            div.className = 'cell show'
-            div.id = 'cell-' + idNumber
-            boldEverything(i, j, div)
-            cell.push(div)
-            idNumber++
+            div.innerHTML = '';
+            div.className = 'cell show';
+            div.id = 'cell-' + idNumber;
+            boldEverything(i, j, div);
+            cell.push(div);
+            idNumber++;
         }
     }
     return cell;
 }
 
-let createdGrid = createCells(256)
-addCellstoPage(createdGrid)
+let createdGrid = createCells(256);
+addCellstoPage(createdGrid);
 
+//Makes border of certain cells thicker
 function boldEverything(i, j, div){
     if(i == 0 || i == 4 || i == 8 || i == 12){
-        div.style.borderTop = '.3vw black solid'
+        div.style.borderTop = '.3vw black solid';
     }if(j == 0 || j == 4 || j == 8 || j == 12){
-        div.style.borderLeft = '.3vw black solid'
+        div.style.borderLeft = '.3vw black solid';
     }if(j == 15){
-        div.style.borderRight = '.3vw black solid'
+        div.style.borderRight = '.3vw black solid';
     }if(i == 15){
-        div.style.borderBottom = '.3vw black solid'
+        div.style.borderBottom = '.3vw black solid';
     }
     
 }
 
+//Brings the grid to the page
 function addCellstoPage(arr){
     for(let i = 0; i < arr.length; i++){
-        document.getElementById('grid').appendChild(arr[i])
+        document.getElementById('grid').appendChild(arr[i]);
     }
     
 }
 
-//http://w01.tp1.jp/~sr10026691/Ans1616PE.html (grille de 16x16 deja faite)
+//Sudoku solutions and grids
+//http://w01.tp1.jp/~sr10026691/Ans1616PE.html (premade 16x16 sudokus)
 
 const grid = [
     ['', '', 4, '', '', 16, 7, '', '', '', 11, '', 8, '', 1, 3,
@@ -106,7 +111,7 @@ const grid = [
     8, '', '', 6, '', '', 7, '', 12, 4, 13, 3, '', '', '', 10,
     '', 7, '', '', '', 5, '', 11, 6, '', 1, '', '', '', '', 4,
     '', 15, 5, 11, '', '', '', '', '', '', '', 14, 6, '', '', '']
-]
+];
 
 const solution = [
     [13, 6, 4, 14, 10, 16, 7, 15, 9, 2, 11, 5, 8, 12, 1, 3,
@@ -142,32 +147,32 @@ const solution = [
 8, 1, 16, 6, 2, 14, 7, 9, 12, 4, 13, 3, 11, 5, 15, 10,
 2, 7, 14, 9, 10, 5, 15, 11, 6, 8, 1, 16, 12, 3, 13, 4,
 10, 15, 5, 11, 4, 3, 13, 12, 9, 2, 7, 14, 6, 16, 1, 8]
-] 
+];
 
 //Game functions
 function startGame(){
     newGrid = randomGrid(grid);
     for(let i = 0; i < cell.length ; i++){ 
-        cell[i].classList.add('show')
-        cell[i].innerText = newGrid[i]
+        cell[i].classList.add('show');
+        cell[i].innerText = newGrid[i];
         if(newGrid[i] == ''){
-            cell[i].classList.remove('incorrect')
-            cell[i].classList.remove('correct')
-            cell[i].classList.remove('show')
+            cell[i].classList.remove('incorrect');
+            cell[i].classList.remove('correct');
+            cell[i].classList.remove('show');
         }else{
-            cell[i].classList.remove('incorrect')
-            cell[i].classList.remove('correct')
+            cell[i].classList.remove('incorrect');
+            cell[i].classList.remove('correct');
         }
     } 
-    resetTimer()
-    stopTimer()
-    setTimeout('startTimer()', 10)
+    resetTimer();
+    stopTimer();
+    setTimeout('startTimer()', 10);
     startGameInstructions.classList.add('hidden');
     setTimeout(slowlyHide, 200);
     if(selected.length != 0) selected[0].classList.remove('selected');
-    selected = []
-    localStorage.setItem('difficile number', number)
-    localStorage.setItem('difficile win', false)
+    selected = [];
+    localStorage.setItem('difficile number', number);
+    localStorage.setItem('difficile win', false);
 }
 
 
@@ -178,163 +183,169 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-var number = localStorage.getItem('difficile number')
+var number = localStorage.getItem('difficile number');
 
-var oldGrid = []
+var oldGrid = [];
 
-oldGrid.push(localStorage.getItem('difficile number'))
+oldGrid.push(localStorage.getItem('difficile number'));
 
 function randomGrid(grid){
-    let newGrid = []
-    number = getRndInteger(0, (grid.length-1)) 
+    let newGrid = [];
+    number = getRndInteger(0, (grid.length-1));
     if(oldGrid.length == grid.length){
         for(let i = 0; i < grid.length; i++) oldGrid.shift();
     }
     while(oldGrid.includes(number)){
-        number = getRndInteger(0, (grid.length-1))
+        number = getRndInteger(0, (grid.length-1));
     }
-    newGrid = grid[number]
-    gridSolution = solution[number]
-    oldGrid.push(number)
-    return newGrid
+    newGrid = grid[number];
+    gridSolution = solution[number];
+    oldGrid.push(number);
+    return newGrid;
 }
 
-var gridSolution = solution[number]
+var gridSolution = solution[number];
 
+//Checks if Sudoku is completed correctly
 function checkWin(){
-    var correctAnsw = 0
+    var correctAnsw = 0;
     for(let i = 0; i < cell.length; i++){  
         if(!cell[i].classList.contains('show')){
             if(cell[i].innerText == gridSolution[i]){
-                cell[i].classList.remove('incorrect')
-                cell[i].classList.add('correct')
-                correctAnsw += 1
+                cell[i].classList.remove('incorrect');
+                cell[i].classList.add('correct');
+                correctAnsw += 1;
             }else{
-                cell[i].classList.add('incorrect')
-                cell[i].classList.remove('correct')
+                cell[i].classList.add('incorrect');
+                cell[i].classList.remove('correct');
             }
         }else{
-            correctAnsw += 1
+            correctAnsw += 1;
         }
     }
     if(correctAnsw == cell.length){
-        correctAnsw = 0
-        stopTimer()
+        correctAnsw = 0;
+        stopTimer();
         if(localStorage.getItem('PB difficile') == 'N/D' || PersonalBest(timer.innerHTML, localStorage.getItem('PB difficile'))){
-            localStorage.setItem('PB difficile', timer.innerHTML)
+            localStorage.setItem('PB difficile', timer.innerHTML);
         }
-        localStorage.setItem('difficile', numberOfWins(localStorage.getItem('difficile')))
-        localStorage.setItem('difficile win', true)
+        localStorage.setItem('difficile', numberOfWins(localStorage.getItem('difficile')));
+        localStorage.setItem('difficile win', true);
     }
     if(selected.length > 0){
-        selected[0].classList.remove('selected')
-        selected = []
+        selected[0].classList.remove('selected');
+        selected = [];
     }
 }
 
-var selected = []
+//Cell selection function
+var selected = [];
 
 function selectGrid(cellNum){
     if(!createdGrid[cellNum].classList.contains('show') && !createdGrid[cellNum].classList.contains('correct')){ 
         if(selected.length === 0){
-            createdGrid[cellNum].classList.add('selected')
-            selected.push(createdGrid[cellNum])
+            createdGrid[cellNum].classList.add('selected');
+            selected.push(createdGrid[cellNum]);
         }else if(selected[0] === createdGrid[cellNum]){ 
-            selected[0].classList.remove('selected')
-            selected.shift()
-            selected.shift()
+            selected[0].classList.remove('selected');
+            selected.shift();
+            selected.shift();
         }
         else{ 
-            selected[0].classList.remove('selected')
-            selected.shift()
-            createdGrid[cellNum].classList.add('selected')
-            selected.push(createdGrid[cellNum])
+            selected[0].classList.remove('selected');
+            selected.shift();
+            createdGrid[cellNum].classList.add('selected');
+            selected.push(createdGrid[cellNum]);
         }
     }
 }
 
+//Adding numbers to selected cell with buttons
 function addNumber(numpadNum){
-    if(selected.length > 0) selected[0].innerHTML = numpadNum
+    if(selected.length > 0) selected[0].innerHTML = numpadNum;
 }
 
+//Hides the instructions once game is started
 function slowlyHide(){
     startGameInstructions.classList.add('none');
 }
 
-//Keypress functions
+//Keypress functions to add numbers that are from 1 to 16 nothing else
 function addNumberKeypress(e){
     if(e.key in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] && selected.length > 0){
         if(selected[0].innerHTML.length < 2 && parseInt(selected[0].innerHTML) < 2 || selected[0].innerHTML == ''){
             if(selected[0].innerHTML == ''){
                 if(e.key === '1'){
-                    selected[0].innerHTML += '1'
+                    selected[0].innerHTML += '1';
                 }else if(e.key === '2'){
-                    selected[0].innerHTML += '2'
+                    selected[0].innerHTML += '2';
                 }else if(e.key === '3'){
-                    selected[0].innerHTML += '3'
+                    selected[0].innerHTML += '3';
                 }else if(e.key === '4'){
-                    selected[0].innerHTML += '4'
+                    selected[0].innerHTML += '4';
                 }else if(e.key === '5'){
-                    selected[0].innerHTML += '5'
+                    selected[0].innerHTML += '5';
                 }else if(e.key === '6'){
-                    selected[0].innerHTML += '6'
+                    selected[0].innerHTML += '6';
                 }else if(e.key === '7'){
-                    selected[0].innerHTML += '7'
+                    selected[0].innerHTML += '7';
                 }else if(e.key === '8'){
-                    selected[0].innerHTML += '8'
+                    selected[0].innerHTML += '8';
                 }else if(e.key === '9'){
-                    selected[0].innerHTML += '9'
+                    selected[0].innerHTML += '9';
                 }
             }else{
                 if(e.key === '1'){
-                    selected[0].innerHTML += '1'
+                    selected[0].innerHTML += '1';
                 }else if(e.key === '2'){
-                    selected[0].innerHTML += '2'
+                    selected[0].innerHTML += '2';
                 }else if(e.key === '3'){
-                    selected[0].innerHTML += '3'
+                    selected[0].innerHTML += '3';
                 }else if(e.key === '4'){
-                    selected[0].innerHTML += '4'
+                    selected[0].innerHTML += '4';
                 }else if(e.key === '5'){
-                    selected[0].innerHTML += '5'
+                    selected[0].innerHTML += '5';
                 }else if(e.key === '6'){
-                    selected[0].innerHTML += '6'
+                    selected[0].innerHTML += '6';
                 }else if(e.key === '0'){
-                    selected[0].innerHTML += '0'
+                    selected[0].innerHTML += '0';
                 }
             }  
         }else{
             if(e.key === '1'){
-                selected[0].innerHTML = '1'
+                selected[0].innerHTML = '1';
             }else if(e.key === '2'){
-                selected[0].innerHTML = '2'
+                selected[0].innerHTML = '2';
             }else if(e.key === '3'){
-                selected[0].innerHTML = '3'
+                selected[0].innerHTML = '3';
             }else if(e.key === '4'){
-                selected[0].innerHTML = '4'
+                selected[0].innerHTML = '4';
             }else if(e.key === '5'){
-                selected[0].innerHTML = '5'
+                selected[0].innerHTML = '5';
             }else if(e.key === '6'){
-                selected[0].innerHTML = '6'
+                selected[0].innerHTML = '6';
             }else if(e.key === '7'){
-                selected[0].innerHTML = '7'
+                selected[0].innerHTML = '7';
             }else if(e.key === '8'){
-                selected[0].innerHTML = '8'
+                selected[0].innerHTML = '8';
             }else if(e.key === '9'){
-                selected[0].innerHTML = '9'
+                selected[0].innerHTML = '9';
             }
         }
     }   
 }
 
+//Clears selected cell when pressing the "Backspace" or "Delete" key on keyboard
 function clearCase(e){
     if(e.key == 'Backspace' || e.key == 'Delete'){
         selected[0].innerHTML = '';
     }
 }
 
+//Checks win by pressing the "Enter" key on keyboard
 function checkWinKeypress(e){
     if(e.key === "Enter"){
-        checkWin()
+        checkWin();
     }
 }
 
@@ -409,32 +420,35 @@ function resetTimer() {
     min = 0;
 }
 
+//Checks if new time is faster than the last personal best
 function PersonalBest(newTime, oldTime){
-    let newTimeArr = newTime.split(':')
-    let oldTimeArr = oldTime.split(':')
-    let minInSec1 = parseInt(newTimeArr[0]) * 60
-    let seconds1 = parseInt(newTimeArr[1])
-    let msInSec1 = parseInt(newTimeArr[2])/100
-    let minInSec2 = parseInt(oldTimeArr[0]) * 60
-    let seconds2 = parseInt(oldTimeArr[1])
-    let msInSec2 = parseInt(oldTimeArr[2])/100
-    let finishingTime1 = minInSec1 + seconds1 + msInSec1
-    let finishingTime2 = minInSec2 + seconds2 + msInSec2
+    let newTimeArr = newTime.split(':');
+    let oldTimeArr = oldTime.split(':');
+    let minInSec1 = parseInt(newTimeArr[0]) * 60;
+    let seconds1 = parseInt(newTimeArr[1]);
+    let msInSec1 = parseInt(newTimeArr[2])/100;
+    let minInSec2 = parseInt(oldTimeArr[0]) * 60;
+    let seconds2 = parseInt(oldTimeArr[1]);
+    let msInSec2 = parseInt(oldTimeArr[2])/100;
+    let finishingTime1 = minInSec1 + seconds1 + msInSec1;
+    let finishingTime2 = minInSec2 + seconds2 + msInSec2;
     if(finishingTime1 < finishingTime2) return true;
 }
 
+//adds numbers of wins
 function numberOfWins(wins){
     numberWins = parseInt(wins);
     numberWins += 1;
     return numberWins;
 }
 
+//saves the grid for later use
 function saveGrid(){
     if(startGameInstructions.classList.contains('hidden', 'none')){
         for(let i = 0; i < cell.length; i++){
-            localStorage.setItem('difficile number', number)
+            localStorage.setItem('difficile number', number);
             localStorage.setItem('difficile cell' + i, cell[i].innerText);
-            localStorage.setItem('difficile timer', timer.innerHTML)
+            localStorage.setItem('difficile timer', timer.innerHTML);
             localStorage.setItem('difficile ms', ms);
             localStorage.setItem('difficile sec', sec);
             localStorage.setItem('difficile min', min);
@@ -444,73 +458,77 @@ function saveGrid(){
 
 var savedNumber
 
+//prints the grid if it has been saved
 function printSavedGrid(){
-    startGameInstructions.classList.add('hidden', 'none')
-    savedNumber = parseInt(localStorage.getItem('difficile number'))
+    startGameInstructions.classList.add('hidden', 'none');
+    savedNumber = parseInt(localStorage.getItem('difficile number'));
     for(let i = 0; i < cell.length; i++){
         let cellHTML = localStorage.getItem('difficile cell' + i);
         if(grid[savedNumber][i] != cellHTML || grid[savedNumber][i] == ''){
             cell[i].classList.remove('show');
             if(localStorage.getItem('difficile win') == 'true'){
-                stopTimer()
-                cell[i].classList.add('correct')
+                stopTimer();
+                cell[i].classList.add('correct');
             }
         }
         cell[i].innerHTML = cellHTML;
     }
-    timer.innerHTML = localStorage.getItem('difficile timer')
+    timer.innerHTML = localStorage.getItem('difficile timer');
     if(localStorage.getItem('difficile win') == 'true'){
-        stopTimer()
+        stopTimer();
     }else {
-        startTimer()
+        startTimer();
     }
 }
 
+//prints if number is there
 if(localStorage.getItem('difficile number') != null){
-    printSavedGrid()
+    printSavedGrid();
 }
 
 //Event Listeners
 
+//if user goes to another page in website it saves grid
 navbar.addEventListener('click', (event) => {
     if(event.target.id = 'nav'){
-        saveGrid()
+        saveGrid();
     }
 })
 
 //Pad buttons
-newGameBtn.addEventListener('click', function () {startGame()})
-checkWinBtn.addEventListener('click', function(){checkWin()})
+newGameBtn.addEventListener('click', function () {startGame()});
+checkWinBtn.addEventListener('click', function(){checkWin()});
 
-numpad1.addEventListener('click', function () {addNumber(1)})
-numpad2.addEventListener('click', function () {addNumber(2)})
-numpad3.addEventListener('click', function () {addNumber(3)})
-numpad4.addEventListener('click', function () {addNumber(4)})
-numpad5.addEventListener('click', function () {addNumber(5)})
-numpad6.addEventListener('click', function () {addNumber(6)})
-numpad7.addEventListener('click', function () {addNumber(7)})
-numpad8.addEventListener('click', function () {addNumber(8)})
-numpad9.addEventListener('click', function () {addNumber(9)})
-numpad10.addEventListener('click', function () {addNumber(10)})
-numpad11.addEventListener('click', function () {addNumber(11)})
-numpad12.addEventListener('click', function () {addNumber(12)})
-numpad13.addEventListener('click', function () {addNumber(13)})
-numpad14.addEventListener('click', function () {addNumber(14)})
-numpad15.addEventListener('click', function () {addNumber(15)})
-numpad16.addEventListener('click', function () {addNumber(16)})
+numpad1.addEventListener('click', function () {addNumber(1)});
+numpad2.addEventListener('click', function () {addNumber(2)});
+numpad3.addEventListener('click', function () {addNumber(3)});
+numpad4.addEventListener('click', function () {addNumber(4)});
+numpad5.addEventListener('click', function () {addNumber(5)});
+numpad6.addEventListener('click', function () {addNumber(6)});
+numpad7.addEventListener('click', function () {addNumber(7)});
+numpad8.addEventListener('click', function () {addNumber(8)});
+numpad9.addEventListener('click', function () {addNumber(9)});
+numpad10.addEventListener('click', function () {addNumber(10)});
+numpad11.addEventListener('click', function () {addNumber(11)});
+numpad12.addEventListener('click', function () {addNumber(12)});
+numpad13.addEventListener('click', function () {addNumber(13)});
+numpad14.addEventListener('click', function () {addNumber(14)});
+numpad15.addEventListener('click', function () {addNumber(15)});
+numpad16.addEventListener('click', function () {addNumber(16)});
 
 //Keypress
 document.addEventListener('keypress', addNumberKeypress);
 document.addEventListener('keydown', clearCase);
 document.addEventListener('keypress', checkWinKeypress);
 
-//Cell click
+//Cell selection
 gridContainer.addEventListener('click', (event)=>{
     if(event.target.parentNode.id != 'grid') return;
     let clickedCellNum = event.target.id.split('-').pop();
-    selectGrid(clickedCellNum)
+    selectGrid(clickedCellNum);
 })
 
+//cell deselection
 body.addEventListener('click', (event) => {
     if(!event.target.classList.contains('cell') && !event.target.classList.contains('number')){
         if(selected.length == 1){
@@ -520,6 +538,7 @@ body.addEventListener('click', (event) => {
     }
 })
 
+//stats
 const facile = document.getElementById('facile-stats');
 const normal = document.getElementById('normal-stats');
 const difficile = document.getElementById('difficile-stats');
@@ -527,19 +546,19 @@ const statsBtn = document.getElementById('statsBtn');
 const stats = document.getElementById('statistiques');
 
 if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
-    localStorage.setItem('PB difficile', 'N/D')
-    localStorage.setItem('difficile', '0')
+    localStorage.setItem('PB difficile', 'N/D');
+    localStorage.setItem('difficile', '0');
 }if(!localStorage.getItem('PB normal') && !localStorage.getItem('normal')){
-    localStorage.setItem('PB normal', 'N/D')
-    localStorage.setItem('normal', '0')
+    localStorage.setItem('PB normal', 'N/D');
+    localStorage.setItem('normal', '0');
 }if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
-    localStorage.setItem('PB facile', 'N/D')
-    localStorage.setItem('facile', '0')
+    localStorage.setItem('PB facile', 'N/D');
+    localStorage.setItem('facile', '0');
 }
 
-facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile')
-normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal')
-difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile')
+facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile');
+normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal');
+difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile');
 
 statsBtn.addEventListener('click', function(){
     if(stats.classList.contains('none'))stats.classList.remove('none');
@@ -547,8 +566,19 @@ statsBtn.addEventListener('click', function(){
     else if(!stats.classList.contains('hidden'))stats.classList.add('hidden');
 })
 
+//if user closes tab or reloads page it saves grid
 window.onbeforeunload = closingCode;
 function closingCode(){
-    saveGrid()
+    saveGrid();
     return null;
+}
+
+//easter egg
+if(localStorage.getItem('easterEgg') == 'true'){
+    document.body.style.backgroundImage = 'url("")';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.width = 'calc(100vw)';
+    document.body.style.heigth = '100vh';
+    document.body.style.objectFit = 'cover';
 }
