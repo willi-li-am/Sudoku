@@ -7,34 +7,77 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link rel="shortcut icon" type="image/x-icon" href="Assets/sudoku.png" />
     <title>Sudoku</title>
-    <ul>
-        <a class = 'home' href = '/'><li class = 'current'>Accueil</li></a> <!--change href to ../Sudoku/ when you're finished for github pages-->
+    <ul class = 'navbar'>
+        <a class = 'home' href = '../Sudoku/'><li class = 'current'>Accueil</li></a> <!--change href to ../Sudoku/ when you're finished for github pages-->
         <a  href = "facile/"><li>Sudoku Facile</li></a>
         <a href = 'normal/'><li>Sudoku Normal</li></a>
         <a href = 'difficile/'><li>Sudoku Difficile</li></a>
         <a href = 'tutoriel/'><li id = 'nav'>Tutoriel</li></a>
     </ul>
+    <div class = 'stats-nav'>
+        <img id = 'statsBtn' class = 'statsBtn' src = '/Assets/bar-chart.png'>
+        <div class = 'stats none hidden' id = 'statistiques'>
+            Statistiques:
+            <div id = 'facile'>
+                Facile:
+                <div id = 'facile-stats'></div>
+            </div>
+            <div id = 'normal'>
+                Normal:
+                <div id = 'normal-stats'></div>
+            </div>
+            <div id = 'difficile'>
+                Difficile:
+                <div id = 'difficile-stats'></div>
+            </div>
+        </div>
+    </div>
+    
 </head>
 
 <body>
-    <div class = 'title' >Bienvenue au Projet Personnel de William Li</div>
-    <p class = 'instructions'>(Pour accéder au Sudoku, Cliquer sur un Sudoku dans la barre de navigation)</p>
+    <div class = 'title' >Sudoku</div>
+        <div class = 'p'>Bienvenue au Projet Personnel de William Li</div>
     <div id = 'main'></div>
-    <div id = 'statistiques'>
-        Statistiques:
-        <div id = 'facile'>
-            Facile:
-            <div id = 'facile-stats'></div>
-        </div>
-        <div id = 'normal'>
-            Normal:
-            <div id = 'normal-stats'></div>
-        </div>
-        <div id = 'difficile'>
-            Difficile:
-            <div id = 'difficile-stats'></div>
+    <div id = 'sudokuImage'>
+        <img id ='image' class = 'image' alt = 'sudoku' src = 'https://thumbs.dreamstime.com/z/sudoku-1515893.jpg'>
+    </div>
+    <div id = 'playNow'>
+        <div class = 'sudokuTitle'>Jouer maintenant
+            <div class = 'miniP'>
+                Pour accéder au Sudoku, cliquez sur un des trois Sudoku que nous offrons dans la barre de navigation
+            </div>
         </div>
     </div>
+    <div id = 'newPlayers'>
+        <div class = 'sudokuTitle'>Nouveau?
+            <div class = 'miniP'>
+                Si vous ne savez pas comment compléter un Sudoku, vous pouvez faire le tutoriel qui se situe dans la barre de navigation
+            </div>
+        </div>
+    </div>
+    <div id = 'stats'>
+        <div class = 'sudokuTitle'>Statistiques
+            <div class = 'miniP'>
+                Nous gardons vos statistiques de votre meilleur temps et la quantité de Sudokus que vous avez complétés. Pour accéder à vos statistiques vous devez cliquer sur <img class = 'blackBarChart' src = '/Assets/bar-chart black.png'> qui se situe en haut à droite dans la barre de navigation 
+            </div>
+        </div>
+    </div>
+    <div id = 'save'>
+        <div class = 'sudokuTitle'>Pas assez de temps?
+            <div class = 'miniP'>
+                Nous sauvegardons votre Sudoku pour que vous puissez retourner  à résoudre sans que vous ayez à vous inquieter d'avoir besoin de tout recommencer
+            </div>
+        </div>
+    </div>
+    <footer>
+        <ul class = 'footer'>
+            <a href = '/aboutUs/' ><li class = 'aboutUs'>Sur Nous</li></a> 
+        </ul>
+    </footer>
 </body>
+
+
 </html>

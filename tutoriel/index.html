@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="tutoriel.js" defer></script>
-    <link href = 'tutoriel.css' rel = 'stylesheet' >
+    <link href = 'tutoriel.css' rel = 'stylesheet'>
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/sudoku.png" />
     <title>Sudoku Tutoriel</title>
     <ul id = 'navbar'>
         <a class = 'home' href = '../'><li id = 'nav' class = 'accueil'>Accueil</li></a>
@@ -14,6 +15,24 @@
         <a href = '../difficile/'><li id = 'nav'>Sudoku Difficile</li></a>
         <a href = '../tutoriel/'><li id = 'nav' class = 'current'>Tutoriel</li></a>
     </ul>
+    <div class = 'stats-nav'>
+        <img id = 'statsBtn' class = 'statsBtn' src = '/Assets/bar-chart.png'>
+        <div class = 'stats none hidden' id = 'statistiques'>
+            Statistiques:
+            <div id = 'facile'>
+                Facile:
+                <div id = 'facile-stats'></div>
+            </div>
+            <div id = 'normal'>
+                Normal:
+                <div id = 'normal-stats'></div>
+            </div>
+            <div id = 'difficile'>
+                Difficile:
+                <div id = 'difficile-stats'></div>
+            </div>
+        </div>
+    </div>
 </head>
 <body>
     <div class = 'gameText' id = 'gameText'>

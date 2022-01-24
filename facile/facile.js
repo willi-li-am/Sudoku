@@ -13,41 +13,41 @@ const body = document.getElementById('body');
 const navbar = document.getElementById('navbar');
 
 if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
-    localStorage.setItem('PB facile', 'N/D')
-    localStorage.setItem('facile', '0')
+    localStorage.setItem('PB facile', 'N/D');
+    localStorage.setItem('facile', '0');
 }
 
 //Creating the grid dynamically
-var cell = []
+var cell = [];
 
 function createCells(numCells){
-    var idNumber = 0
+    var idNumber = 0;
     for(let i = 0; i < Math.sqrt(numCells); i++){
         for(let j = 0; j < Math.sqrt(numCells); j++){
             var div = document.createElement("div");
-            div.innerHTML = ''
-            div.className = 'cell show'
+            div.innerHTML = '';
+            div.className = 'cell show';
             div.id = 'cell-' + idNumber
-            boldEverything(i, j, div)
-            cell.push(div)
-            idNumber++
+            boldEverything(i, j, div);
+            cell.push(div);
+            idNumber++;
         }
     }
     return cell;
 }
 
-let createdGrid = createCells(16)
+let createdGrid = createCells(16);
 
 //Makes border of certain cells thicker
 function boldEverything(i, j, div){
     if(i == 0 || i == 2){
-        div.style.borderTop = '.3vw black solid'
+        div.style.borderTop = '.3vw black solid';
     }if(j == 0 || j == 2){
-        div.style.borderLeft = '.3vw black solid'
+        div.style.borderLeft = '.3vw black solid';
     }if(j == 3){
-        div.style.borderRight = '.3vw black solid'
+        div.style.borderRight = '.3vw black solid';
     }if(i == 3){
-        div.style.borderBottom = '.3vw black solid'
+        div.style.borderBottom = '.3vw black solid';
     }
     
 }
@@ -55,7 +55,7 @@ function boldEverything(i, j, div){
 //Brings the grid to the page
 function addCellstoPage(arr){
     for(let i = 0; i < arr.length; i++){
-        document.getElementById('grid').appendChild(arr[i])
+        document.getElementById('grid').appendChild(arr[i]);
     }
     
 }
@@ -223,28 +223,28 @@ var newGrid;
 
 //Starts the game
 function startGame(){
-    newGrid = randomGrid(grid)
+    newGrid = randomGrid(grid);
     for(let i = 0; i < cell.length ; i++){ 
-        cell[i].classList.add('show')
-        cell[i].innerText = newGrid[i]
+        cell[i].classList.add('show');
+        cell[i].innerText = newGrid[i];
         if(newGrid[i] == ''){
-            cell[i].classList.remove('incorrect')
-            cell[i].classList.remove('correct')
-            cell[i].classList.remove('show')
+            cell[i].classList.remove('incorrect');
+            cell[i].classList.remove('correct');
+            cell[i].classList.remove('show');
         }else{
-            cell[i].classList.remove('incorrect')
-            cell[i].classList.remove('correct')
+            cell[i].classList.remove('incorrect');
+            cell[i].classList.remove('correct');
         }
     } 
-    resetTimer()
-    stopTimer()
-    setTimeout('startTimer()', 10)
+    resetTimer();
+    stopTimer();
+    setTimeout('startTimer()', 10);
     startGameInstructions.classList.add('hidden');
     setTimeout(slowlyHide, 200);
     if(selected.length != 0) selected[0].classList.remove('selected');
-    selected = []
-    sessionStorage.setItem('facile number', number)
-    sessionStorage.setItem('facile win', false)
+    selected = [];
+    localStorage.setItem('facile number', number);
+    localStorage.setItem('facile win', false);
 }
 
 //Hides the instructions once game is started
@@ -261,9 +261,9 @@ function getRndInteger(min, max) {
 
 var oldGrid = []
 
-oldGrid.push(sessionStorage.getItem('facile number'))
+oldGrid.push(localStorage.getItem('facile number'))
 
-var number = sessionStorage.getItem('facile number')
+var number = localStorage.getItem('facile number')
 
 function randomGrid(grid){
     let newGrid = [];
@@ -335,7 +335,7 @@ function checkWin(){
             localStorage.setItem('PB facile', timer.innerHTML)
         }
         localStorage.setItem('facile', numberOfWins(localStorage.getItem('facile')))
-        sessionStorage.setItem('facile win', true)
+        localStorage.setItem('facile win', true)
     }if(selected.length > 0){
         selected[0].classList.remove('selected')
         selected = []
@@ -359,10 +359,10 @@ var sec = 0;
 var ms = 0;
 var stoptime = true;
 
-if(sessionStorage.getItem('facile sec')){
-    ms = parseInt(sessionStorage.getItem('facile ms'));
-    sec = parseInt(sessionStorage.getItem('facile sec'));
-    min = parseInt(sessionStorage.getItem('facile min'));
+if(localStorage.getItem('facile sec')){
+    ms = parseInt(localStorage.getItem('facile ms'));
+    sec = parseInt(localStorage.getItem('facile sec'));
+    min = parseInt(localStorage.getItem('facile min'));
 }
 
 function startTimer() {
@@ -464,12 +464,12 @@ function numberOfWins(wins){
 function saveGrid(){
     if(startGameInstructions.classList.contains('hidden', 'none')){
         for(let i = 0; i < cell.length; i++){
-            sessionStorage.setItem('facile number', number)
-            sessionStorage.setItem('facile cell' + i, cell[i].innerText);
-            sessionStorage.setItem('facile timer', timer.innerHTML)
-            sessionStorage.setItem('facile ms', ms);
-            sessionStorage.setItem('facile sec', sec);
-            sessionStorage.setItem('facile min', min);
+            localStorage.setItem('facile number', number)
+            localStorage.setItem('facile cell' + i, cell[i].innerText);
+            localStorage.setItem('facile timer', timer.innerHTML)
+            localStorage.setItem('facile ms', ms);
+            localStorage.setItem('facile sec', sec);
+            localStorage.setItem('facile min', min);
         }
     }
 }
@@ -478,27 +478,27 @@ var savedNumber
 
 function printSavedGrid(){
     startGameInstructions.classList.add('hidden', 'none')
-    savedNumber = parseInt(sessionStorage.getItem('facile number'))
+    savedNumber = parseInt(localStorage.getItem('facile number'))
     for(let i = 0; i < cell.length; i++){
-        let cellHTML = sessionStorage.getItem('facile cell' + i);
+        let cellHTML = localStorage.getItem('facile cell' + i);
         if(grid[savedNumber][i] != cellHTML || grid[savedNumber][i] == ''){
             cell[i].classList.remove('show');
-            if(sessionStorage.getItem('facile win') == 'true'){
+            if(localStorage.getItem('facile win') == 'true'){
                 stopTimer()
                 cell[i].classList.add('correct')
             }
         }
         cell[i].innerHTML = cellHTML;
     }
-    timer.innerHTML = sessionStorage.getItem('facile timer')
-    if(sessionStorage.getItem('facile win') == 'true'){
+    timer.innerHTML = localStorage.getItem('facile timer')
+    if(localStorage.getItem('facile win') == 'true'){
         stopTimer()
     }else {
         startTimer()
     }
 }
 
-if(sessionStorage.getItem('facile timer')){
+if(localStorage.getItem('facile timer')){
     printSavedGrid()
 }
 
@@ -536,3 +536,35 @@ body.addEventListener('click', (event) => {
     }
 })
 
+const facile = document.getElementById('facile-stats');
+const normal = document.getElementById('normal-stats');
+const difficile = document.getElementById('difficile-stats');
+const statsBtn = document.getElementById('statsBtn');
+const stats = document.getElementById('statistiques');
+
+if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
+    localStorage.setItem('PB difficile', 'N/D')
+    localStorage.setItem('difficile', '0')
+}if(!localStorage.getItem('PB normal') && !localStorage.getItem('normal')){
+    localStorage.setItem('PB normal', 'N/D')
+    localStorage.setItem('normal', '0')
+}if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
+    localStorage.setItem('PB facile', 'N/D')
+    localStorage.setItem('facile', '0')
+}
+
+facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile')
+normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal')
+difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile')
+
+statsBtn.addEventListener('click', function(){
+    if(stats.classList.contains('none'))stats.classList.remove('none');
+    if(stats.classList.contains('hidden'))stats.classList.remove('hidden');
+    else if(!stats.classList.contains('hidden'))stats.classList.add('hidden');
+})
+
+window.onbeforeunload = closingCode;
+function closingCode(){
+    saveGrid()
+    return null;
+}

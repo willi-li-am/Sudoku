@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="facile.css">
     <script src="facile.js" defer></script>
+    <link rel="shortcut icon" type="image/x-icon" href="../Assets/sudoku.png" />
     <title>Sudoku Facile</title>
     <ul id = 'navbar'>
         <a class = 'home' href = '../'><li id = 'nav'  class = 'accueil'>Accueil</li></a>
@@ -15,12 +16,30 @@
         <a href = '../difficile/'><li id = 'nav' >Sudoku Difficile</li></a>
         <a href = '../tutoriel/'><li id = 'nav'>Tutoriel</li></a>
     </ul>
+    <div class = 'stats-nav'>
+        <img id = 'statsBtn' class = 'statsBtn' src = '/Assets/bar-chart.png'>
+        <div class = 'stats none hidden' id = 'statistiques'>
+            Statistiques:
+            <div id = 'facile'>
+                Facile:
+                <div id = 'facile-stats'></div>
+            </div>
+            <div id = 'normal'>
+                Normal:
+                <div id = 'normal-stats'></div>
+            </div>
+            <div id = 'difficile'>
+                Difficile:
+                <div id = 'difficile-stats'></div>
+            </div>
+        </div>
+    </div>
     <div class = 'title'>Sudoku Facile</div>
 </head>
 <body id = 'body'>
     <div class = 'timer' id = 'timer'>00:00:00</div>
     <div class = 'start-game' id = 'start-game'>
-        <div class = 'start-instructions'>Cliquer sur Nouvelle Partie</div>
+        <div class = 'start-instructions'>Cliquez sur Nouvelle Partie</div>
     </div>
     <div class = 'game'>
         <div id = 'grid'></div>

@@ -3,7 +3,7 @@ body{
     background-size: 1920px 1200px;
 }
 
-.navbar{
+ul{
     position: fixed;
     display: grid;
     grid-template-columns: 116px 151.59px 164px 167.5px 88px 10000px;
@@ -62,32 +62,6 @@ a:link{
     transition: 0.3s;
 }
 
-.title{
-    font: bold 5vw Arial;
-    text-align: center;
-    margin-top: 60px;
-}
-
-.p{
-    font: bold 1.5vw Arial;
-    text-align: center;
-}
-
-.image{
-    margin-top: 50px;
-    width: calc(1920px - 17px);
-    height: 600px;
-    object-fit: cover;
-    object-position: 0 20%;
-    z-index: -1;
-}
-
-.instructions{
-    text-align: center;
-    font: bold 20px Arial;
-    margin-top: 25px;
-}
-
 #facile{
     font: bold 20px Arial;
     margin-left: 10px;
@@ -141,7 +115,7 @@ a:link{
     width: 30px;
     height: 30px;
     top: 5px;
-    margin-left: calc(100vw - 70px);
+    margin-left: calc(100vw - 50px);
     transition: 0.3s;
     user-select: none;
     z-index: 2;
@@ -191,70 +165,4 @@ a:link{
 @keyframes slideup{
     0%{margin-top: 0px;}
     100% {margin-top: -345px;}
-}
-
-#playNow{
-    position: relative;
-    margin-top: 100px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 500px;
-}
-
-#newPlayers{
-    position: relative;
-    margin-top: 200px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 500px;
-}
-
-#stats{
-    position: relative;
-    margin-top: 200px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 500px;
-}
-
-#save{
-    position: relative;
-    margin-top: 200px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 500px;
-    margin-bottom: 100px;
-}
-
-.blackBarChart{
-    width: 1vw;
-}
-
-.footer{
-    position: relative;
-    width: calc(100vw - 17px);
-    background-color: rgb(51, 51, 51);
-    list-style-type: none;
-    grid-gap: 0px;
-    bottom: 0;
-    padding: 0px;
-    height: 50px;
-    z-index: 2;
-}
-
-.aboutUs{
-    background-color:rgb(51, 51, 51);
-    width: 116px;
-    height: 34px;
-    padding: 8px;
-    font: 20px Arial;
-    line-height: 34px;
-    margin-left: calc(50vw - 88px);
-}
-
-.aboutUs:hover{
-    cursor:pointer;
-    background-color: rgb(51, 51, 51);
-    text-decoration: underline;
-
 }

@@ -11,8 +11,10 @@ body{
 }
 
 ul{
+    position: relative;
+    z-index: 2;
     display: grid;
-    grid-template-columns: 116px 151.59px 164px 167.5px 88px;
+    grid-template-columns: 116px 151.59px 164px 167.5px 88px 66px;
     background-color: rgb(51, 51, 51);
     list-style-type: none;
     grid-gap: 0px;
@@ -20,7 +22,6 @@ ul{
     padding: 0px;
     height: 40px;
 }
-
 
 li{
     transition: 0.3s;
@@ -256,5 +257,122 @@ button:focus{
     transition: 0.5s;
 }
 
+#facile{
+    font: bold 20px Arial;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+#facile-stats{
+    margin-left: 10px;
+    margin-top: 5px;
+    font: 15px Arial;
+    margin-bottom: 10px;
+}
+
+#normal{
+    font: bold 20px Arial;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+#normal-stats{
+    margin-left: 10px;
+    margin-top: 5px;
+    font: 15px Arial;
+    margin-bottom: 10px;
+}
+
+#difficile{
+    font: bold 20px Arial;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+#difficile-stats{
+    margin-left: 10px;
+    margin-top: 5px;
+    font: 15px Arial;
+    margin-bottom: 10px;
+}
+#sudokuImage{
+    display: grid;
+    grid-template-columns: 45vw auto;
+}
+
+.image{
+    display: block;
+    margin-left: 25vw;
+    margin-top: 20vh;
+    width: 20vw;
+}
+
+.sudokuTitle{
+    font: bold 2vw Arial;
+    margin-left: 6vw;
+    margin-top: 27vh;
+}
+
+.miniP{
+    font: 1vw Arial;
+    margin-top: .5vw;
+}
+
+.statsBtn{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin-top: -35px;
+    margin-left: calc(100vw - 50px);
+    transition: 0.3s;
+    user-select: none;
+    z-index: 2;
+}
+
+.stats-nav{
+    position: relative;
+}
+
+.statsBtn:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.stats{
+    right: 0px;
+    background-color: rgb(77, 77, 77);
+    margin-top: 0;
+    width: 300px;
+    height: auto;
+    font: bold 25px Arial;
+    padding: 30px;
+    position: absolute;
+    user-select: none;
+    z-index: 1;
+    animation-name: slidedown;
+    animation-duration: .5s;
+    color: white;
+}
+
+.stats.hidden{
+    animation-name: slideup;
+    animation-duration: .5s;
+    margin-top: -345px;
+}
+
+.stats.none{
+    display: none;
+}
+
+@keyframes slidedown{
+    0% {margin-top: -345px;}
+    100% {margin-top: 0px;}
+}
+
+@keyframes slideup{
+    0%{margin-top: 0px;}
+    100% {margin-top: -345px;}
+}
 
 

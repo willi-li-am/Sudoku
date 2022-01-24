@@ -166,8 +166,8 @@ function startGame(){
     setTimeout(slowlyHide, 200);
     if(selected.length != 0) selected[0].classList.remove('selected');
     selected = []
-    sessionStorage.setItem('difficile number', number)
-    sessionStorage.setItem('difficile win', false)
+    localStorage.setItem('difficile number', number)
+    localStorage.setItem('difficile win', false)
 }
 
 
@@ -178,11 +178,11 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-var number = sessionStorage.getItem('difficile number')
+var number = localStorage.getItem('difficile number')
 
 var oldGrid = []
 
-oldGrid.push(sessionStorage.getItem('difficile number'))
+oldGrid.push(localStorage.getItem('difficile number'))
 
 function randomGrid(grid){
     let newGrid = []
@@ -224,7 +224,7 @@ function checkWin(){
             localStorage.setItem('PB difficile', timer.innerHTML)
         }
         localStorage.setItem('difficile', numberOfWins(localStorage.getItem('difficile')))
-        sessionStorage.setItem('difficile win', true)
+        localStorage.setItem('difficile win', true)
     }
     if(selected.length > 0){
         selected[0].classList.remove('selected')
@@ -254,7 +254,7 @@ function selectGrid(cellNum){
 }
 
 function addNumber(numpadNum){
-    selected[0].innerHTML = numpadNum
+    if(selected.length > 0) selected[0].innerHTML = numpadNum
 }
 
 function slowlyHide(){
@@ -327,7 +327,7 @@ function addNumberKeypress(e){
 }
 
 function clearCase(e){
-    if(e.key == 'Backspace'){
+    if(e.key == 'Backspace' || e.key == 'Delete'){
         selected[0].innerHTML = '';
     }
 }
@@ -347,10 +347,10 @@ var sec = 0;
 var ms = 0;
 var stoptime = true;
 
-if(sessionStorage.getItem('difficile sec')){
-    ms = parseInt(sessionStorage.getItem('difficile ms'));
-    sec = parseInt(sessionStorage.getItem('difficile sec'));
-    min = parseInt(sessionStorage.getItem('difficile min'));
+if(localStorage.getItem('difficile sec')){
+    ms = parseInt(localStorage.getItem('difficile ms'));
+    sec = parseInt(localStorage.getItem('difficile sec'));
+    min = parseInt(localStorage.getItem('difficile min'));
 }
 
 function startTimer() {
@@ -432,12 +432,12 @@ function numberOfWins(wins){
 function saveGrid(){
     if(startGameInstructions.classList.contains('hidden', 'none')){
         for(let i = 0; i < cell.length; i++){
-            sessionStorage.setItem('difficile number', number)
-            sessionStorage.setItem('difficile cell' + i, cell[i].innerText);
-            sessionStorage.setItem('difficile timer', timer.innerHTML)
-            sessionStorage.setItem('difficile ms', ms);
-            sessionStorage.setItem('difficile sec', sec);
-            sessionStorage.setItem('difficile min', min);
+            localStorage.setItem('difficile number', number)
+            localStorage.setItem('difficile cell' + i, cell[i].innerText);
+            localStorage.setItem('difficile timer', timer.innerHTML)
+            localStorage.setItem('difficile ms', ms);
+            localStorage.setItem('difficile sec', sec);
+            localStorage.setItem('difficile min', min);
         }
     }
 }
@@ -446,27 +446,27 @@ var savedNumber
 
 function printSavedGrid(){
     startGameInstructions.classList.add('hidden', 'none')
-    savedNumber = parseInt(sessionStorage.getItem('difficile number'))
+    savedNumber = parseInt(localStorage.getItem('difficile number'))
     for(let i = 0; i < cell.length; i++){
-        let cellHTML = sessionStorage.getItem('difficile cell' + i);
+        let cellHTML = localStorage.getItem('difficile cell' + i);
         if(grid[savedNumber][i] != cellHTML || grid[savedNumber][i] == ''){
             cell[i].classList.remove('show');
-            if(sessionStorage.getItem('difficile win') == 'true'){
+            if(localStorage.getItem('difficile win') == 'true'){
                 stopTimer()
                 cell[i].classList.add('correct')
             }
         }
         cell[i].innerHTML = cellHTML;
     }
-    timer.innerHTML = sessionStorage.getItem('difficile timer')
-    if(sessionStorage.getItem('difficile win') == 'true'){
+    timer.innerHTML = localStorage.getItem('difficile timer')
+    if(localStorage.getItem('difficile win') == 'true'){
         stopTimer()
     }else {
         startTimer()
     }
 }
 
-if(sessionStorage.getItem('difficile number') != null){
+if(localStorage.getItem('difficile number') != null){
     printSavedGrid()
 }
 
@@ -519,3 +519,36 @@ body.addEventListener('click', (event) => {
         }
     }
 })
+
+const facile = document.getElementById('facile-stats');
+const normal = document.getElementById('normal-stats');
+const difficile = document.getElementById('difficile-stats');
+const statsBtn = document.getElementById('statsBtn');
+const stats = document.getElementById('statistiques');
+
+if(!localStorage.getItem('PB difficile') && !localStorage.getItem('difficile')){
+    localStorage.setItem('PB difficile', 'N/D')
+    localStorage.setItem('difficile', '0')
+}if(!localStorage.getItem('PB normal') && !localStorage.getItem('normal')){
+    localStorage.setItem('PB normal', 'N/D')
+    localStorage.setItem('normal', '0')
+}if(!localStorage.getItem('PB facile') && !localStorage.getItem('facile')){
+    localStorage.setItem('PB facile', 'N/D')
+    localStorage.setItem('facile', '0')
+}
+
+facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile')
+normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal')
+difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile')
+
+statsBtn.addEventListener('click', function(){
+    if(stats.classList.contains('none'))stats.classList.remove('none');
+    if(stats.classList.contains('hidden'))stats.classList.remove('hidden');
+    else if(!stats.classList.contains('hidden'))stats.classList.add('hidden');
+})
+
+window.onbeforeunload = closingCode;
+function closingCode(){
+    saveGrid()
+    return null;
+}
