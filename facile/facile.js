@@ -457,7 +457,7 @@ function addNumberKeypress(e){
 
 //clears a case with backspace or delete
 function clearCase(e){
-    if(e.key == 'Backspace' && e.key == 'Delete'){
+    if(e.key == 'Backspace' || e.key == 'Delete'){
         selected[0].innerHTML = '';
     }
 }

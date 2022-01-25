@@ -399,7 +399,7 @@ function addNumberKeypress(e){
 }
 //Clears selected cell when pressing the "Backspace" or "Delete" key on keyboard
 function clearCase(e){
-    if(e.key == 'Backspace' && e.key == 'Delete'){
+    if(e.key == 'Backspace' || e.key == 'Delete'){
         selected[0].innerHTML = '';
     }
 }
