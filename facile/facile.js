@@ -315,7 +315,6 @@ function addNumber(numpadNum){
 
 //Checks if Sudoku is completed correctly
 var gridSolution = solution[number];
-var correctAnsw
 var oneWin
 
 if(localStorage.getItem('oneWinFacile') == 'true'){
@@ -326,7 +325,7 @@ if(localStorage.getItem('oneWinFacile') == 'true'){
 
 
 function checkWin(){
-    correctAnsw = 0;
+    var correctAnsw = 0;
     for(let i = 0; i < cell.length; i++){  
         if(!cell[i].classList.contains('show')){
             if(cell[i].innerText == gridSolution[i]){
