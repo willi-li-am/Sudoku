@@ -153,7 +153,7 @@ const grid = [
     1, 3, 2, 4,
     '', '', '', ''],
 
-    ['', '', '', '',
+    ['', 3, '', '',
     '', '', 1, '',
     '', 2, 3, 1,
     3, '', 4, 2],
@@ -247,6 +247,8 @@ function startGame(){
     selected = [];
     localStorage.setItem('facile number', number);
     localStorage.setItem('facile win', false);
+    oneWin = false;
+    localStorage.setItem('oneWinFacile', false);
 }
 
 //Hides the instructions once game is started
@@ -314,8 +316,17 @@ function addNumber(numpadNum){
 //Checks if Sudoku is completed correctly
 var gridSolution = solution[number];
 
+var correctAnsw = 0;
+var oneWin
+
+if(localStorage.getItem('oneWinFacile') == 'true'){
+    oneWin = true;
+}else{
+    oneWin = false;
+}
+
+
 function checkWin(){
-    var correctAnsw = 0;
     for(let i = 0; i < cell.length; i++){  
         if(!cell[i].classList.contains('show')){
             if(cell[i].innerText == gridSolution[i]){
@@ -330,14 +341,19 @@ function checkWin(){
             correctAnsw += 1;
         }
     }
-    if(correctAnsw == cell.length){
-        correctAnsw = 0;
+    if(correctAnsw == cell.length && oneWin == false){
         stopTimer();
         if(localStorage.getItem('PB facile') == 'N/D' || PersonalBest(timer.innerHTML, localStorage.getItem('PB facile'))){
             localStorage.setItem('PB facile', timer.innerHTML);
         }
         localStorage.setItem('facile', numberOfWins(localStorage.getItem('facile')));
         localStorage.setItem('facile win', true);
+        facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile');
+        normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal');
+        difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile');
+        correctAnsw = 0;
+        oneWin = true;
+        localStorage.setItem('oneWinNormal', true);
     }if(selected.length > 0){
         selected[0].classList.remove('selected');
         selected = [];

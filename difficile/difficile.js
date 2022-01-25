@@ -207,6 +207,8 @@ function startGame(){
     selected = [];
     localStorage.setItem('difficile number', number);
     localStorage.setItem('difficile win', false);
+    oneWin = false;
+    localStorage.setItem('oneWinDifficile', false);
 }
 
 
@@ -241,6 +243,15 @@ function randomGrid(grid){
 var gridSolution = solution[number];
 
 //Checks if Sudoku is completed correctly
+
+var oneWin
+
+if(localStorage.getItem('oneWinDifficile') == 'true'){
+    oneWin = true;
+}else{
+    oneWin = false;
+}
+
 function checkWin(){
     var correctAnsw = 0;
     for(let i = 0; i < cell.length; i++){  
@@ -265,6 +276,11 @@ function checkWin(){
         }
         localStorage.setItem('difficile', numberOfWins(localStorage.getItem('difficile')));
         localStorage.setItem('difficile win', true);
+        facile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB facile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('facile');
+        normal.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB normal') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('normal');
+        difficile.innerHTML = 'Meilleur Temps: ' + localStorage.getItem('PB difficile') + '<br>Nombre de Sudokus terminés: ' + localStorage.getItem('difficile');
+        oneWin = true;
+        localStorage.setItem('oneWinDifficile', true);
     }
     if(selected.length > 0){
         selected[0].classList.remove('selected');
