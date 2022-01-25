@@ -184,7 +184,7 @@ p{
 }
 
 .p{
-    color: rgb(8, 30, 78);
+    color: rgb(33, 77, 172);
 }
 
 .p:hover{
@@ -192,11 +192,11 @@ p{
 }
 
 .p:link{
-    color: rgb(8, 30, 78);
+    color: rgb(33, 77, 172);
 }
 
 .p:visited{
-    color: rgb(8, 30, 78);
+    color: rgb(33, 77, 172);
 }
 
 .iconLink{
@@ -235,4 +235,13 @@ p{
     font: bold 5vw Arial;
     text-align: center;
     margin-top: 200px;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.miniTitle{
+    font: bold 20px Arial;
+    margin-bottom: 20px;
 }
